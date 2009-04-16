@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sound Manager</string>
+    
+    <!-- MainSettings strings -->
+    <string name="system_textview">System Volume</string>
+    <string name="media_textview">Media Volume</string>
+    <string name="ringer_textview">Ringer Volume</string>
+    <string name="phonecall_textview">In-Call Volume</string>
+    <string name="alarm_textview">Alarm Volume</string>
+    <string name="timer_button">SET TIMER</string>
+    <string name="setVolumeChange">Set what volume will change to:</string>
+    <string name="setRingmodeChange">Set what ringmode will change to:</string>
+    <string name="setVibrateChange">Set what vibrate will change to:</string>
+    <string name="timerNotSet">Timer Not Set</string>
+    
+    <string name="SystemDisabled">System Timer Disabled</string>
+    <string name="RingerDisabled">Ringer Timer Disabled</string>
+    <string name="MediaDisabled">Media Timer Disabled</string>
+    <string name="AlarmDisabled">Alarm Timer Disabled</string>
+    <string name="IncallDisabled">In-Call Timer Disabled</string>
+    <string name="RingmodeDisabled">Ringmode Timer Disabled</string>
+    <string name="VibrateRingerDisabled">Ringer Vibrate Timer Disabled</string>
+    <string name="VibrateNotifDisabled">Notification Vibrate Timer Disabled</string>
+    <string name="TimersDisabled">Timers Disabled</string>
+    
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Mute -->
+    <string name="muted">muted</string>
+    <string name="SavedSystemVolume">SavedSystemVolume</string>
+    <string name="SavedRingerVolume">SavedRingerVolume</string>
+    <string name="SavedMediaVolume">SavedMediaVolume</string>
+    <string name="SavedAlarmVolume">SavedAlarmVolume</string>
+    
+    <!-- Shortcuts -->
+    <string name="use_menu_shortcut">Use the menu to create a shortcut to this screen.</string>
+    
+    <!-- Preferences -->
+    <string name="RingerVibrate">RingerVibrate</string>
+    <string name="NotificationVibrate">NotificationVibrate</string>
+    <string name="ShownStartup">ShownStartup</string>
+    <string name="SystemDisplay">SystemDisplay</string>
+    <string name="RingerDisplay">RingerDisplay</string>
+    <string name="AlarmDisplay">AlarmDisplay</string>
+    <string name="MediaDisplay">MediaDisplay</string>
+    <string name="IncallDisplay">IncallDisplay</string>
+    <string name="RingmodeDisplay">RingmodeDisplay</string>
+    <string name="VibrateNotifDisplay">VibrateNotifDisplay</string>
+    <string name="VibrateRingerDisplay">VibrateRingerDisplay</string>
+    
+    <!-- Timers -->
+    <string name="RingerTimeStart">RingerTimeStart</string>
+    <string name="RingerTimeEnd">RingerTimeEnd</string>
+    <string name="RingerStartVolume">RingerStartVolume</string>
+    <string name="RingerEndVolume">RingerEndVolume</string>
+    <string name="AlarmTimeStart">AlarmTimeStart</string>
+    <string name="AlarmTimeEnd">AlarmTimeEnd</string>
+    <string name="AlarmStartVolume">AlarmStartVolume</string>
+    <string name="AlarmEndVolume">AlarmEndVolume</string>
+    <string name="MediaTimeStart">MediaTimeStart</string>
+    <string name="MediaTimeEnd">MediaTimeEnd</string>
+    <string name="MediaStartVolume">MediaStartVolume</string>
+    <string name="MediaEndVolume">MediaEndVolume</string>
+    <string name="SystemTimeStart">SystemTimeStart</string>
+    <string name="SystemTimeEnd">SystemTimeEnd</string>
+    <string name="SystemStartVolume">SystemStartVolume</string>
+    <string name="SystemEndVolume">SystemEndVolume</string>
+    <string name="IncallTimeStart">IncallTimeStart</string>
+    <string name="IncallTimeEnd">IncallTimeEnd</string>
+    <string name="IncallStartVolume">IncallStartVolume</string>
+    <string name="IncallEndVolume">IncallEndVolume</string>
+    <string name="RingmodeTimeStart">RingmodeTimeStart</string>
+    <string name="RingmodeTimeEnd">RingmodeTimeEnd</string>
+    <string name="RingmodeStartVolume">RingmodeStartVolume</string>
+    <string name="RingmodeEndVolume">RingmodeEndVolume</string>
+    <string name="VibrateNotifTimeStart">VibrateNotifTimeStart</string>
+    <string name="VibrateNotifTimeEnd">VibrateNotifTimeEnd</string>
+    <string name="VibrateNotifStartVolume">VibrateNotifStartVolume</string>
+    <string name="VibrateNotifEndVolume">VibrateNotifEndVolume</string>
+    <string name="VibrateRingerTimeStart">VibrateRingerTimeStart</string>
+    <string name="VibrateRingerTimeEnd">VibrateRingerTimeEnd</string>
+    <string name="VibrateRingerStartVolume">VibrateRingerStartVolume</string>
+    <string name="VibrateRingerEndVolume">VibrateRingerEndVolume</string>
+    <string name="EnableAlarm">EnableAlarm</string>
+    <string name="EnableRinger">EnableRinger</string>
+    <string name="EnableMedia">EnableMedia</string>
+    <string name="EnableIncall">EnableIncall</string>
+    <string name="EnableSystem">EnableSystem</string>
+    <string name="EnableRingmode">EnableRingmode</string>
+    <string name="EnableVibrateNotif">EnableVibrateNotif</string>
+    <string name="EnableVibrateRinger">EnableVibrateRinger</string>
+    
+    <!-- Vibrate Settings -->
+    <string name="notification_vibrate">Notification Settings</string>
+    <string name="ringer_vibrate">Ringer Settings</string>
+    <string name="vibrate_when_possible">Vibrate Whenever Possible</string>
+    <string name="vibrate_when_silent">Vibrate Only When Silent</string>
+    <string name="vibrate_off">Don't Vibrate</string>
+    
+    <!-- Ringmode Toggle -->
+    <string name="toggle_text">Set Ring Mode</string>
+    <string name="ring_vibrate">Ring And Vibrate</string>
+    <string name="ring_only">Ring Only</string>
+    <string name="vibrate_only">Vibrate Only</string>
+    <string name="silent">Silent</string>
+    
+</resources>
