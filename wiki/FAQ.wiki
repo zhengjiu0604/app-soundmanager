@@ -9,17 +9,17 @@ Use the Menu to switch screens to set vibration settings or toggle the ringmode.
 
 To set a timer:
 
-  #Press the Set Timer button next to any of the volume settings.
-  #Choose the time of day you first want the volume to change.
-  #Press OK.
-  #Choose the volume level you want it to change to.
-  #Press OK.
-  #Choose the time of day you want the volume to change back (or to change to a different setting).
-  #Press OK
-  #Choose the volume you want it to change to the second time.
-  #Press OK.
-  #You will be prompted reminding you that this will control your volume settings and may change your settings immediately based in the timer you set.
-  #Press OK. The timers will be set.
+  # Press the Set Timer button next to any of the volume settings.
+  #  Choose the time of day you first want the volume to change.
+  # Press OK.
+  # Choose the volume level you want it to change to.
+  # Press OK.
+  # Choose the time of day you want the volume to change back (or to change to a different setting).
+  # Press OK
+  # Choose the volume you want it to change to the second time.
+  # Press OK.
+  # You will be prompted reminding you that this will control your volume settings and may change your settings immediately based in the timer you set.
+  # Press OK. The timers will be set.
 
 =F.A.Q.=
 
