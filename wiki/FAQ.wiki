@@ -1,0 +1,70 @@
+#summary Frequently Asked Questions
+#labels Featured
+
+=How to Use=
+
+Slide your finger along any of the volume bars to change the volume.
+
+Use the Menu to switch screens to set vibration settings or toggle the ringmode.
+
+To set a timer:
+
+  #Press the Set Timer button next to any of the volume settings.
+  #Choose the time of day you first want the volume to change.
+  #Press OK.
+  #Choose the volume level you want it to change to.
+  #Press OK.
+  #Choose the time of day you want the volume to change back (or to change to a different setting).
+  #Press OK
+  #Choose the volume you want it to change to the second time.
+  #Press OK.
+  #You will be prompted reminding you that this will control your volume settings and may change your settings immediately based in the timer you set.
+  #Press OK. The timers will be set.
+
+=F.A.Q.=
+
+*Q.* When I set some timers for tomorrow, it changed by volume right away!
+
+*A.* Please state that in the form of a question.
+
+*Q.* Why did it change my current settings?
+
+*A.* When you set a timer for a time of day earlier than the current time (like for tomorrow morning) the timer will go off immediately and set volume settings. Don't worry, the timer will correctly change the settings tomorrow, too.
+
+*Q.* What if I reboot my phone? Will the timers I set still work?
+
+*A.* They will reinstall upon startup. If you missed one of your timers, it will go off right when you startup.
+
+*Q.* When my ringer is set to 0 volume, it also sets my system volume to 0, why is that?
+
+*A.* If you set your ringer volume to 0, Sound Manager will change modes for you, switching your phone to silent or vibrate, depending on your vibration settings.
+
+*Q.* How do I set a timer to change the volume only once in a day?
+
+*A.* Just set both the "start" and "end" times to the same time and set the volumes to the same setting.
+
+*Q.* How come I cannot adjust the settings for Email Notification sounds, or others?
+
+*A.* The ability to change, for example, the Email Notification sounds, or other sounds, individually is not exposed to developers. The sounds are controlled by the ringer volume. It's too bad, too, because that's exactly what made me think of creating this application to begin with.
+
+However, the email app does allow you to make notifications silent, but only have it vibrate when new emails come in. You can do this with the IM app, too. Then, set times on the vibrate settings at night to turn vibration off, essentially silencing your emails (and who needs vibrate when you're sleeping anyways?).
+
+*Q.* I had the window open when the volume changed, but the volume controls in the app didn't reflect the change. Why not?
+
+*A.* To reset the volume sliders, just exit out of the app and return.
+
+*Q.* I set my ringmode to 'Vibrate Only', but I returned later to see that it is set to 'Silent', why is that?
+
+*A.* The Vibrate Settings and the Ringmode Toggle can interfere with each other sometimes. If you set the ringmode to 'Vibrate Only', but then went and switched the Ringer Vibration Setting to 'Vibration Off', then the ringmode you chose is no longer valid and should actually be 'Silent'.
+
+*Q.* Why have my ringers not gone off since I updated?
+
+*A.* After an update the Operating System disabled the timers that were in place. A reboot of the phone will quickly reenabled them; otherwise, reset each timer.
+
+*Q.* I muted my phone, but later the volume raised? What's going on?
+
+*A.* The Mute button is a great feature, but it doesn't supersede the timers you set for your volume controls. If you mute your phone, but a timer you set raises the volume, then the volume will be raised.
+
+*Q.* Help! I created a shortcut to my mute activity, but the shortcut does nothing!
+
+*A.* The shortcut doesn't display anything, but it does toggle your mute status. If you press it once, it mutes your phone. If you press it a second time, the volume levels are returned to what they were when you muted the phone (even if you've changed the volume in the meantime).
