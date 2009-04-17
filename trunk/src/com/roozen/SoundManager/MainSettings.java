@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
@@ -104,7 +105,7 @@ public class MainSettings extends Activity {
 	        		           "explanation of how Sound Manager works if you need help or " +
 	        		           "have questions. Feel free to contact the developer by email " +
 	        		           "if you've found problems, have a feature request, or need help.\n\n" +
-	        		           "Thanks for buying!");
+	        		           "Thanks for downloading!");
 	        builder.show();
 	        
 	        Editor edit = settings.edit();
@@ -613,8 +614,9 @@ public class MainSettings extends Activity {
 			startActivity(toggle);
 			return true;
 		case R.id.faq:
-			Intent faq = new Intent(this, Faq.class);
-			startActivity(faq);
+			Uri uri = Uri.parse("http://code.google.com/p/app-soundmanager/wiki/FAQ");
+			Intent i = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(i);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
