@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sound Manager</string>
+    <string name="app_name">Sound Manager v1.2.0</string>
     
     <!-- MainSettings strings -->
     <string name="system_textview">System Volume</string>
@@ -8,7 +8,7 @@
     <string name="ringer_textview">Ringer Volume</string>
     <string name="phonecall_textview">In-Call Volume</string>
     <string name="alarm_textview">Alarm Volume</string>
-    <string name="timer_button">SET TIMER</string>
+    <string name="timer_button">Schedule</string>
     <string name="setVolumeChange">Set what volume will change to:</string>
     <string name="setRingmodeChange">Set what ringmode will change to:</string>
     <string name="setVibrateChange">Set what vibrate will change to:</string>
@@ -105,5 +105,29 @@
     <string name="ring_only">Ring Only</string>
     <string name="vibrate_only">Vibrate Only</string>
     <string name="silent">Silent</string>
+    
+    <!-- Schedules -->
+    <string name="SystemVolumeSchedule">System Volume Schedule</string>
+    <string name="RingerVolumeSchedule">Ringer Volume Schedule</string>
+    <string name="MediaVolumeSchedule">Media Volume Schedule</string>
+    <string name="AlarmVolumeSchedule">Alarm Volume Schedule</string>
+    <string name="InCallVolumeSchedule">In-Call Volume Schedule</string>
+    
+    <string name="newSchedule">New Schedule</string>
+    <string name="deleteSchedule">Delete</string>
+    <string name="editSchedule">Edit</string>
+    
+    <string name="day0">Sun</string>
+    <string name="day1">Mon</string>
+    <string name="day2">Tue</string>
+    <string name="day3">Wed</string>
+    <string name="day4">Thu</string>
+    <string name="day5">Fri</string>
+    <string name="day6">Sat</string>
+    
+    <string name="startTimeLabel">Start Time:</string>
+    <string name="endTimeLabel">End Time:</string>
+    <string name="volumeLabel">Volume:</string>
+    <string name="vibrateLabel">Vibrate:</string>
     
 </resources>
