@@ -47,6 +47,7 @@ import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.roozen.SoundManager.receivers.SoundTimer;
+import com.roozen.SoundManager.schedule.ScheduleList;
 import com.roozen.SoundManager.utils.DbUtil;
 import com.roozen.SoundManager.utils.Util;
 
@@ -84,6 +85,8 @@ public class MainSettings extends Activity {
 	public final static int VIBRATE_RINGER_END = 13;
 	public final static int RINGER_MODE_START = 14;
 	public final static int RINGER_MODE_END = 15;
+	
+	private static final int ACTIVITY_SCHEDULE = 0;
 	
     /** Called when the activity is first created. */
     @Override
@@ -275,216 +278,71 @@ public class MainSettings extends Activity {
         });        
     }
     
-    private void setupButtons(){
-    	final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    private void setupButtons() {
 		final ContentResolver resolver = getContentResolver();
 		
 		TextView systemText = (TextView) findViewById(R.id.system_timer_text);
-	    	systemText.setText(DbUtil.queryString(resolver, getString(R.string.SystemDisplay), ""));
+        systemText.setText(DbUtil.queryString(resolver, getString(R.string.SystemDisplay), ""));
 	    	
-	        Button systemTimer = (Button) findViewById(R.id.system_timer_button);
-	        systemTimer.setOnClickListener(this.getNewOnClickListener(audio, getString(R.string.SystemTimeStart), 
-	        		getString(R.string.SystemTimeEnd), getString(R.string.SystemStartVolume), getString(R.string.SystemEndVolume), 
-	        		AudioManager.STREAM_SYSTEM, pendingSystemStart, pendingSystemEnd, "System Timer Set", getString(R.string.EnableSystem),
-	        		systemText, getString(R.string.SystemDisplay)));
+        Button systemTimer = (Button) findViewById(R.id.system_timer_button);
+        systemTimer.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View view) {
+        		Intent i = new Intent(gui, ScheduleList.class);
+        		i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_SYSTEM));
+        		startActivityForResult(i, ACTIVITY_SCHEDULE);
+        	}
+        });
 		
 	    TextView ringerText = (TextView) findViewById(R.id.ringer_timer_text);
 	    ringerText.setText(DbUtil.queryString(resolver, getString(R.string.RingerDisplay), ""));
 	    	
 	    Button ringerTimer = (Button) findViewById(R.id.ringer_timer_button);
-	    ringerTimer.setOnClickListener(this.getNewOnClickListener(audio, getString(R.string.RingerTimeStart), 
-	        		getString(R.string.RingerTimeEnd), getString(R.string.RingerStartVolume), getString(R.string.RingerEndVolume), 
-	        		AudioManager.STREAM_RING, pendingRingerStart, pendingRingerEnd, "Ringer Timer Set", getString(R.string.EnableRinger),
-	        		ringerText, getString(R.string.RingerDisplay)));    
+	    ringerTimer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(gui, ScheduleList.class);
+                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_RING));
+                startActivityForResult(i, ACTIVITY_SCHEDULE);
+            }
+        });
 	    
 	    TextView mediaText = (TextView) findViewById(R.id.media_timer_text);
     	mediaText.setText(DbUtil.queryString(resolver, getString(R.string.MediaDisplay), ""));
     	
         Button mediaTimer = (Button) findViewById(R.id.media_timer_button);
-        mediaTimer.setOnClickListener(this.getNewOnClickListener(audio, getString(R.string.MediaTimeStart), 
-        		getString(R.string.MediaTimeEnd), getString(R.string.MediaStartVolume), getString(R.string.MediaEndVolume), 
-        		AudioManager.STREAM_MUSIC, pendingMediaStart, pendingMediaEnd, "Media Timer Set", getString(R.string.EnableMedia),
-        		mediaText, getString(R.string.MediaDisplay)));
+        mediaTimer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(gui, ScheduleList.class);
+                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_MUSIC));
+                startActivityForResult(i, ACTIVITY_SCHEDULE);
+            }
+        });
         
         TextView alarmText = (TextView) findViewById(R.id.alarm_timer_text);
     	alarmText.setText(DbUtil.queryString(resolver, getString(R.string.AlarmDisplay), ""));
     	
         Button alarmTimer = (Button) findViewById(R.id.alarm_timer_button);
-        alarmTimer.setOnClickListener(this.getNewOnClickListener(audio, getString(R.string.AlarmTimeStart), 
-        		getString(R.string.AlarmTimeEnd), getString(R.string.AlarmStartVolume), getString(R.string.AlarmEndVolume), 
-        		AudioManager.STREAM_ALARM, pendingAlarmStart, pendingAlarmEnd, "Alarm Timer Set", getString(R.string.EnableAlarm),
-        		alarmText, getString(R.string.AlarmDisplay)));
+        alarmTimer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(gui, ScheduleList.class);
+                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_ALARM));
+                startActivityForResult(i, ACTIVITY_SCHEDULE);
+            }
+        });
         
     	TextView incallText = (TextView) findViewById(R.id.phonecall_timer_text);
     	incallText.setText(DbUtil.queryString(resolver, getString(R.string.IncallDisplay), ""));
     	
     	Button incallTimer = (Button) findViewById(R.id.phonecall_timer_button);
-    	incallTimer.setOnClickListener(this.getNewOnClickListener(audio, getString(R.string.IncallTimeStart), 
-    			getString(R.string.IncallTimeEnd), getString(R.string.IncallStartVolume), getString(R.string.IncallEndVolume), 
-    			AudioManager.STREAM_VOICE_CALL, pendingIncallStart, pendingIncallEnd, "In-Call Timer Set", getString(R.string.EnableIncall),
-    			incallText, getString(R.string.IncallDisplay)));        
+    	incallTimer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(gui, ScheduleList.class);
+                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_VOICE_CALL));
+                startActivityForResult(i, ACTIVITY_SCHEDULE);
+            }
+        });
+    	   
     }
     
-	private OnClickListener getNewOnClickListener(final AudioManager audio, final String timeStartPref, final String timeEndPref,
-    	final String volumeStartPref, final String volumeEndPref, final int stream,
-    	final PendingIntent pendingIntentStart, final PendingIntent pendingIntentEnd, final String toastMessage,
-    	final String enablePref, final TextView display, final String displayPref){	
-		
-    	return new OnClickListener(){
-
-			@Override
-			public void onClick(View view) {		
-				Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-				final ContentResolver resolver = getContentResolver();
-				String timeDefault = DbUtil.queryString(resolver, timeStartPref, cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE));
-				
-				TimePickerDialog timeStart = new TimePickerDialog(gui, 
-						new TimePickerDialog.OnTimeSetListener(){
-
-						    @Override
-							public void onTimeSet(TimePicker view,
-									int hourOfDay, int minute) {
-								final String time = hourOfDay + ":" + minute;								
-								DbUtil.update(resolver, timeStartPref, time);
-								
-						        final Dialog diag = new Dialog(gui);
-								diag.setContentView(R.layout.volume_ringer);
-								final SeekBar seek = (SeekBar) diag.findViewById(R.id.ringer_volume);
-								seek.setMax(audio.getStreamMaxVolume(stream));
-								seek.setProgress(DbUtil.queryInt(resolver, volumeStartPref, audio.getStreamVolume(stream)));
-									
-								Button ok = (Button) diag.findViewById(R.id.ok_button);
-								ok.setOnClickListener(new OnClickListener(){
-
-									@Override
-									public void onClick(View v) {
-										int vol = seek.getProgress();										
-										DbUtil.update(resolver, volumeStartPref, vol);
-										diag.dismiss();
-										
-										String endDefault = DbUtil.queryString(resolver, timeEndPref, time);
-										
-										TimePickerDialog timeEnd = new TimePickerDialog(gui, 
-												new TimePickerDialog.OnTimeSetListener(){
-
-												    @Override
-													public void onTimeSet(TimePicker view,
-															int hourOfDay, int minute) {
-														String nexttime = hourOfDay + ":" + minute;
-														
-														DbUtil.update(resolver, timeEndPref, nexttime);
-														
-												        final Dialog endVolume = new Dialog(gui);
-														endVolume.setContentView(R.layout.volume_ringer);
-														final SeekBar endSeek = (SeekBar) endVolume.findViewById(R.id.ringer_volume);
-														endSeek.setMax(audio.getStreamMaxVolume(stream));
-														endSeek.setProgress(DbUtil.queryInt(resolver, volumeEndPref, audio.getStreamVolume(stream)));
-																
-														Button endOk = (Button) endVolume.findViewById(R.id.ok_button);
-														endOk.setOnClickListener(new OnClickListener(){
-
-															@Override
-															public void onClick(View v) {
-																int vol = endSeek.getProgress();
-																
-																DbUtil.update(resolver, volumeEndPref, vol);
-																
-																endVolume.dismiss();
-																
-																final Dialog OKDialog = new Dialog(gui);
-																OKDialog.setContentView(R.layout.okdialog);
-																TextView oktext = (TextView) OKDialog.findViewById(R.id.verify);
-																
-																OKDialog.setTitle("Confirm");
-																oktext.setText("Are you sure you want to set this timer?\n\n"
-																				+ "This may change your volume immediately.\n");
-																
-																Button okbutton = (Button) OKDialog.findViewById(R.id.ok_button);
-																okbutton.setOnClickListener(new OnClickListener(){
-
-																	@Override
-																	public void onClick(View view) {
-																		String startTime = DbUtil.queryString(resolver, timeStartPref, "");
-
-																		if(startTime != null && startTime.length() > 0 && startTime.contains(":")){
-																			Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-																			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.substring(0, startTime.indexOf(":"))));
-																			cal.set(Calendar.MINUTE, Integer.parseInt(startTime.substring(startTime.indexOf(":") + 1)));
-																			cal.set(Calendar.SECOND, 0);
-																			cal.set(Calendar.MILLISECOND, 200);
-																			
-																			AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-																			alarmManager.cancel(pendingIntentStart);
-																			alarmManager.cancel(pendingIntentEnd);
-																	        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingIntentStart); // Repeating alarm every day
-																		}
-																		
-																		String endTime = DbUtil.queryString(resolver, timeEndPref, "");
-																			
-																		if(endTime != null && endTime.length() > 0 && endTime.contains(":")){
-																			Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-																			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endTime.substring(0, endTime.indexOf(":"))));
-																			cal.set(Calendar.MINUTE, Integer.parseInt(endTime.substring(endTime.indexOf(":") + 1)));
-																			cal.set(Calendar.SECOND, 0);
-																			cal.set(Calendar.MILLISECOND, 205);
-																			
-																			AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-																	        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingIntentEnd); // Repeating alarm every day
-																		}
-																		
-																		String startHour = Util.padZero(startTime.substring(0, startTime.indexOf(":")));
-																		String startMin = Util.padZero(startTime.substring(startTime.indexOf(":") + 1));
-																	
-																		String endHour = Util.padZero(endTime.substring(0, endTime.indexOf(":")));
-																		String endMin = Util.padZero(endTime.substring(endTime.indexOf(":") + 1));
-																		
-																		String displayStr = "Start: " + startHour + ":" + startMin + " Vol: " + DbUtil.queryInt(resolver, volumeStartPref, -1) + 
-																        					" End: " + endHour + ":" + endMin + " Vol: " + DbUtil.queryInt(resolver, volumeEndPref, -1);
-																		display.setText(displayStr); 
-																		
-																		DbUtil.update(resolver, enablePref, 1);
-																		DbUtil.update(resolver, displayPref, displayStr);
-																		
-																		popToastShort(toastMessage);
-																		OKDialog.dismiss();
-																	}
-																	
-																});
-																
-																Button cancelButton = (Button) OKDialog.findViewById(R.id.cancel_button);
-																cancelButton.setOnClickListener(new OnClickListener(){
-
-																	@Override
-																	public void onClick(View v) {
-																		popToastShort(getString(R.string.timerNotSet));
-																		OKDialog.dismiss();
-																	}
-																	
-																});
-																
-																OKDialog.show();
-															}
-															
-														});
-														
-														endVolume.show();
-												    }
-										}, Integer.parseInt(endDefault.substring(0, endDefault.indexOf(":"))), Integer.parseInt(endDefault.substring(endDefault.indexOf(":") + 1)), false);
-										timeEnd.show();
-									}
-									
-								});
-								
-								diag.show();
-								
-						    }
-				}, Integer.parseInt(timeDefault.substring(0, timeDefault.indexOf(":"))), Integer.parseInt(timeDefault.substring(timeDefault.indexOf(":") + 1)), false);
-				timeStart.show();
-			}
-        	
-        };
-    }
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
