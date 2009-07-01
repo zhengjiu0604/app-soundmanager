@@ -26,23 +26,23 @@ public class DbUtil {
 
 	public static void insert(ContentResolver resolver, String pref, String data){
 		ContentValues initialValues = new ContentValues();
-        initialValues.put(PreferenceProvider._PREFERENCE, pref);
-        initialValues.put(PreferenceProvider._STRING_DATA, data);
+        initialValues.put(SQLiteDatabaseHelper.PREFERENCES_PREFERENCE, pref);
+        initialValues.put(SQLiteDatabaseHelper.PREFERENCES_STRING_DATA, data);
         
         resolver.insert(PreferenceProvider.CONTENT_URI, initialValues);
 	}
 	
 	public static void insert(ContentResolver resolver, String pref, int data){
 		ContentValues initialValues = new ContentValues();
-        initialValues.put(PreferenceProvider._PREFERENCE, pref);
-        initialValues.put(PreferenceProvider._INTEGER_DATA, data);
+        initialValues.put(SQLiteDatabaseHelper.PREFERENCES_PREFERENCE, pref);
+        initialValues.put(SQLiteDatabaseHelper.PREFERENCES_INTEGER_DATA, data);
         
         resolver.insert(PreferenceProvider.CONTENT_URI, initialValues);
 	}
 	
 	public static void update(ContentResolver resolver, String pref, String data){
 		ContentValues values = new ContentValues();
-        values.put(PreferenceProvider._STRING_DATA, data);
+        values.put(SQLiteDatabaseHelper.PREFERENCES_STRING_DATA, data);
         
 		if(resolver.update(Uri.withAppendedPath(PreferenceProvider.CONTENT_URI, pref), values, null, null) == 0){
 			insert(resolver, pref, data);
@@ -52,7 +52,7 @@ public class DbUtil {
 	
 	public static void update(ContentResolver resolver, String pref, int data){
 		ContentValues values = new ContentValues();
-        values.put(PreferenceProvider._INTEGER_DATA, data);
+        values.put(SQLiteDatabaseHelper.PREFERENCES_INTEGER_DATA, data);
         
 		if(resolver.update(Uri.withAppendedPath(PreferenceProvider.CONTENT_URI, pref), values, null, null) == 0){
 			insert(resolver, pref, data);
@@ -63,7 +63,7 @@ public class DbUtil {
 	public static String queryString(ContentResolver resolver, String pref, String def){
         Cursor preference = resolver.query(Uri.withAppendedPath(PreferenceProvider.CONTENT_URI, pref), null, null, null, null);
         if(preference != null && preference.moveToFirst()){
-        	int column = preference.getColumnIndex(PreferenceProvider._STRING_DATA);
+        	int column = preference.getColumnIndex(SQLiteDatabaseHelper.PREFERENCES_STRING_DATA);
         	String prefit = preference.getString(column);
         	if(prefit == null || prefit.equals("")){
         		return def;
@@ -77,7 +77,7 @@ public class DbUtil {
         Cursor preference = resolver.query(Uri.withAppendedPath(PreferenceProvider.CONTENT_URI, pref), 
         		                          null, null, null, null);
         if(preference != null && preference.moveToFirst()){
-        	return preference.getInt(preference.getColumnIndex(PreferenceProvider._INTEGER_DATA));
+        	return preference.getInt(preference.getColumnIndex(SQLiteDatabaseHelper.PREFERENCES_INTEGER_DATA));
         }
         return def;
 	}
@@ -86,7 +86,7 @@ public class DbUtil {
         Cursor preference = resolver.query(Uri.withAppendedPath(PreferenceProvider.CONTENT_URI, pref), 
         		                          null, null, null, null);
         if(preference != null && preference.moveToFirst()){
-        	int get = preference.getInt(preference.getColumnIndex(PreferenceProvider._INTEGER_DATA));
+        	int get = preference.getInt(preference.getColumnIndex(SQLiteDatabaseHelper.PREFERENCES_INTEGER_DATA));
         	return get == 1;
         }
         return def;
