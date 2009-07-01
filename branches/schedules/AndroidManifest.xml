@@ -1,79 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
-/**
- * Copyright 2009 Daniel Roozen
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed 
- * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
- */
- -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.roozen.SoundManager" android:versionCode="17" android:versionName="1.2.5">
-	<application android:icon="@drawable/sound_icon"
-		android:debuggable="true" android:label="@string/app_name">
-		<activity android:name=".MainSettings">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="com.roozen.intent.SOUND_CONTROL" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		<service android:name="com.roozen.SoundManager.services.ChangeVolume"></service>
-		<receiver android:name="com.roozen.SoundManager.receivers.Bootup">
-			<intent-filter>
-				<action android:name="android.intent.action.BOOT_COMPLETED" />
-			</intent-filter>
-		</receiver>
-		<service android:name="com.roozen.SoundManager.services.BootupService"></service>
-		<activity android:name="RingmodeToggle">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="com.roozen.intent.RINGMODE_CONTROL" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
+<!--
+    Copyright 2009 Daniel Roozen 
+    
+    Licensed under the Apache License, Version 2.0 (the "License"); 
+    you may not use this file except in compliance with the License. 
+    You may obtain a copy of the License at 
+    
+    http://www.apache.org/licenses/LICENSE-2.0 
+    
+    Unless required by applicable law or agreed to in writing, 
+    software distributed under the License is distributed 
+    on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+    either express or implied. See the License for the specific language 
+    governing permissions and limitations under the License. 
+-->
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.roozen.SoundManager"
+    android:versionCode="17"
+    android:versionName="1.2.5">
 
-		<activity android:name="VibrateSettings">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="com.roozen.intent.VIBRATION_CONTROL" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		<activity android:name="VolumeDialog" android:theme="@android:style/Theme.Dialog">
-			<intent-filter>
-				<action android:name="com.roozen.intent.VOLUME_CONTROL" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
+    <uses-sdk android:minSdkVersion="3" />
 
-		<receiver android:name="com.roozen.SoundManager.receivers.SoundTimer"></receiver>
-		<provider android:name="com.roozen.SoundManager.provider.PreferenceProvider"
-			android:authorities="com.roozen.SoundManager.provider.PreferenceProvider"></provider>
-		<activity android:name="MuteActivity" android:label="Sound Manager v1.2.0">
+    <application
+        android:icon="@drawable/sound_icon"
+        android:debuggable="true"
+        android:label="@string/app_name">
 
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-			</intent-filter>
-		</activity>
-	</application>
+        <!-- Activities -->
+        <activity android:name=".MainSettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.roozen.intent.SOUND_CONTROL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
-	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"></uses-permission>
+        <receiver android:name="com.roozen.SoundManager.receivers.Bootup">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="RingmodeToggle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.roozen.intent.RINGMODE_CONTROL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="VibrateSettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.roozen.intent.VIBRATION_CONTROL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="VolumeDialog"
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="com.roozen.intent.VOLUME_CONTROL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="MuteActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.roozen.SoundManager.schedule.ScheduleList"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.roozen.SoundManager.schedule.ScheduleEdit"
+            android:label="@string/app_name" />
+
+        <!-- Services -->
+        <service android:name="com.roozen.SoundManager.services.ChangeVolume" />
+        <service android:name="com.roozen.SoundManager.services.BootupService" />
+
+        <!-- Receivers -->
+        <receiver android:name="com.roozen.SoundManager.receivers.SoundTimer" />
+
+        <!-- Providers -->
+        <provider
+            android:name="com.roozen.SoundManager.provider.PreferenceProvider"
+            android:authorities="com.roozen.SoundManager.provider.PreferenceProvider" />
+
+        <provider
+            android:name="com.roozen.SoundManager.provider.ScheduleProvider"
+            android:authorities="com.roozen.soundmanager.provider.scheduleprovider" />
+
+    </application>
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 </manifest> 
