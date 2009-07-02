@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sound Manager v1.2.0</string>
+    <string name="app_name">Sound Manager</string>
     
     <!-- MainSettings strings -->
     <string name="system_textview">System Volume</string>
