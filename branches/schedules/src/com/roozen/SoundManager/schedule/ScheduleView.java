@@ -54,7 +54,6 @@ public class ScheduleView extends LinearLayout {
         AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         
         this.setOrientation(VERTICAL);
-        this.setClickable(false);
 
         //convenience for addView calls later
         LinearLayout.LayoutParams paramsWrapBoth = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

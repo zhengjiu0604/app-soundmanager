@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
@@ -149,6 +150,17 @@ public class ScheduleList extends ListActivity {
 	}
 	
 	/* (non-Javadoc)
+     * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+     */
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {        
+        Intent i = new Intent(this, ScheduleEdit.class);
+        i.putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, id);
+        i.putExtra(VOLUME_TYPE, mVolumeType);
+        startActivityForResult(i, ACTIVITY_EDIT);
+    }
+
+    /* (non-Javadoc)
 	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, android.view.View, android.view.ContextMenu.ContextMenuInfo)
 	 */
 	@Override
