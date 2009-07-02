@@ -174,6 +174,27 @@ public class ScheduleView extends LinearLayout {
         addView(vibrateLayout, paramsFillWrap);
     }
  
+    /**
+     * @param schedule
+     */
+    public void setFromSchedule(Schedule schedule) {
+        
+        setDay0(schedule.isDay0());
+        setDay1(schedule.isDay1());
+        setDay2(schedule.isDay2());
+        setDay3(schedule.isDay3());
+        setDay4(schedule.isDay4());
+        setDay5(schedule.isDay5());
+        setDay6(schedule.isDay6());
+        setStartTime(schedule.getStartTime());
+        setEndTime(schedule.getEndTime());
+        setVolume(schedule.getVolume());
+        
+    }
+    
+    /**
+     * @param day
+     */
     public void setDay0(boolean day) {
         mDay0.setText(day ? "Sun" : "   ");
     }

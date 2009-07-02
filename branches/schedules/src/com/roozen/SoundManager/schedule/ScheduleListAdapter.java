@@ -104,16 +104,7 @@ public class ScheduleListAdapter extends BaseAdapter {
         if (convertView != null &&
                 convertView instanceof ScheduleView) {
             scheduleView = (ScheduleView) convertView;
-            scheduleView.setDay0(schedule.isDay0());
-            scheduleView.setDay1(schedule.isDay1());
-            scheduleView.setDay2(schedule.isDay2());
-            scheduleView.setDay3(schedule.isDay3());
-            scheduleView.setDay4(schedule.isDay4());
-            scheduleView.setDay5(schedule.isDay5());
-            scheduleView.setDay6(schedule.isDay6());
-            scheduleView.setStartTime(schedule.getStartTime());
-            scheduleView.setEndTime(schedule.getEndTime());
-            scheduleView.setVolume(schedule.getVolume());
+            scheduleView.setFromSchedule(schedule);
         }
         else {
             scheduleView = new ScheduleView(mContext, schedule);
