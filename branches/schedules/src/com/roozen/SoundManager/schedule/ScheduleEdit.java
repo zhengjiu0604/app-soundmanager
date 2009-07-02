@@ -26,6 +26,7 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.roozen.SoundManager.R;
@@ -51,6 +52,7 @@ public class ScheduleEdit extends Activity {
     private TimePicker mEndTime;
     private SeekBar mVolume;
     private CheckBox mVibrate;
+    private TextView mVolumeDsc;
     
     private Integer mVolumeType;
     private boolean mClock24hour;
@@ -111,6 +113,8 @@ public class ScheduleEdit extends Activity {
         
         mStartTime.setIs24HourView(mClock24hour);
         mEndTime.setIs24HourView(mClock24hour);
+
+        mVolumeDsc = (TextView) findViewById(R.id.ScheduleType);
         
         populateFields();
     }
@@ -120,6 +124,27 @@ public class ScheduleEdit extends Activity {
      * or with defaults if not
      */
     private void populateFields() {
+
+        /*
+         * set the header text based on volume type
+         */
+        switch (mVolumeType) {
+            case AudioManager.STREAM_SYSTEM:
+                mVolumeDsc.setText(R.string.SystemVolumeSchedule);
+                break;
+            case AudioManager.STREAM_RING:
+                mVolumeDsc.setText(R.string.RingerVolumeSchedule);
+                break;
+            case AudioManager.STREAM_MUSIC:
+                mVolumeDsc.setText(R.string.MediaVolumeSchedule);
+                break;
+            case AudioManager.STREAM_ALARM:
+                mVolumeDsc.setText(R.string.AlarmVolumeSchedule);
+                break;
+            case AudioManager.STREAM_VOICE_CALL:
+                mVolumeDsc.setText(R.string.InCallVolumeSchedule);
+                break;
+        }
         
         /*
          * load data
