@@ -24,69 +24,70 @@
             android:orientation="vertical"
             android:padding="5dip">
 
-            <TableLayout
+            <LinearLayout
               android:orientation="horizontal"
               android:layout_width="fill_parent"
-              android:layout_height="wrap_content">
-              
-                <TableRow>
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal">
                 
-                    <ToggleButton
-                      android:id="@+id/day0toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day0"
-                      android:textOff="@string/day0" />
-                    
-                    <ToggleButton
-                      android:id="@+id/day1toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day1"
-                      android:textOff="@string/day1" />
-                    
-                    <ToggleButton
-                      android:id="@+id/day2toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day2"
-                      android:textOff="@string/day2" />
-                  
-                </TableRow>
+                <ToggleButton
+                  android:id="@+id/day0toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day0"
+                  android:textOff="@string/day0" />
+                
+                <ToggleButton
+                  android:id="@+id/day1toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day1"
+                  android:textOff="@string/day1" />
+                
+                <ToggleButton
+                  android:id="@+id/day2toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day2"
+                  android:textOff="@string/day2" />
             
-                <TableRow>
+            </LinearLayout>
+
+            <LinearLayout
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal">
                     
-                    <ToggleButton
-                      android:id="@+id/day3toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day3"
-                      android:textOff="@string/day3" />
-                    
-                    <ToggleButton
-                      android:id="@+id/day4toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day4"
-                      android:textOff="@string/day4" />
-                    
-                    <ToggleButton
-                      android:id="@+id/day5toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day5"
-                      android:textOff="@string/day5" />
-                    
-                    <ToggleButton
-                      android:id="@+id/day6toggle"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textOn="@string/day6"
-                      android:textOff="@string/day6" />
-                  
-                </TableRow>
+                <ToggleButton
+                  android:id="@+id/day3toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day3"
+                  android:textOff="@string/day3" />
+                
+                <ToggleButton
+                  android:id="@+id/day4toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day4"
+                  android:textOff="@string/day4" />
+                
+                <ToggleButton
+                  android:id="@+id/day5toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day5"
+                  android:textOff="@string/day5" />
+                
+                <ToggleButton
+                  android:id="@+id/day6toggle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textOn="@string/day6"
+                  android:textOff="@string/day6" />
             
-            </TableLayout>
+            </LinearLayout>
             
             <TableLayout
                 android:layout_width="fill_parent"
