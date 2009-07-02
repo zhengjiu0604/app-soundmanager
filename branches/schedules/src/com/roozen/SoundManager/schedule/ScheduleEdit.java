@@ -28,6 +28,7 @@ import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.provider.ScheduleProvider;
@@ -235,6 +236,16 @@ public class ScheduleEdit extends Activity {
         outState.putLong(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId);
     }
     
+    /* (non-Javadoc)
+     * @see android.app.Activity#onStop()
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        
+        Toast.makeText(this, R.string.scheduleSaved, Toast.LENGTH_SHORT).show();
+    }
+
     /**
      * writes schedule to db
      */

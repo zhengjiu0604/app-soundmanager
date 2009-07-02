@@ -130,4 +130,6 @@
     <string name="volumeLabel">Volume:</string>
     <string name="vibrateLabel">Vibrate:</string>
     
+    <string name="scheduleSaved">Schedule saved</string>
+    
 </resources>
