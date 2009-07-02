@@ -28,9 +28,11 @@ import android.widget.BaseAdapter;
 public class ScheduleListAdapter extends BaseAdapter {
 
     private Context mContext;
-    
     private ArrayList<Schedule> mItems = new ArrayList<Schedule>();
     
+    /**
+     * @param context
+     */
     public ScheduleListAdapter(Context context) {
         mContext = context;
     }
@@ -59,10 +61,16 @@ public class ScheduleListAdapter extends BaseAdapter {
         return mItems.get(position).getId();
     }
 
+    /**
+     * @param s
+     */
     public void addItem(Schedule s) {
         mItems.add(s);
     }
     
+    /**
+     * @param sl
+     */
     public void setItems(ArrayList<Schedule> sl) {
         mItems = sl;
     }
@@ -90,6 +98,9 @@ public class ScheduleListAdapter extends BaseAdapter {
         
         Schedule schedule = mItems.get(position);
         
+        /*
+         * if the View already exists, set its values; otherwise give it the Schedule to pull them itself
+         */
         if (convertView != null &&
                 convertView instanceof ScheduleView) {
             scheduleView = (ScheduleView) convertView;

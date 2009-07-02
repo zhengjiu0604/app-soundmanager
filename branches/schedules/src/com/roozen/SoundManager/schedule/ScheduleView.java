@@ -44,6 +44,10 @@ public class ScheduleView extends LinearLayout {
     private int mVolumeType;
     private TextView mVibrate;
     
+    /**
+     * @param context
+     * @param schedule
+     */
     public ScheduleView(Context context, Schedule schedule) {
         super(context);
         
@@ -52,6 +56,7 @@ public class ScheduleView extends LinearLayout {
         this.setOrientation(VERTICAL);
         this.setClickable(false);
 
+        //convenience for addView calls later
         LinearLayout.LayoutParams paramsWrapBoth = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams paramsFillWrap = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
                 
@@ -173,46 +178,79 @@ public class ScheduleView extends LinearLayout {
         mDay0.setText(day ? "Sun" : "   ");
     }
  
+    /**
+     * @param day
+     */
     public void setDay1(boolean day) {
         mDay1.setText(day ? "Mon" : "   ");
     }
  
+    /**
+     * @param day
+     */
     public void setDay2(boolean day) {
         mDay2.setText(day ? "Tue" : "   ");
     }
  
+    /**
+     * @param day
+     */
     public void setDay3(boolean day) {
         mDay3.setText(day ? "Wed" : "   ");
     }
  
+    /**
+     * @param day
+     */
     public void setDay4(boolean day) {
         mDay4.setText(day ? "Thu" : "   ");
     }
  
+    /**
+     * @param day
+     */
     public void setDay5(boolean day) {
         mDay5.setText(day ? "Fri" : "   ");
     }
  
+    /**
+     * @param day
+     */
     public void setDay6(boolean day) {
         mDay6.setText(day ? "Sat" : "   ");
     }
     
+    /**
+     * @param startTime
+     */
     public void setStartTime(String startTime) {
         mStartTime.setText(startTime);
     }
     
+    /**
+     * @param endTime
+     */
     public void setEndTime(String endTime) {
         mEndTime.setText(endTime);
     }
     
+    /**
+     * @param volume
+     */
     public void setVolume(int volume) {
         mVolume.setProgress(volume);
     }
     
+    /**
+     * @param vibrate
+     */
     public void setVibrate(boolean vibrate) {
         mVibrate.setText(vibrate ? "On" : "Off");
     }
     
+    /**
+     * @param volumeType
+     */
     public void setVolumeType(int volumeType) {
         mVolumeType = volumeType;
     }

@@ -63,7 +63,7 @@ public class ScheduleProvider extends ContentProvider {
 	 */
     static {
         /*
-         * define how to identify whether the URI is requesting a row by something other than ID
+         * defines how to identify what is being requested
          */
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE, SCHEDULE);
@@ -90,6 +90,12 @@ public class ScheduleProvider extends ContentProvider {
         
     }
     
+    /**
+     * Maps mime type strings in URIs to standard volume type ints
+     * 
+     * @param mimeType
+     * @return int volume type
+     */
     private static int getVolumeType(String mimeType) {
         int volumeType = AudioManager.STREAM_SYSTEM;
         
@@ -112,6 +118,12 @@ public class ScheduleProvider extends ContentProvider {
         return volumeType;
     }
 
+    /**
+     * Maps standard volume type ints to mime type string for URIs
+     * 
+     * @param volumeType
+     * @return String mime type
+     */
     public static String getMimeType(int volumeType) {
         String mimeType = "system";
         
@@ -172,7 +184,7 @@ public class ScheduleProvider extends ContentProvider {
 	 */
 	@Override
 	public Uri insert(Uri uri, ContentValues initialValues) {
-        // Validate the requested uri
+        //Only the base SCHEDULE URI is allowed for inserts
         if (sUriMatcher.match(uri) != SCHEDULE) {
             throw new IllegalArgumentException("Invalid URI " + uri);
         }
@@ -266,6 +278,10 @@ public class ScheduleProvider extends ContentProvider {
 	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         int count;
+        
+        /*
+         * allow update by ID only
+         */
         switch (sUriMatcher.match(uri)) {
 
         case SCHEDULE_BYID:
@@ -292,6 +308,10 @@ public class ScheduleProvider extends ContentProvider {
     public int delete(Uri uri, String where, String[] whereArgs) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         int count;
+        
+        /*
+         * delete by ID only
+         */
         switch (sUriMatcher.match(uri)) {
             
         case SCHEDULE_BYID:

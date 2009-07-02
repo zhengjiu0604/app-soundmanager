@@ -16,7 +16,6 @@
 package com.roozen.SoundManager.schedule;
 
 import android.app.ListActivity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
@@ -35,6 +34,8 @@ import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 /**
+ * Schedule List
+ * 
  * @author Mike Partridge
  */
 public class ScheduleList extends ListActivity {
@@ -66,6 +67,9 @@ public class ScheduleList extends ListActivity {
             mVolumeType = Integer.parseInt(extras.getString(VOLUME_TYPE));
         }
         
+        /*
+         * set the header text based on volume type
+         */
         mListHeader = (TextView) findViewById(R.id.ScheduleType);
         switch (mVolumeType) {
             case AudioManager.STREAM_SYSTEM:
@@ -90,6 +94,9 @@ public class ScheduleList extends ListActivity {
         registerForContextMenu(getListView());
 	}
 
+	/**
+	 * retrieves schedules from the db and populates the list
+	 */
 	private void fillData() {
 	    
 	    /*
@@ -206,7 +213,6 @@ public class ScheduleList extends ListActivity {
         return super.onOptionsItemSelected(item);
 	}
 
-    
 	/* (non-Javadoc)
      * @see android.app.Activity#onPause()
      */
@@ -232,6 +238,7 @@ public class ScheduleList extends ListActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         
+        //save the volume type for re-population on resume
         outState.putInt(VOLUME_TYPE, mVolumeType);
     }
 

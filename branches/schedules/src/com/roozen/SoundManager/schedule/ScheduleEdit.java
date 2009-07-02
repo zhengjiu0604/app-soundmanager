@@ -33,12 +33,13 @@ import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 /**
+ * Schedule Edit screen
+ * 
  * @author Mike Partridge
  */
 public class ScheduleEdit extends Activity {
 
     private Long mScheduleId;
-    
     private CheckBox mDay0;
     private CheckBox mDay1;
     private CheckBox mDay2;
@@ -114,6 +115,10 @@ public class ScheduleEdit extends Activity {
         populateFields();
     }
     
+    /**
+     * Populate GUI with data from the db if the schedule exists,
+     * or with defaults if not
+     */
     private void populateFields() {
         
         /*
@@ -201,9 +206,13 @@ public class ScheduleEdit extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         
+        //store the schedule id for display on resume
         outState.putLong(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId);
     }
     
+    /**
+     * writes schedule to db
+     */
     private void saveState() {
         
         ContentValues values = new ContentValues();
@@ -240,6 +249,11 @@ public class ScheduleEdit extends Activity {
         
     }
     
+    /**
+     * Queries system settings for the system clock format
+     * 
+     * @return boolean
+     */
     private boolean is24HourClock() {
     
         try {
