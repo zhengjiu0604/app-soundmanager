@@ -29,6 +29,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.provider.ScheduleProvider;
@@ -42,13 +43,13 @@ import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 public class ScheduleEdit extends Activity {
 
     private Long mScheduleId;
-    private CheckBox mDay0;
-    private CheckBox mDay1;
-    private CheckBox mDay2;
-    private CheckBox mDay3;
-    private CheckBox mDay4;
-    private CheckBox mDay5;
-    private CheckBox mDay6;
+    private ToggleButton mDay0;
+    private ToggleButton mDay1;
+    private ToggleButton mDay2;
+    private ToggleButton mDay3;
+    private ToggleButton mDay4;
+    private ToggleButton mDay5;
+    private ToggleButton mDay6;
     private TimePicker mStartTime;
     private TimePicker mEndTime;
     private SeekBar mVolume;
@@ -94,13 +95,13 @@ public class ScheduleEdit extends Activity {
          * get handles to the gui
          */
 
-        mDay0 = (CheckBox) findViewById(R.id.day0checkbox);
-        mDay1 = (CheckBox) findViewById(R.id.day1checkbox);
-        mDay2 = (CheckBox) findViewById(R.id.day2checkbox);
-        mDay3 = (CheckBox) findViewById(R.id.day3checkbox);
-        mDay4 = (CheckBox) findViewById(R.id.day4checkbox);
-        mDay5 = (CheckBox) findViewById(R.id.day5checkbox);
-        mDay6 = (CheckBox) findViewById(R.id.day6checkbox);
+        mDay0 = (ToggleButton) findViewById(R.id.day0toggle);
+        mDay1 = (ToggleButton) findViewById(R.id.day1toggle);
+        mDay2 = (ToggleButton) findViewById(R.id.day2toggle);
+        mDay3 = (ToggleButton) findViewById(R.id.day3toggle);
+        mDay4 = (ToggleButton) findViewById(R.id.day4toggle);
+        mDay5 = (ToggleButton) findViewById(R.id.day5toggle);
+        mDay6 = (ToggleButton) findViewById(R.id.day6toggle);
         mStartTime = (TimePicker) findViewById(R.id.startTime);
         mEndTime = (TimePicker) findViewById(R.id.endTime);
         

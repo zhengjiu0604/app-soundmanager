@@ -21,82 +21,68 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical">
-        
+            android:orientation="vertical"
+            android:padding="5dip">
+
             <TableLayout
               android:orientation="horizontal"
               android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:stretchColumns="*">
+              android:layout_height="wrap_content">
               
                 <TableRow>
-              
-                    <CheckBox 
+                
+                    <ToggleButton
+                      android:id="@+id/day0toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:id="@+id/day0checkbox" />
-                    <TextView
+                      android:textOn="@string/day0"
+                      android:textOff="@string/day0" />
+                    
+                    <ToggleButton
+                      android:id="@+id/day1toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="@string/day0" />
-                      
-                    <CheckBox 
+                      android:textOn="@string/day1"
+                      android:textOff="@string/day1" />
+                    
+                    <ToggleButton
+                      android:id="@+id/day2toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:id="@+id/day1checkbox" />
-                    <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/day1" />
-                      
-                    <CheckBox 
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/day2checkbox" />
-                    <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/day2" />
+                      android:textOn="@string/day2"
+                      android:textOff="@string/day2" />
                   
                 </TableRow>
             
                 <TableRow>
-                      
-                    <CheckBox 
+                    
+                    <ToggleButton
+                      android:id="@+id/day3toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:id="@+id/day3checkbox" />
-                    <TextView
+                      android:textOn="@string/day3"
+                      android:textOff="@string/day3" />
+                    
+                    <ToggleButton
+                      android:id="@+id/day4toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="@string/day3" />
-              
-                    <CheckBox 
+                      android:textOn="@string/day4"
+                      android:textOff="@string/day4" />
+                    
+                    <ToggleButton
+                      android:id="@+id/day5toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:id="@+id/day4checkbox" />
-                    <TextView
+                      android:textOn="@string/day5"
+                      android:textOff="@string/day5" />
+                    
+                    <ToggleButton
+                      android:id="@+id/day6toggle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="@string/day4" />
-                      
-                    <CheckBox 
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/day5checkbox" />
-                    <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/day5" />
-                      
-                    <CheckBox 
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/day6checkbox" />
-                    <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/day6" />
+                      android:textOn="@string/day6"
+                      android:textOff="@string/day6" />
                   
                 </TableRow>
             
@@ -113,7 +99,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:text="@string/startTimeLabel" 
-                        android:gravity="center" />
+                        android:gravity="center_vertical" />
                     <TimePicker 
                         android:id="@+id/startTime" />
                 
@@ -125,7 +111,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:text="@string/endTimeLabel" 
-                        android:gravity="center" />
+                        android:gravity="center_vertical" />
                     <TimePicker 
                         android:id="@+id/endTime" />
                 
@@ -141,14 +127,14 @@
                 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:padding="5dip" 
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip"
                     android:text="@string/volumeLabel" />
                 <SeekBar
                     android:id="@+id/volume"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" 
-                    android:padding="5dip" />
+                    android:paddingLeft="5dip" />
         
             </LinearLayout>
             
@@ -159,13 +145,12 @@
                 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:padding="5dip" 
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dip"
                     android:text="@string/vibrateLabel" />
                 <CheckBox 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" 
                     android:id="@+id/vibrateCheckbox" />
                 
             </LinearLayout>
