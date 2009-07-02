@@ -30,7 +30,7 @@ import com.roozen.SoundManager.R;
  * @author Mike Partridge
  */
 public class ScheduleView extends LinearLayout {
-
+    
     private TextView mDay0;
     private TextView mDay1;
     private TextView mDay2;
@@ -58,7 +58,12 @@ public class ScheduleView extends LinearLayout {
         //convenience for addView calls later
         LinearLayout.LayoutParams paramsWrapBoth = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams paramsFillWrap = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-                
+        
+        /*
+         * setting data here *should* be faster than calling the setters; otherwise I'd just call them
+         *  and keep any special field-display logic there
+         */
+        
         /*
          * days
          */
@@ -68,31 +73,31 @@ public class ScheduleView extends LinearLayout {
 
         mDay0 = new TextView(context);
         mDay0.setPadding(5, 5, 5, 5);
-        mDay0.setText(schedule.isDay0() ? "Sun" : "   ");
+        mDay0.setText(schedule.isDay0() ? getContext().getText(R.string.day0) : "   ");
         daysLayout.addView(mDay0, paramsWrapBoth);
         mDay1 = new TextView(context);
         mDay1.setPadding(5, 5, 5, 5);
-        mDay1.setText(schedule.isDay1() ? "Mon" : "   ");
+        mDay1.setText(schedule.isDay1() ? getContext().getText(R.string.day1) : "   ");
         daysLayout.addView(mDay1, paramsWrapBoth);
         mDay2 = new TextView(context);
         mDay2.setPadding(5, 5, 5, 5);
-        mDay2.setText(schedule.isDay2() ? "Tue" : "   ");
+        mDay2.setText(schedule.isDay2() ? getContext().getText(R.string.day2) : "   ");
         daysLayout.addView(mDay2, paramsWrapBoth);
         mDay3 = new TextView(context);
         mDay3.setPadding(5, 5, 5, 5);
-        mDay3.setText(schedule.isDay3() ? "Wed" : "   ");
+        mDay3.setText(schedule.isDay3() ? getContext().getText(R.string.day3) : "   ");
         daysLayout.addView(mDay3, paramsWrapBoth);
         mDay4 = new TextView(context);
         mDay4.setPadding(5, 5, 5, 5);
-        mDay4.setText(schedule.isDay4() ? "Thu" : "   ");
+        mDay4.setText(schedule.isDay4() ? getContext().getText(R.string.day4) : "   ");
         daysLayout.addView(mDay4, paramsWrapBoth);
         mDay5 = new TextView(context);
         mDay5.setPadding(5, 5, 5, 5);
-        mDay5.setText(schedule.isDay5() ? "Fri" : "   ");
+        mDay5.setText(schedule.isDay5() ? getContext().getText(R.string.day5) : "   ");
         daysLayout.addView(mDay5, paramsWrapBoth);
         mDay6 = new TextView(context);
         mDay6.setPadding(5, 5, 5, 5);
-        mDay6.setText(schedule.isDay6() ? "Sat" : "   ");
+        mDay6.setText(schedule.isDay6() ? getContext().getText(R.string.day6) : "   ");
         daysLayout.addView(mDay6, paramsWrapBoth);
         
         addView(daysLayout, paramsFillWrap);
@@ -195,49 +200,49 @@ public class ScheduleView extends LinearLayout {
      * @param day
      */
     public void setDay0(boolean day) {
-        mDay0.setText(day ? "Sun" : "   ");
+        mDay0.setText(day ? getContext().getText(R.string.day0) : "   ");
     }
  
     /**
      * @param day
      */
     public void setDay1(boolean day) {
-        mDay1.setText(day ? "Mon" : "   ");
+        mDay1.setText(day ? getContext().getText(R.string.day1) : "   ");
     }
  
     /**
      * @param day
      */
     public void setDay2(boolean day) {
-        mDay2.setText(day ? "Tue" : "   ");
+        mDay2.setText(day ? getContext().getText(R.string.day2) : "   ");
     }
  
     /**
      * @param day
      */
     public void setDay3(boolean day) {
-        mDay3.setText(day ? "Wed" : "   ");
+        mDay3.setText(day ? getContext().getText(R.string.day3) : "   ");
     }
  
     /**
      * @param day
      */
     public void setDay4(boolean day) {
-        mDay4.setText(day ? "Thu" : "   ");
+        mDay4.setText(day ? getContext().getText(R.string.day4) : "   ");
     }
  
     /**
      * @param day
      */
     public void setDay5(boolean day) {
-        mDay5.setText(day ? "Fri" : "   ");
+        mDay5.setText(day ? getContext().getText(R.string.day5) : "   ");
     }
  
     /**
      * @param day
      */
     public void setDay6(boolean day) {
-        mDay6.setText(day ? "Sat" : "   ");
+        mDay6.setText(day ? getContext().getText(R.string.day6) : "   ");
     }
     
     /**
