@@ -110,20 +110,22 @@ public class ScheduleList extends ListActivity {
 	    
 	    if (scheduleCursor.moveToFirst()) {
             
+            int idIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_ID);
+            int day0Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY0);
+            int day1Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY1);
+            int day2Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY2);
+            int day3Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY3);
+            int day4Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY4);
+            int day5Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY5);
+            int day6Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY6);
+            int startHourIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_HOUR);
+            int startMinuteIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_MINUTE);
+            int endHourIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_END_HOUR);
+            int endMinuteIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_END_MINUTE);
+            int volumeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VOLUME);
+            int vibrateIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VIBRATE);
+            
 	        do {
-	            
-	            int idIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_ID);
-	            int day0Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY0);
-	            int day1Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY1);
-	            int day2Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY2);
-	            int day3Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY3);
-	            int day4Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY4);
-	            int day5Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY5);
-	            int day6Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY6);
-	            int endTimeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_END_TIME);
-	            int startTimeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_TIME);
-	            int volumeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VOLUME);
-	            int vibrateIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VIBRATE);
 	            
 	            Schedule s = new Schedule(scheduleCursor.getInt(idIndex),
                              (scheduleCursor.getInt(day0Index) > 0),
@@ -133,8 +135,10 @@ public class ScheduleList extends ListActivity {
                              (scheduleCursor.getInt(day4Index) > 0),
                              (scheduleCursor.getInt(day5Index) > 0),
                              (scheduleCursor.getInt(day6Index) > 0),
-                             scheduleCursor.getString(startTimeIndex),
-                             scheduleCursor.getString(endTimeIndex),
+                             scheduleCursor.getInt(startHourIndex),
+                             scheduleCursor.getInt(startMinuteIndex),
+                             scheduleCursor.getInt(endHourIndex),
+                             scheduleCursor.getInt(endMinuteIndex),
                              scheduleCursor.getInt(volumeIndex),
                              mVolumeType,
                              (scheduleCursor.getInt(vibrateIndex) > 0)

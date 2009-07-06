@@ -166,17 +166,11 @@ public class ScheduleEdit extends Activity {
                 mDay5.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_DAY5)) > 0);
                 mDay6.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_DAY6)) > 0);
                 
-                String startTime = scheduleCursor.getString(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_START_TIME));
-                Integer startHour = Integer.parseInt(startTime.split(":")[0]);
-                Integer startMinute = Integer.parseInt(startTime.split(":")[1]);
-                mStartTime.setCurrentHour(startHour);
-                mStartTime.setCurrentMinute(startMinute);
-    
-                String endTime = scheduleCursor.getString(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_END_TIME));
-                Integer endHour = Integer.parseInt(endTime.split(":")[0]);
-                Integer endMinute = Integer.parseInt(endTime.split(":")[1]);
-                mEndTime.setCurrentHour(endHour);
-                mEndTime.setCurrentMinute(endMinute);
+                mStartTime.setCurrentHour(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_START_HOUR)));
+                mStartTime.setCurrentMinute(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_START_MINUTE)));
+
+                mEndTime.setCurrentHour(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_END_HOUR)));
+                mEndTime.setCurrentMinute(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_END_MINUTE)));
                 
                 mVolume.setProgress(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_VOLUME)));
                 mVibrate.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_VIBRATE)) > 0);
@@ -254,13 +248,11 @@ public class ScheduleEdit extends Activity {
         values.put(SQLiteDatabaseHelper.SCHEDULE_DAY5, mDay5.isChecked() ? "1" : "0");
         values.put(SQLiteDatabaseHelper.SCHEDULE_DAY6, mDay6.isChecked() ? "1" : "0");
         
-        String startTime = (mStartTime.getCurrentHour() < 10 ? "0" : "") + mStartTime.getCurrentHour() + ":" +
-                           (mStartTime.getCurrentMinute() < 10 ? "0" : "") + mStartTime.getCurrentMinute();
-        values.put(SQLiteDatabaseHelper.SCHEDULE_START_TIME, startTime);
+        values.put(SQLiteDatabaseHelper.SCHEDULE_START_HOUR, mStartTime.getCurrentHour());
+        values.put(SQLiteDatabaseHelper.SCHEDULE_START_MINUTE, mStartTime.getCurrentMinute());
         
-        String endTime = (mEndTime.getCurrentHour() < 10 ? "0" : "") + mEndTime.getCurrentHour() + ":" +
-                           (mEndTime.getCurrentMinute() < 10 ? "0" : "") + mEndTime.getCurrentMinute();
-        values.put(SQLiteDatabaseHelper.SCHEDULE_END_TIME, endTime);
+        values.put(SQLiteDatabaseHelper.SCHEDULE_END_HOUR, mEndTime.getCurrentHour());
+        values.put(SQLiteDatabaseHelper.SCHEDULE_END_MINUTE, mEndTime.getCurrentMinute());
         
         values.put(SQLiteDatabaseHelper.SCHEDULE_VOLUME, mVolume.getProgress());
         values.put(SQLiteDatabaseHelper.SCHEDULE_VIBRATE, mVibrate.isChecked() ? "1" : "0");

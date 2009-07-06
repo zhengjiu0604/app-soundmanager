@@ -117,7 +117,8 @@ public class ScheduleView extends LinearLayout {
         mStartTime = new TextView(context);
         mStartTime.setTextSize(18);
         mStartTime.setPadding(2, 2, 2, 2);
-        mStartTime.setText(schedule.getStartTime());
+        mStartTime.setText((schedule.getStartHour() < 10 ? "0" : "")+schedule.getStartHour()+":"
+                           +(schedule.getStartMinute() < 10 ? "0" : "")+schedule.getStartMinute());
         tr.addView(mStartTime);
 
         TextView endTimeLabel = new TextView(context);
@@ -128,7 +129,8 @@ public class ScheduleView extends LinearLayout {
         mEndTime = new TextView(context);
         mEndTime.setTextSize(18);
         mEndTime.setPadding(2, 2, 2, 2);
-        mEndTime.setText(schedule.getEndTime());
+        mEndTime.setText((schedule.getEndHour() < 10 ? "0" : "")+schedule.getEndHour()+":"
+                           +(schedule.getEndMinute() < 10 ? "0" : "")+schedule.getEndMinute());
         tr.addView(mEndTime);
         
         timesLayout.addView(tr);
@@ -190,8 +192,10 @@ public class ScheduleView extends LinearLayout {
         setDay4(schedule.isDay4());
         setDay5(schedule.isDay5());
         setDay6(schedule.isDay6());
-        setStartTime(schedule.getStartTime());
-        setEndTime(schedule.getEndTime());
+        setStartTime((schedule.getStartHour() < 10 ? "0" : "")+schedule.getStartHour()+":"
+                +(schedule.getStartMinute() < 10 ? "0" : "")+schedule.getStartMinute());
+        setEndTime((schedule.getEndHour() < 10 ? "0" : "")+schedule.getEndHour()+":"
+                   +(schedule.getEndMinute() < 10 ? "0" : "")+schedule.getEndMinute());
         setVolume(schedule.getVolume());
         
     }
