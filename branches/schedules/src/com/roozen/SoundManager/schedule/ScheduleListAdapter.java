@@ -40,7 +40,6 @@ public class ScheduleListAdapter extends BaseAdapter {
     /* (non-Javadoc)
      * @see android.widget.Adapter#getCount()
      */
-    @Override
     public int getCount() {
         return mItems.size();
     }
@@ -48,7 +47,6 @@ public class ScheduleListAdapter extends BaseAdapter {
     /* (non-Javadoc)
      * @see android.widget.Adapter#getItem(int)
      */
-    @Override
     public Object getItem(int position) {
         return mItems.get(position);
     }
@@ -56,7 +54,6 @@ public class ScheduleListAdapter extends BaseAdapter {
     /* (non-Javadoc)
      * @see android.widget.Adapter#getItemId(int)
      */
-    @Override
     public long getItemId(int position) {
         return mItems.get(position).getId();
     }
@@ -91,7 +88,6 @@ public class ScheduleListAdapter extends BaseAdapter {
     /* (non-Javadoc)
      * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
      */
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ScheduleView scheduleView;

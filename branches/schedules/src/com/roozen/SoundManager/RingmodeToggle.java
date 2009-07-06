@@ -119,7 +119,6 @@ public class RingmodeToggle extends Activity {
 
 		ringVibrate.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
 			public void onCheckedChanged(CompoundButton button,
 					boolean isChecked) {
 				if (isChecked) {
@@ -133,7 +132,6 @@ public class RingmodeToggle extends Activity {
 
 		ringOnly.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
@@ -147,7 +145,6 @@ public class RingmodeToggle extends Activity {
 
 		vibrateOnly.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
@@ -159,7 +156,6 @@ public class RingmodeToggle extends Activity {
 
 		silent.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
@@ -180,7 +176,6 @@ public class RingmodeToggle extends Activity {
 		
 		return new OnClickListener() {
 
-			@Override
 			public void onClick(View view) {
 				final ContentResolver resolver = getContentResolver();
 				Calendar cal = Calendar.getInstance(TimeZone.getDefault(),Locale.getDefault());
@@ -189,7 +184,6 @@ public class RingmodeToggle extends Activity {
 				TimePickerDialog timeStart = new TimePickerDialog(gui,
 						new TimePickerDialog.OnTimeSetListener() {
 
-							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
 								final String time = hourOfDay + ":" + minute;
@@ -244,7 +238,6 @@ public class RingmodeToggle extends Activity {
 								Button ok = (Button) diag.findViewById(R.id.ok_button);
 								ok.setOnClickListener(new OnClickListener() {
 
-									@Override
 									public void onClick(View v) {
 										int vol = -1;
 										if(ringVibrate.isChecked()){
@@ -265,7 +258,6 @@ public class RingmodeToggle extends Activity {
 										TimePickerDialog timeEnd = new TimePickerDialog(gui,
 												new TimePickerDialog.OnTimeSetListener() {
 
-													@Override
 													public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 														String nexttime = hourOfDay	+ ":" + minute;
 														DbUtil.update(resolver, timeEndPref, nexttime);
@@ -318,7 +310,6 @@ public class RingmodeToggle extends Activity {
 														Button endOk = (Button) endVolume.findViewById(R.id.ok_button);
 														endOk.setOnClickListener(new OnClickListener() {
 
-																	@Override
 																	public void onClick(View v) {
 																		int vol = -1;
 																		if(endringVibrate.isChecked()){
@@ -345,7 +336,6 @@ public class RingmodeToggle extends Activity {
 																		Button okbutton = (Button) OKDialog.findViewById(R.id.ok_button);
 																		okbutton.setOnClickListener(new OnClickListener() {
 
-																					@Override
 																					public void onClick(View view) {
 																						String startTime = DbUtil.queryString(resolver,	timeStartPref, "");
 																						if (startTime != null && startTime.length() > 0
@@ -421,7 +411,6 @@ public class RingmodeToggle extends Activity {
 																		Button cancelButton = (Button) OKDialog.findViewById(R.id.cancel_button);
 																		cancelButton.setOnClickListener(new OnClickListener() {
 
-																					@Override
 																					public void onClick(View v) {
 																						Toast.makeText(gui, getString(R.string.timerNotSet),Toast.LENGTH_SHORT).show();
 																						OKDialog.dismiss();

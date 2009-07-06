@@ -150,7 +150,6 @@ public class VibrateSettings extends Activity {
         
         ringerAlways.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
-			@Override
 			public void onCheckedChanged(CompoundButton button, boolean isChecked) {
 				if(isChecked){
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
@@ -162,7 +161,6 @@ public class VibrateSettings extends Activity {
         
         ringerSilent.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ONLY_SILENT);
@@ -174,8 +172,7 @@ public class VibrateSettings extends Activity {
         
         ringerNever.setOnCheckedChangeListener(new OnCheckedChangeListener(){
         	
-        	@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
 					RingmodeToggle.fixRingMode(audio);
@@ -186,7 +183,6 @@ public class VibrateSettings extends Activity {
         
         notifAlways.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
-			@Override
 			public void onCheckedChanged(CompoundButton button, boolean isChecked) {
 				if(isChecked){
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_ON);
@@ -197,7 +193,6 @@ public class VibrateSettings extends Activity {
         
         notifSilent.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_ONLY_SILENT);
@@ -208,8 +203,7 @@ public class VibrateSettings extends Activity {
         
         notifNever.setOnCheckedChangeListener(new OnCheckedChangeListener(){
         	
-        	@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_OFF);
 				} 
@@ -228,7 +222,6 @@ public class VibrateSettings extends Activity {
 		
 		return new OnClickListener() {
 
-			@Override
 			public void onClick(View view) {
 				final ContentResolver resolver = getContentResolver();
 				Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
@@ -237,7 +230,6 @@ public class VibrateSettings extends Activity {
 				TimePickerDialog timeStart = new TimePickerDialog(gui,
 						new TimePickerDialog.OnTimeSetListener() {
 
-							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
 								final String time = hourOfDay + ":" + minute;
@@ -268,7 +260,6 @@ public class VibrateSettings extends Activity {
 								Button ok = (Button) diag.findViewById(R.id.ok_button);
 								ok.setOnClickListener(new OnClickListener() {
 
-									@Override
 									public void onClick(View v) {
 										int vol = -1;
 										if(vibrateOn.isChecked()){
@@ -288,7 +279,6 @@ public class VibrateSettings extends Activity {
 										TimePickerDialog timeEnd = new TimePickerDialog(gui,
 												new TimePickerDialog.OnTimeSetListener() {
 
-													@Override
 													public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 														String nexttime = hourOfDay	+ ":" + minute;
 														
@@ -318,7 +308,6 @@ public class VibrateSettings extends Activity {
 														Button endOk = (Button) endVolume.findViewById(R.id.ok_button);
 														endOk.setOnClickListener(new OnClickListener() {
 
-																	@Override
 																	public void onClick(View v) {
 																		int vol = -1;
 																		if(endvibrateOn.isChecked()){
@@ -344,7 +333,6 @@ public class VibrateSettings extends Activity {
 																		Button okbutton = (Button) OKDialog.findViewById(R.id.ok_button);
 																		okbutton.setOnClickListener(new OnClickListener() {
 
-																					@Override
 																					public void onClick(View view) {
 																						String startTime = DbUtil.queryString(resolver, timeStartPref, "");
 																						if (startTime != null && startTime.length() > 0	&& startTime.contains(":")) {
@@ -416,7 +404,6 @@ public class VibrateSettings extends Activity {
 																		Button cancelButton = (Button) OKDialog.findViewById(R.id.cancel_button);
 																		cancelButton.setOnClickListener(new OnClickListener() {
 
-																					@Override
 																					public void onClick(View v) {
 																						Toast.makeText(gui,	getString(R.string.timerNotSet), Toast.LENGTH_SHORT).show();
 																						OKDialog.dismiss();

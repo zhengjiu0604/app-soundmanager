@@ -170,17 +170,14 @@ public class MainSettings extends Activity {
         systemSeek.setProgress(audio.getStreamVolume(systemStream));
         systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
         	
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 				audio.setStreamVolume(systemStream, progress, flagsNoUI);
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(systemStream, seekBar.getProgress(), flagsUI);
 			}
@@ -193,17 +190,14 @@ public class MainSettings extends Activity {
         
         ringerSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 				audio.setStreamVolume(ringStream, progress, flagsNoUI);
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				RingmodeToggle.fixRingMode(audio, seekBar.getProgress());
 				audio.setStreamVolume(ringStream, seekBar.getProgress(), flagsUI);
@@ -216,17 +210,14 @@ public class MainSettings extends Activity {
         mediaSeek.setProgress(audio.getStreamVolume(mediaStream));
         mediaSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 				audio.setStreamVolume(mediaStream, progress, flagsNoUI);
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(mediaStream, seekBar.getProgress(), flagsUI);
 			}
@@ -238,17 +229,14 @@ public class MainSettings extends Activity {
         alarmSeek.setProgress(audio.getStreamVolume(alarmStream));
         alarmSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 				audio.setStreamVolume(alarmStream, progress, flagsNoUI);
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(alarmStream, seekBar.getProgress(), flagsUI);
 			}
@@ -260,17 +248,14 @@ public class MainSettings extends Activity {
         phonecallSeek.setProgress(audio.getStreamVolume(incallStream));
         phonecallSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 				audio.setStreamVolume(incallStream, progress, flagsNoUI);
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(incallStream, seekBar.getProgress(), flagsUI);
 			}

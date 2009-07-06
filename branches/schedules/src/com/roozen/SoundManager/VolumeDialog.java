@@ -65,7 +65,6 @@ public class VolumeDialog extends Activity {
 	        systemSeek.setProgress(audio.getStreamVolume(volumeType));
 	        systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
-				@Override
 				public void onProgressChanged(SeekBar seekBar, int progress,
 						boolean fromTouch) {
 					int flags = AudioManager.FLAG_PLAY_SOUND;
@@ -74,12 +73,10 @@ public class VolumeDialog extends Activity {
 					audio.setStreamVolume(volumeType, progress, flags);
 				}
 
-				@Override
 				public void onStartTrackingTouch(SeekBar seekBar) {
 					// TODO Auto-generated method stub
 				}
 
-				@Override
 				public void onStopTrackingTouch(SeekBar seekBar) {
 					int flags = AudioManager.FLAG_PLAY_SOUND;
 					flags = flags | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE;
@@ -93,7 +90,6 @@ public class VolumeDialog extends Activity {
 			Button ok = (Button) findViewById(R.id.ok_button);
 				ok.setOnClickListener(new OnClickListener(){
 		
-					@Override
 					public void onClick(View v) {											
 						if(volumeType == AudioManager.STREAM_RING){
 							RingmodeToggle.fixRingMode(audio);
