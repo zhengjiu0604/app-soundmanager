@@ -38,10 +38,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     
     public static final String SCHEDULE_ID = "_id";
     public static final String SCHEDULE_TYPE = "_type";
-    public static final String SCHEDULE_START_TIME = "_start_time";
-    public static final String SCHEDULE_END_TIME = "_end_time";
+    public static final String SCHEDULE_START_HOUR = "_start_hour";
+    public static final String SCHEDULE_START_MINUTE = "_start_min";
+    public static final String SCHEDULE_END_HOUR = "_end_hour";
+    public static final String SCHEDULE_END_MINUTE = "_end_min";
     public static final String SCHEDULE_VOLUME = "_volume";
     public static final String SCHEDULE_VIBRATE = "_vibrate";
+    public static final String SCHEDULE_ACTIVE = "_active_fg";
     public static final String SCHEDULE_DAY0 = "_day0";
     public static final String SCHEDULE_DAY1 = "_day1";
     public static final String SCHEDULE_DAY2 = "_day2";
@@ -55,10 +58,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             + SCHEDULE_TABLE + " (" 
             + SCHEDULE_ID + " integer primary key autoincrement, " 
             + SCHEDULE_TYPE + " integer not null default 0, "
-            + SCHEDULE_START_TIME + " text not null default \"00:00\", "
-            + SCHEDULE_END_TIME + " text not null default \"24:00\", "
+            + SCHEDULE_START_HOUR + " integer not null default 0, "
+            + SCHEDULE_START_MINUTE + " integer not null default 0, "
+            + SCHEDULE_END_HOUR + " integer not null default 0, "
+            + SCHEDULE_END_MINUTE + " integer not null default 0, "
             + SCHEDULE_VOLUME + " integer not null default 0, "
             + SCHEDULE_VIBRATE + " integer not null default 0, "
+            + SCHEDULE_ACTIVE + " integer not null default 1, "
             + SCHEDULE_DAY0 + " integer not null default 0, "
             + SCHEDULE_DAY1 + " integer not null default 0, "
             + SCHEDULE_DAY2 + " integer not null default 0, "
@@ -76,6 +82,10 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         + SCHEDULE_DAY4 + " desc, "
         + SCHEDULE_DAY5 + " desc, "
         + SCHEDULE_DAY6 + " desc, "
+        + SCHEDULE_START_HOUR + ","
+        + SCHEDULE_START_MINUTE + ","
+        + SCHEDULE_END_HOUR + ","
+        + SCHEDULE_END_MINUTE + ","
         + SCHEDULE_ID;
     
     public SQLiteDatabaseHelper(Context context) {
