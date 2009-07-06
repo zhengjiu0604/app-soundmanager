@@ -15,16 +15,11 @@
  */
 package com.roozen.SoundManager;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,18 +33,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.roozen.SoundManager.receivers.SoundTimer;
 import com.roozen.SoundManager.schedule.ScheduleList;
 import com.roozen.SoundManager.utils.DbUtil;
-import com.roozen.SoundManager.utils.Util;
 
 public class MainSettings extends Activity {
 	public final static String PREFS_NAME = "EZSoundManagerPrefs";
