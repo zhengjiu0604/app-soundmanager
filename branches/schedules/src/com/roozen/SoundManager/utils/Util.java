@@ -19,6 +19,10 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import android.content.ContentResolver;
+import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
+
 public class Util {
 
 	public static String padZero(int num){
@@ -45,4 +49,23 @@ public class Util {
 		return cal;
 	}
 	
+
+    /**
+     * Queries system settings for the system clock format
+     * 
+     * @return boolean
+     */
+	public static boolean is24HourClock(ContentResolver contentResolver) {
+	    boolean clock24hour;
+    
+        try {
+            clock24hour = (Settings.System.getInt(contentResolver, Settings.System.TIME_12_24) == 24);
+        } catch (SettingNotFoundException e) {
+            e.printStackTrace();
+            clock24hour = false;
+        }
+        
+        return clock24hour;
+    }
+    
 }

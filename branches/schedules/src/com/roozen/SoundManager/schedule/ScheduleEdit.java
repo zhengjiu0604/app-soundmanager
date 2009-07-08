@@ -22,8 +22,6 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -34,6 +32,7 @@ import android.widget.ToggleButton;
 import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManager.utils.Util;
 
 /**
  * Schedule Edit screen
@@ -111,8 +110,7 @@ public class ScheduleEdit extends Activity {
         
         mVibrate = (CheckBox) findViewById(R.id.vibrateCheckbox);
         
-        is24HourClock();
-        
+        mClock24hour = Util.is24HourClock(this.getContentResolver());
         mStartTime.setIs24HourView(mClock24hour);
         mEndTime.setIs24HourView(mClock24hour);
 
@@ -268,23 +266,6 @@ public class ScheduleEdit extends Activity {
             getContentResolver().update(updateUri, values, null, null);
         }
         
-    }
-    
-    /**
-     * Queries system settings for the system clock format
-     * 
-     * @return boolean
-     */
-    private boolean is24HourClock() {
-    
-        try {
-            mClock24hour = (Settings.System.getInt(this.getContentResolver(),Settings.System.TIME_12_24) == 24);
-        } catch (SettingNotFoundException e) {
-            e.printStackTrace();
-            mClock24hour = false;
-        }
-        
-        return mClock24hour;
     }
     
 }
