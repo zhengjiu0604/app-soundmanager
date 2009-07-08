@@ -25,6 +25,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.roozen.SoundManager.R;
+import com.roozen.SoundManager.utils.Util;
 
 /**
  * @author Mike Partridge
@@ -117,8 +118,7 @@ public class ScheduleView extends LinearLayout {
         mStartTime = new TextView(context);
         mStartTime.setTextSize(18);
         mStartTime.setPadding(2, 2, 2, 2);
-        mStartTime.setText((schedule.getStartHour() < 10 ? "0" : "")+schedule.getStartHour()+":"
-                           +(schedule.getStartMinute() < 10 ? "0" : "")+schedule.getStartMinute());
+        mStartTime.setText(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
         tr.addView(mStartTime);
 
         TextView endTimeLabel = new TextView(context);
@@ -129,8 +129,7 @@ public class ScheduleView extends LinearLayout {
         mEndTime = new TextView(context);
         mEndTime.setTextSize(18);
         mEndTime.setPadding(2, 2, 2, 2);
-        mEndTime.setText((schedule.getEndHour() < 10 ? "0" : "")+schedule.getEndHour()+":"
-                           +(schedule.getEndMinute() < 10 ? "0" : "")+schedule.getEndMinute());
+        mEndTime.setText(formatTime(schedule.getEndHour(), schedule.getEndMinute()));
         tr.addView(mEndTime);
         
         timesLayout.addView(tr);
@@ -180,6 +179,29 @@ public class ScheduleView extends LinearLayout {
         addView(vibrateLayout, paramsFillWrap);
     }
  
+    private String formatTime(int hour, int minute) {
+        
+        if (Util.is24HourClock(getContext().getContentResolver())) {
+            return (hour < 10 ? "0" : "") + hour + ":" +
+                   (minute < 10 ? "0" : "") + minute;
+        }
+        else {
+            String hourDsc = String.valueOf(hour);
+
+            if (hour < 1 || hour > 23) {
+                hourDsc = "12";
+            }
+            else if (hour > 12) {
+                hourDsc = String.valueOf(hour - 12);
+            }
+
+            return hourDsc + ":" + 
+                   (minute < 10 ? "0" : "") + minute +
+                   (hour >= 12 && hour < 24 ? "PM" : "AM");
+        }
+        
+    }
+    
     /**
      * @param schedule
      */
@@ -192,10 +214,8 @@ public class ScheduleView extends LinearLayout {
         setDay4(schedule.isDay4());
         setDay5(schedule.isDay5());
         setDay6(schedule.isDay6());
-        setStartTime((schedule.getStartHour() < 10 ? "0" : "")+schedule.getStartHour()+":"
-                +(schedule.getStartMinute() < 10 ? "0" : "")+schedule.getStartMinute());
-        setEndTime((schedule.getEndHour() < 10 ? "0" : "")+schedule.getEndHour()+":"
-                   +(schedule.getEndMinute() < 10 ? "0" : "")+schedule.getEndMinute());
+        setStartTime(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
+        setEndTime(formatTime(schedule.getEndHour(), schedule.getEndMinute()));
         setVolume(schedule.getVolume());
         
     }
