@@ -15,131 +15,149 @@
         android:textColor="#ff000000"
         android:background="#ff888888" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ToggleButton
-                android:id="@+id/day0toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textOn="@string/day0"
-                android:textOff="@string/day0" />
-
-            <ToggleButton
-                android:id="@+id/day1toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textOn="@string/day1"
-                android:textOff="@string/day1" />
-
-            <ToggleButton
-                android:id="@+id/day2toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textOn="@string/day2"
-                android:textOff="@string/day2" />
-
-            <ToggleButton
-                android:id="@+id/day3toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textOn="@string/day3"
-                android:textOff="@string/day3" />
-
-            <ToggleButton
-                android:id="@+id/day4toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textOn="@string/day4"
-                android:textOff="@string/day4" />
-
-            <ToggleButton
-                android:id="@+id/day5toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textOn="@string/day5"
-                android:textOff="@string/day5" />
-
-            <ToggleButton
-                android:id="@+id/day6toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOn="@string/day6"
-                android:textOff="@string/day6" />
-
-        </LinearLayout>
-
+        android:layout_height="fill_parent">
+        
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="@string/volumeLabel" />
-            <SeekBar
-                android:id="@+id/volume"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/startTimeLabel"
-                android:paddingLeft="5dp" />
-            <TimePicker
+            android:orientation="horizontal"
+            android:padding="5dp">
+    
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/startTime"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/endTimeLabel"
-                android:paddingLeft="5dp" />
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/endTime" />
-
+                android:orientation="vertical">
+    
+                <ToggleButton
+                    android:id="@+id/day0toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textOn="@string/day0"
+                    android:textOff="@string/day0" />
+    
+                <ToggleButton
+                    android:id="@+id/day1toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textOn="@string/day1"
+                    android:textOff="@string/day1" />
+    
+                <ToggleButton
+                    android:id="@+id/day2toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textOn="@string/day2"
+                    android:textOff="@string/day2" />
+    
+                <ToggleButton
+                    android:id="@+id/day3toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textOn="@string/day3"
+                    android:textOff="@string/day3" />
+    
+                <ToggleButton
+                    android:id="@+id/day4toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textOn="@string/day4"
+                    android:textOff="@string/day4" />
+    
+                <ToggleButton
+                    android:id="@+id/day5toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textOn="@string/day5"
+                    android:textOff="@string/day5" />
+    
+                <ToggleButton
+                    android:id="@+id/day6toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOn="@string/day6"
+                    android:textOff="@string/day6" />
+    
+            </LinearLayout>
+    
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingLeft="5dp">
-
+    
                 <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="@string/volumeLabel" />
+                <SeekBar
+                    android:id="@+id/volume"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:paddingBottom="5dp" />
+    
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/startTimeLabel"
+                    android:paddingLeft="5dp" />
+                <TimePicker
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dip"
-                    android:text="@string/vibrateLabel" />
-                <CheckBox
+                    android:id="@+id/startTime"/>
+    
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/endTimeLabel"
+                    android:paddingLeft="5dp" />
+                <TimePicker
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/vibrateCheckbox" />
-
+                    android:id="@+id/endTime" />
+    
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp">
+    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dip"
+                        android:text="@string/vibrateLabel" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/vibrateCheckbox" />
+                        
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dip"
+                        android:layout_marginLeft="20dip"
+                        android:text="@string/activeLabel" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activeCheckbox" />
+    
+                </LinearLayout>
+    
             </LinearLayout>
-
+    
         </LinearLayout>
-
-    </LinearLayout>
+    
+    </ScrollView>
 
 </LinearLayout>
