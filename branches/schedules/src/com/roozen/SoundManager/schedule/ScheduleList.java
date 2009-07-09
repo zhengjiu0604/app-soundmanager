@@ -16,6 +16,7 @@
 package com.roozen.SoundManager.schedule;
 
 import android.app.ListActivity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
@@ -46,6 +47,7 @@ public class ScheduleList extends ListActivity {
     private static final int NEW_SCHEDULE    = Menu.FIRST;
     private static final int DELETE_SCHEDULE = Menu.FIRST + 1;
     private static final int EDIT_SCHEDULE   = Menu.FIRST + 2;
+    private static final int TOGGLE_SCHEDULE = Menu.FIRST + 3;
     
     public static final String VOLUME_TYPE = "VOLUME_TYPE";
     private int mVolumeType;
@@ -174,8 +176,9 @@ public class ScheduleList extends ListActivity {
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
-		menu.add(0, EDIT_SCHEDULE, 0, R.string.editSchedule);
-		menu.add(0, DELETE_SCHEDULE, 0, R.string.deleteSchedule);
+		menu.add(ContextMenu.NONE, EDIT_SCHEDULE, ContextMenu.NONE, R.string.editSchedule);
+		menu.add(ContextMenu.NONE, DELETE_SCHEDULE, ContextMenu.NONE, R.string.deleteSchedule);
+		menu.add(ContextMenu.NONE, TOGGLE_SCHEDULE, ContextMenu.NONE, R.string.toggleSchedule);
 	}
 
 	/* (non-Javadoc)
@@ -198,7 +201,13 @@ public class ScheduleList extends ListActivity {
             getContentResolver().delete(deleteUri, null, null);
             fillData();
             return true;
-		}
+		
+		case TOGGLE_SCHEDULE:
+		    toggleSchedule(info.id);
+		    fillData();
+		    return true;
+		    
+        }
 		
 		return super.onContextItemSelected(item);
 	}
@@ -269,5 +278,31 @@ public class ScheduleList extends ListActivity {
         
         fillData();
     }
-	    
+	
+    private void toggleSchedule(long scheduleId) {
+        
+        boolean active = true;
+        
+        /*
+         * retrieve the active state for this schedule
+         */
+        {
+            Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(scheduleId));
+            Cursor scheduleCursor = managedQuery(schedulesUri, null, null, null, null);
+
+            if (scheduleCursor.moveToFirst()) {
+                active = (scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_ACTIVE)) > 0);
+            }
+        }
+        
+        ContentValues values = new ContentValues();
+
+        //flip it
+        values.put(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, active ? "0" : "1");
+        
+        Uri updateUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(scheduleId));
+        getContentResolver().update(updateUri, values, null, null);
+        
+    }
+    
 }
