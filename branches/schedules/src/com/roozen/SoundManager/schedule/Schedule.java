@@ -37,6 +37,7 @@ public class Schedule {
     private int mVolume;
     private int mVolumeType;
     private boolean mVibrate;
+    private boolean mActive;
     
     /**
      * @param id
@@ -54,7 +55,7 @@ public class Schedule {
      */
     public Schedule(int id, boolean day0, boolean day1, boolean day2, boolean day3, boolean day4, boolean day5,
                     boolean day6, int startHour, int startMinute, int endHour, int endMinute,
-                    int volume, int volumeType, boolean vibrate) {
+                    int volume, int volumeType, boolean vibrate, boolean active) {
         this.id = id;
         this.mDay0 = day0;
         this.mDay1 = day1;
@@ -70,6 +71,7 @@ public class Schedule {
         this.mVolume = volume;
         this.mVolumeType = volumeType;
         this.mVibrate = vibrate;
+        this.mActive = active;
     }
 
     /**
@@ -281,6 +283,22 @@ public class Schedule {
     public void setVibrate(boolean vibrate) {
         this.mVibrate = vibrate;
     }
+
+    /**
+     * @param mActive the mActive to set
+     */
+    public void setActive(boolean mActive) {
+        this.mActive = mActive;
+    }
+    
+
+    /**
+     * @return the mActive
+     */
+    public boolean isActive() {
+        return mActive;
+    }
+    
 
     /**
      * Required for use in a ListAdapter; indicates that this is selectable and clickable

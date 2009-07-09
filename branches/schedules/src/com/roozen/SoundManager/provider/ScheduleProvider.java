@@ -82,6 +82,7 @@ public class ScheduleProvider extends ContentProvider {
         sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_END_MINUTE, SQLiteDatabaseHelper.SCHEDULE_END_MINUTE);
         sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_VOLUME, SQLiteDatabaseHelper.SCHEDULE_VOLUME);
         sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_VIBRATE, SQLiteDatabaseHelper.SCHEDULE_VIBRATE);
+        sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, SQLiteDatabaseHelper.SCHEDULE_ACTIVE);
         sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_DAY0, SQLiteDatabaseHelper.SCHEDULE_DAY0);
         sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_DAY1, SQLiteDatabaseHelper.SCHEDULE_DAY1);
         sGoalProjectionMap.put(SQLiteDatabaseHelper.SCHEDULE_DAY2, SQLiteDatabaseHelper.SCHEDULE_DAY2);

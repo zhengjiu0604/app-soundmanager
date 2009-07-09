@@ -16,6 +16,7 @@
 package com.roozen.SoundManager.schedule;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -44,6 +45,7 @@ public class ScheduleView extends LinearLayout {
     private SeekBar mVolume;
     private int mVolumeType;
     private TextView mVibrate;
+    private TextView mActive;
     
     /**
      * @param context
@@ -154,29 +156,46 @@ public class ScheduleView extends LinearLayout {
         mVolume.setFocusable(false);
         mVolume.setFocusableInTouchMode(false);
         mVolume.setClickable(false);
-        mVolume.setPadding(2, 2, 2, 2);
+        mVolume.setPadding(2, 2, 7, 2);
         mVolume.setMax(audio.getStreamMaxVolume(mVolumeType));
         mVolume.setProgress(schedule.getVolume());
         volumeLayout.addView(mVolume, paramsFillWrap);
         
         addView(volumeLayout, paramsFillWrap);
+
+        TableLayout vibrateActiveLayout = new TableLayout(context);
+        //vibrateActiveLayout.setStretchAllColumns(true);
+        vibrateActiveLayout.setColumnStretchable(1, true);
+        vibrateActiveLayout.setColumnStretchable(2, true);
+        
+        TableRow vibrateActiveRow1 = new TableRow(context);
         
         /*
          * vibrate
          */
-        LinearLayout vibrateLayout = new LinearLayout(context);
         
         TextView vibrateLabel = new TextView(context);
         vibrateLabel.setPadding(2, 2, 2, 2);
         vibrateLabel.setText(R.string.vibrateLabel);
-        vibrateLayout.addView(vibrateLabel, paramsWrapBoth);
+        vibrateActiveRow1.addView(vibrateLabel);
         
         mVibrate = new TextView(context);
         mVibrate.setPadding(2, 2, 2, 2);
         mVibrate.setText(schedule.isVibrate() ? "On" : "Off");
-        vibrateLayout.addView(mVibrate, paramsWrapBoth);
+        vibrateActiveRow1.addView(mVibrate);
         
-        addView(vibrateLayout, paramsFillWrap);
+        /*
+         * active
+         */
+        
+        mActive = new TextView(context);
+        mActive.setPadding(2, 2, 2, 2);
+        mActive.setText(schedule.isActive() ? "ACTIVE" : "INACTIVE");
+        mActive.setTextColor(schedule.isActive() ? Color.GREEN : Color.RED);
+        vibrateActiveRow1.addView(mActive);
+        
+        vibrateActiveLayout.addView(vibrateActiveRow1, paramsFillWrap);
+        addView(vibrateActiveLayout, paramsFillWrap);
     }
  
     private String formatTime(int hour, int minute) {
@@ -217,6 +236,7 @@ public class ScheduleView extends LinearLayout {
         setStartTime(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
         setEndTime(formatTime(schedule.getEndHour(), schedule.getEndMinute()));
         setVolume(schedule.getVolume());
+        setActive(schedule.isActive());
         
     }
     
@@ -295,6 +315,14 @@ public class ScheduleView extends LinearLayout {
      */
     public void setVibrate(boolean vibrate) {
         mVibrate.setText(vibrate ? "On" : "Off");
+    }
+    
+    /**
+     * @param active
+     */
+    public void setActive(boolean active) {
+        mActive.setText(active ? "ACTIVE" : "INACTIVE");
+        mActive.setTextColor(active ? Color.GREEN : Color.RED);
     }
     
     /**

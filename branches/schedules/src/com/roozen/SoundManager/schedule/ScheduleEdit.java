@@ -53,6 +53,8 @@ public class ScheduleEdit extends Activity {
     private TimePicker mEndTime;
     private SeekBar mVolume;
     private CheckBox mVibrate;
+    private CheckBox mActive;
+    
     private TextView mVolumeDsc;
     
     private Integer mVolumeType;
@@ -108,11 +110,12 @@ public class ScheduleEdit extends Activity {
         AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mVolume.setMax(audio.getStreamMaxVolume(mVolumeType));
         
-        mVibrate = (CheckBox) findViewById(R.id.vibrateCheckbox);
-        
         mClock24hour = Util.is24HourClock(this.getContentResolver());
         mStartTime.setIs24HourView(mClock24hour);
         mEndTime.setIs24HourView(mClock24hour);
+        
+        mVibrate = (CheckBox) findViewById(R.id.vibrateCheckbox);
+        mActive = (CheckBox) findViewById(R.id.activeCheckbox);
 
         mVolumeDsc = (TextView) findViewById(R.id.ScheduleType);
         
@@ -172,7 +175,7 @@ public class ScheduleEdit extends Activity {
                 
                 mVolume.setProgress(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_VOLUME)));
                 mVibrate.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_VIBRATE)) > 0);
-            
+                mActive.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_ACTIVE)) > 0);
             }
         }
         
@@ -194,6 +197,7 @@ public class ScheduleEdit extends Activity {
             
             mVolume.setProgress((int)(mVolume.getMax() / 2));
             mVibrate.setChecked(false);
+            mActive.setChecked(true);
         }
         
     }
@@ -254,6 +258,7 @@ public class ScheduleEdit extends Activity {
         
         values.put(SQLiteDatabaseHelper.SCHEDULE_VOLUME, mVolume.getProgress());
         values.put(SQLiteDatabaseHelper.SCHEDULE_VIBRATE, mVibrate.isChecked() ? "1" : "0");
+        values.put(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, mActive.isChecked() ? "1" : "0");
         
         if (mScheduleId == null) {
             values.put(SQLiteDatabaseHelper.SCHEDULE_TYPE, mVolumeType);

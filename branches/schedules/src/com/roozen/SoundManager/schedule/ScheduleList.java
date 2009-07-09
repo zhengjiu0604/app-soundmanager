@@ -124,6 +124,7 @@ public class ScheduleList extends ListActivity {
             int endMinuteIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_END_MINUTE);
             int volumeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VOLUME);
             int vibrateIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VIBRATE);
+            int activeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_ACTIVE);
             
 	        do {
 	            
@@ -141,7 +142,8 @@ public class ScheduleList extends ListActivity {
                              scheduleCursor.getInt(endMinuteIndex),
                              scheduleCursor.getInt(volumeIndex),
                              mVolumeType,
-                             (scheduleCursor.getInt(vibrateIndex) > 0)
+                             (scheduleCursor.getInt(vibrateIndex) > 0),
+                             (scheduleCursor.getInt(activeIndex) > 0)
                              );
 	        
 	            sla.addItem(s);
