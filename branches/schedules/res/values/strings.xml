@@ -116,6 +116,7 @@
     <string name="newSchedule">New Schedule</string>
     <string name="deleteSchedule">Delete</string>
     <string name="editSchedule">Edit</string>
+    <string name="toggleSchedule">Toggle</string>
     
     <string name="day0">Sun</string>
     <string name="day1">Mon</string>
@@ -129,6 +130,7 @@
     <string name="endTimeLabel">End Time:</string>
     <string name="volumeLabel">Volume:</string>
     <string name="vibrateLabel">Vibrate:</string>
+    <string name="activeLabel">Active:</string>
     
     <string name="scheduleSaved">Schedule saved</string>
     
