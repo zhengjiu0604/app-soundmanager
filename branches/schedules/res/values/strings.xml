@@ -116,7 +116,7 @@
     <string name="newSchedule">New Schedule</string>
     <string name="deleteSchedule">Delete</string>
     <string name="editSchedule">Edit</string>
-    <string name="toggleSchedule">Toggle</string>
+    <string name="toggleSchedule">Toggle Active/Inactive</string>
     
     <string name="day0">Sun</string>
     <string name="day1">Mon</string>
