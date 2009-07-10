@@ -127,7 +127,6 @@
     <string name="day6">Sat</string>
     
     <string name="startTimeLabel">Start Time:</string>
-    <string name="endTimeLabel">End Time:</string>
     <string name="volumeLabel">Volume:</string>
     <string name="vibrateLabel">Vibrate:</string>
     <string name="activeLabel">Active:</string>

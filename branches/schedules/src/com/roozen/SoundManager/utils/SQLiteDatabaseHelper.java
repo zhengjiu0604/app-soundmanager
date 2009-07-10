@@ -12,7 +12,7 @@ import android.util.Log;
 public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "data";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     /*
      * Preferences table
@@ -40,8 +40,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     public static final String SCHEDULE_TYPE = "_type";
     public static final String SCHEDULE_START_HOUR = "_start_hour";
     public static final String SCHEDULE_START_MINUTE = "_start_min";
-    public static final String SCHEDULE_END_HOUR = "_end_hour";
-    public static final String SCHEDULE_END_MINUTE = "_end_min";
     public static final String SCHEDULE_VOLUME = "_volume";
     public static final String SCHEDULE_VIBRATE = "_vibrate";
     public static final String SCHEDULE_ACTIVE = "_active_fg";
@@ -60,8 +58,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             + SCHEDULE_TYPE + " integer not null default 0, "
             + SCHEDULE_START_HOUR + " integer not null default 0, "
             + SCHEDULE_START_MINUTE + " integer not null default 0, "
-            + SCHEDULE_END_HOUR + " integer not null default 0, "
-            + SCHEDULE_END_MINUTE + " integer not null default 0, "
             + SCHEDULE_VOLUME + " integer not null default 0, "
             + SCHEDULE_VIBRATE + " integer not null default 0, "
             + SCHEDULE_ACTIVE + " integer not null default 1, "
@@ -84,8 +80,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         + SCHEDULE_DAY6 + " desc, "
         + SCHEDULE_START_HOUR + ","
         + SCHEDULE_START_MINUTE + ","
-        + SCHEDULE_END_HOUR + ","
-        + SCHEDULE_END_MINUTE + ","
         + SCHEDULE_ID;
     
     public SQLiteDatabaseHelper(Context context) {
@@ -109,6 +103,8 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         Log.w(SQLiteDatabaseHelper.class.toString(), 
                 "Upgrading database from version " + oldVersion + " to "
                 + newVersion + ".");
+        
+        //TODO: if changing from db version 2 to 3, create schedule table, copy old timer prefs to schedules
     }
 
 }

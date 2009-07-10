@@ -19,7 +19,6 @@ import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.BitmapFactory.Options;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -119,8 +118,6 @@ public class ScheduleList extends ListActivity {
             int day6Index = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_DAY6);
             int startHourIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_HOUR);
             int startMinuteIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_MINUTE);
-            int endHourIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_END_HOUR);
-            int endMinuteIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_END_MINUTE);
             int volumeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VOLUME);
             int vibrateIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_VIBRATE);
             int activeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_ACTIVE);
@@ -137,8 +134,6 @@ public class ScheduleList extends ListActivity {
                              (scheduleCursor.getInt(day6Index) > 0),
                              scheduleCursor.getInt(startHourIndex),
                              scheduleCursor.getInt(startMinuteIndex),
-                             scheduleCursor.getInt(endHourIndex),
-                             scheduleCursor.getInt(endMinuteIndex),
                              scheduleCursor.getInt(volumeIndex),
                              mVolumeType,
                              (scheduleCursor.getInt(vibrateIndex) > 0),

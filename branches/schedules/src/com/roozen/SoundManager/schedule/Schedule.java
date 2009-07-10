@@ -32,8 +32,6 @@ public class Schedule {
     private boolean mDay6;
     private int mStartHour;
     private int mStartMinute;
-    private int mEndHour;
-    private int mEndMinute;
     private int mVolume;
     private int mVolumeType;
     private boolean mVibrate;
@@ -54,7 +52,7 @@ public class Schedule {
      * @param volume
      */
     public Schedule(int id, boolean day0, boolean day1, boolean day2, boolean day3, boolean day4, boolean day5,
-                    boolean day6, int startHour, int startMinute, int endHour, int endMinute,
+                    boolean day6, int startHour, int startMinute, 
                     int volume, int volumeType, boolean vibrate, boolean active) {
         this.id = id;
         this.mDay0 = day0;
@@ -66,8 +64,6 @@ public class Schedule {
         this.mDay6 = day6;
         this.mStartHour = startHour;
         this.mStartMinute = startMinute;
-        this.mEndHour = endHour;
-        this.mEndMinute = endMinute;
         this.mVolume = volume;
         this.mVolumeType = volumeType;
         this.mVibrate = vibrate;
@@ -215,34 +211,6 @@ public class Schedule {
     }
 
     /**
-     * @return the endHour
-     */
-    public int getEndHour() {
-        return mEndHour;
-    }
-
-    /**
-     * @param endHour the endHour to set
-     */
-    public void setEndHour(int endHour) {
-        this.mEndHour = endHour;
-    }
-
-    /**
-     * @return the endMinute
-     */
-    public int getEndMinute() {
-        return mEndMinute;
-    }
-
-    /**
-     * @param endMinute the endMinute to set
-     */
-    public void setEndMinute(int endMinute) {
-        this.mEndMinute = endMinute;
-    }
-
-    /**
      * @return the volume
      */
     public int getVolume() {
@@ -291,7 +259,6 @@ public class Schedule {
         this.mActive = mActive;
     }
     
-
     /**
      * @return the mActive
      */
@@ -299,7 +266,6 @@ public class Schedule {
         return mActive;
     }
     
-
     /**
      * Required for use in a ListAdapter; indicates that this is selectable and clickable
      * 

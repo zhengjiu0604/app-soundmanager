@@ -41,7 +41,6 @@ public class ScheduleView extends LinearLayout {
     private TextView mDay5;
     private TextView mDay6;
     private TextView mStartTime;
-    private TextView mEndTime;
     private SeekBar mVolume;
     private int mVolumeType;
     private TextView mVibrate;
@@ -106,10 +105,10 @@ public class ScheduleView extends LinearLayout {
         addView(daysLayout, paramsFillWrap);
         
         /*
-         * times
+         * time
          */
-        TableLayout timesLayout = new TableLayout(context);
-        timesLayout.setStretchAllColumns(true);
+        TableLayout timeLayout = new TableLayout(context);
+        timeLayout.setStretchAllColumns(true);
         TableRow tr = new TableRow(context);
         
         TextView startTimeLabel = new TextView(context);
@@ -122,20 +121,9 @@ public class ScheduleView extends LinearLayout {
         mStartTime.setPadding(2, 2, 2, 2);
         mStartTime.setText(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
         tr.addView(mStartTime);
-
-        TextView endTimeLabel = new TextView(context);
-        endTimeLabel.setPadding(2, 2, 2, 2);
-        endTimeLabel.setText(R.string.endTimeLabel);
-        tr.addView(endTimeLabel);
         
-        mEndTime = new TextView(context);
-        mEndTime.setTextSize(18);
-        mEndTime.setPadding(2, 2, 2, 2);
-        mEndTime.setText(formatTime(schedule.getEndHour(), schedule.getEndMinute()));
-        tr.addView(mEndTime);
-        
-        timesLayout.addView(tr);
-        addView(timesLayout, paramsWrapBoth);
+        timeLayout.addView(tr);
+        addView(timeLayout, paramsWrapBoth);
         
         /*
          * volume
@@ -234,7 +222,6 @@ public class ScheduleView extends LinearLayout {
         setDay5(schedule.isDay5());
         setDay6(schedule.isDay6());
         setStartTime(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
-        setEndTime(formatTime(schedule.getEndHour(), schedule.getEndMinute()));
         setVolume(schedule.getVolume());
         setActive(schedule.isActive());
         
@@ -295,14 +282,7 @@ public class ScheduleView extends LinearLayout {
     public void setStartTime(String startTime) {
         mStartTime.setText(startTime);
     }
-    
-    /**
-     * @param endTime
-     */
-    public void setEndTime(String endTime) {
-        mEndTime.setText(endTime);
-    }
-    
+        
     /**
      * @param volume
      */
