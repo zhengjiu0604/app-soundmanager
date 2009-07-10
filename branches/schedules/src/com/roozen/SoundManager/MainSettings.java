@@ -47,38 +47,36 @@ public class MainSettings extends Activity {
 	public final static String PREFS_NAME = "EZSoundManagerPrefs";
 	
 	private Context gui;
-	
-	private PendingIntent pendingRingerStart;
-	private PendingIntent pendingRingerEnd;
-	private PendingIntent pendingAlarmStart;
-	private PendingIntent pendingAlarmEnd;
-	private PendingIntent pendingMediaStart;
-	private PendingIntent pendingMediaEnd;
-	private PendingIntent pendingSystemStart;
-	private PendingIntent pendingSystemEnd;
-	private PendingIntent pendingIncallStart;
-	private PendingIntent pendingIncallEnd;
+
+    private PendingIntent pendingRingerStart;
+    private PendingIntent pendingRingerEnd;
+    private PendingIntent pendingAlarmStart;
+    private PendingIntent pendingAlarmEnd;
+    private PendingIntent pendingMediaStart;
+    private PendingIntent pendingMediaEnd;
+    private PendingIntent pendingSystemStart;
+    private PendingIntent pendingSystemEnd;
+    private PendingIntent pendingIncallStart;
+    private PendingIntent pendingIncallEnd;
 	
 	public final static String EXTRA_WHICH = "WhichVolume";
 	
-	public final static int RINGER_VOLUME_START = 0;
-	public final static int RINGER_VOLUME_END = 1;
-	public final static int ALARM_VOLUME_START = 2;
-	public final static int ALARM_VOLUME_END = 3;
-	public final static int MEDIA_VOLUME_START = 4;
-	public final static int MEDIA_VOLUME_END = 5;
-	public final static int SYSTEM_VOLUME_START = 6;
-	public final static int SYSTEM_VOLUME_END = 7;
-	public final static int INCALL_VOLUME_START = 8;
-	public final static int INCALL_VOLUME_END = 9;
-	public final static int VIBRATE_NOTIF_START = 10;
-	public final static int VIBRATE_NOTIF_END = 11;
-	public final static int VIBRATE_RINGER_START = 12;
-	public final static int VIBRATE_RINGER_END = 13;
-	public final static int RINGER_MODE_START = 14;
-	public final static int RINGER_MODE_END = 15;
-	
-	private static final int ACTIVITY_SCHEDULE = 0;
+    public final static int RINGER_VOLUME_START       = 0;
+    public final static int RINGER_VOLUME_END         = 1;
+    public final static int ALARM_VOLUME_START        = 2;
+    public final static int ALARM_VOLUME_END          = 3;
+    public final static int MEDIA_VOLUME_START        = 4;
+    public final static int MEDIA_VOLUME_END          = 5;
+    public final static int SYSTEM_VOLUME_START       = 6;
+    public final static int SYSTEM_VOLUME_END         = 7;
+    public final static int INCALL_VOLUME_START       = 8;
+    public final static int INCALL_VOLUME_END         = 9;
+    public final static int VIBRATE_NOTIF_START       = 10;
+    public final static int VIBRATE_NOTIF_END         = 11;
+    public final static int VIBRATE_RINGER_START      = 12;
+    public final static int VIBRATE_RINGER_END        = 13;
+    public final static int RINGER_MODE_START         = 14;
+    public final static int RINGER_MODE_END           = 15;
 	
     /** Called when the activity is first created. */
     @Override
@@ -136,7 +134,6 @@ public class MainSettings extends Activity {
         pendingAlarmEnd = PendingIntent.getBroadcast(this, R.string.AlarmTimeEnd, 
         		new Intent(soundTimer).putExtra(EXTRA_WHICH, ALARM_VOLUME_END), 0);
         
-        
         pendingIncallStart = PendingIntent.getBroadcast(this, R.string.IncallTimeStart, 
         		new Intent(soundTimer).putExtra(EXTRA_WHICH, INCALL_VOLUME_START), 0);
         
@@ -161,25 +158,24 @@ public class MainSettings extends Activity {
         systemSeek.setMax(audio.getStreamMaxVolume(systemStream));
         systemSeek.setProgress(audio.getStreamVolume(systemStream));
         systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
-        	
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-				audio.setStreamVolume(systemStream, progress, flagsNoUI);
-			}
+            
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+                audio.setStreamVolume(systemStream, progress, flagsNoUI);
+            }
 
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
-			}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
 
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(systemStream, seekBar.getProgress(), flagsUI);
-			}
-        	
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                audio.setStreamVolume(systemStream, seekBar.getProgress(), flagsUI);
+            }
+            
         });
         
         SeekBar ringerSeek = (SeekBar) findViewById(R.id.ringer_seekbar);
         ringerSeek.setMax(audio.getStreamMaxVolume(ringStream));
         ringerSeek.setProgress(audio.getStreamVolume(ringStream));
-        
         ringerSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
@@ -266,19 +262,19 @@ public class MainSettings extends Activity {
         	public void onClick(View view) {
         		Intent i = new Intent(gui, ScheduleList.class);
         		i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_SYSTEM));
-        		startActivityForResult(i, ACTIVITY_SCHEDULE);
+        		startActivity(i);
         	}
         });
-		
-	    TextView ringerText = (TextView) findViewById(R.id.ringer_timer_text);
-	    ringerText.setText(DbUtil.queryString(resolver, getString(R.string.RingerDisplay), ""));
-	    	
-	    Button ringerTimer = (Button) findViewById(R.id.ringer_timer_button);
-	    ringerTimer.setOnClickListener(new View.OnClickListener() {
+        
+        TextView ringerText = (TextView) findViewById(R.id.ringer_timer_text);
+        ringerText.setText(DbUtil.queryString(resolver, getString(R.string.RingerDisplay), ""));
+            
+        Button ringerTimer = (Button) findViewById(R.id.ringer_timer_button);
+        ringerTimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_RING));
-                startActivityForResult(i, ACTIVITY_SCHEDULE);
+                startActivity(i);
             }
         });
 	    
@@ -290,7 +286,7 @@ public class MainSettings extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_MUSIC));
-                startActivityForResult(i, ACTIVITY_SCHEDULE);
+                startActivity(i);
             }
         });
         
@@ -302,7 +298,7 @@ public class MainSettings extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_ALARM));
-                startActivityForResult(i, ACTIVITY_SCHEDULE);
+                startActivity(i);
             }
         });
         
@@ -314,7 +310,7 @@ public class MainSettings extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_VOICE_CALL));
-                startActivityForResult(i, ACTIVITY_SCHEDULE);
+                startActivity(i);
             }
         });
     	   
@@ -365,17 +361,17 @@ public class MainSettings extends Activity {
 
 	        Toast.makeText(this, getString(R.string.SystemDisabled), Toast.LENGTH_SHORT).show();
 	        return true;
-		case R.id.disable_ringer:
-			DbUtil.update(resolver, getString(R.string.EnableRinger), 0);
-			DbUtil.update(resolver, getString(R.string.RingerDisplay), "");
-			
-			alarmManager.cancel(pendingRingerStart);
-	        alarmManager.cancel(pendingRingerEnd);
-	        
-	        ((TextView) findViewById(R.id.ringer_timer_text)).setText("");
+        case R.id.disable_ringer:
+            DbUtil.update(resolver, getString(R.string.EnableRinger), 0);
+            DbUtil.update(resolver, getString(R.string.RingerDisplay), "");
+            
+            alarmManager.cancel(pendingRingerStart);
+            alarmManager.cancel(pendingRingerEnd);
+            
+            ((TextView) findViewById(R.id.ringer_timer_text)).setText("");
 
-	        Toast.makeText(this, getString(R.string.RingerDisabled), Toast.LENGTH_SHORT).show();
-			return true;
+            Toast.makeText(this, getString(R.string.RingerDisabled), Toast.LENGTH_SHORT).show();
+            return true;
 		case R.id.disable_media:
 			DbUtil.update(resolver, getString(R.string.EnableMedia), 0);
 			DbUtil.update(resolver, getString(R.string.MediaDisplay), "");
