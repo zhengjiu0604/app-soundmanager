@@ -19,11 +19,13 @@ import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.BitmapFactory.Options;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -43,11 +45,6 @@ import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 public class ScheduleList extends ListActivity {
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_EDIT   = 1;
-    
-    private static final int NEW_SCHEDULE    = Menu.FIRST;
-    private static final int DELETE_SCHEDULE = Menu.FIRST + 1;
-    private static final int EDIT_SCHEDULE   = Menu.FIRST + 2;
-    private static final int TOGGLE_SCHEDULE = Menu.FIRST + 3;
     
     public static final String VOLUME_TYPE = "VOLUME_TYPE";
     private int mVolumeType;
@@ -175,10 +172,9 @@ public class ScheduleList extends ListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-
-		menu.add(ContextMenu.NONE, EDIT_SCHEDULE, ContextMenu.NONE, R.string.editSchedule);
-		menu.add(ContextMenu.NONE, DELETE_SCHEDULE, ContextMenu.NONE, R.string.deleteSchedule);
-		menu.add(ContextMenu.NONE, TOGGLE_SCHEDULE, ContextMenu.NONE, R.string.toggleSchedule);
+		
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.schedulelist_context, menu);
 	}
 
 	/* (non-Javadoc)
@@ -189,20 +185,20 @@ public class ScheduleList extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		
 		switch(item.getItemId()) {
-        case EDIT_SCHEDULE:
+        case R.id.editSchedule:
             Intent i = new Intent(this, ScheduleEdit.class);
             i.putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, info.id);
             i.putExtra(VOLUME_TYPE, mVolumeType);
             startActivityForResult(i, ACTIVITY_EDIT);
         	return true;
         	
-        case DELETE_SCHEDULE:
+        case R.id.deleteSchedule:
             Uri deleteUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(info.id));
             getContentResolver().delete(deleteUri, null, null);
             fillData();
             return true;
 		
-		case TOGGLE_SCHEDULE:
+		case R.id.toggleSchedule:
 		    toggleSchedule(info.id);
 		    fillData();
 		    return true;
@@ -218,8 +214,9 @@ public class ScheduleList extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
         boolean result = super.onCreateOptionsMenu(menu);
-        
-        menu.add(0, NEW_SCHEDULE, 0, R.string.newSchedule);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.schedulelist_options, menu);
         
         return result;
 	}
@@ -229,8 +226,9 @@ public class ScheduleList extends ListActivity {
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+	    
         switch(item.getItemId()) {
-        case NEW_SCHEDULE:
+        case R.id.newSchedule:
             Intent i = new Intent(this, ScheduleEdit.class);
             i.putExtra(VOLUME_TYPE, mVolumeType);
             startActivityForResult(i, ACTIVITY_CREATE);
