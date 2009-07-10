@@ -231,8 +231,9 @@ public class ScheduleEdit extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         
-        //store the schedule id for display on resume
+        //store some things for re-display on resume
         outState.putLong(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId);
+        outState.putInt(ScheduleList.VOLUME_TYPE, mVolumeType);
     }
     
     /**
