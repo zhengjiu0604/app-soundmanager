@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -111,7 +112,16 @@ public class ScheduleEdit extends Activity {
         mClock24hour = Util.is24HourClock(this.getContentResolver());
         mStartTime.setIs24HourView(mClock24hour);
         
+        TextView vibrateLabel = (TextView) findViewById(R.id.vibrateLabel);
         mVibrate = (CheckBox) findViewById(R.id.vibrateCheckbox);
+        vibrateLabel.setVisibility(View.GONE);
+        mVibrate.setVisibility(View.GONE);
+        if (mVolumeType == AudioManager.STREAM_RING ||
+                mVolumeType == AudioManager.STREAM_NOTIFICATION) {
+            vibrateLabel.setVisibility(View.VISIBLE);
+            mVibrate.setVisibility(View.VISIBLE);
+        }
+        
         mActive = (CheckBox) findViewById(R.id.activeCheckbox);
 
         mVolumeDsc = (TextView) findViewById(R.id.ScheduleType);
