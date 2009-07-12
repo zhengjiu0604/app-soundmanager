@@ -54,9 +54,9 @@ public class ScheduleEdit extends Activity {
     private SeekBar mVolume;
     private CheckBox mVibrate;
     private CheckBox mActive;
-    
     private TextView mVolumeDsc;
     
+    private Schedule mSchedule; //help watch for changes
     private Integer mVolumeType;
     private boolean mClock24hour;
     
@@ -66,6 +66,8 @@ public class ScheduleEdit extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.schedule_edit);
         
         /*
          * check the saved state for schedule id, then check the bundle passed through the Intent
@@ -80,7 +82,7 @@ public class ScheduleEdit extends Activity {
         }
         
         /*
-         * figure out the volume type for the volume bar
+         * figure out the volume type for the volume bar, same as above
          */
         mVolumeType = savedInstanceState != null ? savedInstanceState.getInt(ScheduleList.VOLUME_TYPE) 
                                                  : null;
@@ -90,10 +92,8 @@ public class ScheduleEdit extends Activity {
                                          : null;
         }
         
-        setContentView(R.layout.schedule_edit);
-        
         /*
-         * get handles to the gui
+         * get handles to the gui, setup some basics
          */
 
         mDay0 = (ToggleButton) findViewById(R.id.day0toggle);
@@ -123,7 +123,6 @@ public class ScheduleEdit extends Activity {
         }
         
         mActive = (CheckBox) findViewById(R.id.activeCheckbox);
-
         mVolumeDsc = (TextView) findViewById(R.id.ScheduleType);
         
         populateFields();
@@ -180,6 +179,22 @@ public class ScheduleEdit extends Activity {
                 mVolume.setProgress(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_VOLUME)));
                 mVibrate.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_VIBRATE)) > 0);
                 mActive.setChecked(scheduleCursor.getInt(scheduleCursor.getColumnIndexOrThrow(SQLiteDatabaseHelper.SCHEDULE_ACTIVE)) > 0);
+                
+                //store values for future modification check
+                mSchedule = new Schedule(-1,
+                                         mDay0.isChecked(),
+                                         mDay1.isChecked(),
+                                         mDay2.isChecked(),
+                                         mDay3.isChecked(),
+                                         mDay4.isChecked(),
+                                         mDay5.isChecked(),
+                                         mDay6.isChecked(),
+                                         mStartTime.getCurrentHour(),
+                                         mStartTime.getCurrentMinute(),
+                                         mVolume.getProgress(),
+                                         mVolumeType,
+                                         mVibrate.isChecked(),
+                                         mActive.isChecked());
             }
         }
         
@@ -204,6 +219,35 @@ public class ScheduleEdit extends Activity {
         
     }
     
+    /*
+     * compare the mSchedule (as populated from the db) to the current
+     * state of each gui field 
+     */
+    private boolean isModified() {
+        boolean result = false;
+
+        if (mScheduleId == null ||
+            mSchedule == null ||
+            mDay0.isChecked() != mSchedule.isDay0() || 
+            mDay1.isChecked() != mSchedule.isDay1() ||
+            mDay2.isChecked() != mSchedule.isDay2() || 
+            mDay3.isChecked() != mSchedule.isDay3() ||
+            mDay4.isChecked() != mSchedule.isDay4() || 
+            mDay5.isChecked() != mSchedule.isDay5() ||
+            mDay6.isChecked() != mSchedule.isDay6() || 
+            mStartTime.getCurrentHour() != mSchedule.getStartHour() ||
+            mStartTime.getCurrentMinute() != mSchedule.getStartMinute() ||
+            mVolume.getProgress() != mSchedule.getVolume() || 
+            mVibrate.isChecked() != mSchedule.isVibrate() ||
+            mActive.isChecked() != mSchedule.isActive()
+            ) {
+            result = true;
+        }
+        
+        
+        return result;
+    }
+    
     /* (non-Javadoc)
      * @see android.app.Activity#onPause()
      */
@@ -211,9 +255,14 @@ public class ScheduleEdit extends Activity {
     protected void onPause() {
         super.onPause();
         
-        saveState();
+        /*
+         * save only if the gui differs from the db
+         */
+        if (isModified()) {
+            saveState();
         
-        Toast.makeText(this, R.string.scheduleSaved, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.scheduleSaved, Toast.LENGTH_SHORT).show();
+        }
     }
     
     /* (non-Javadoc)
