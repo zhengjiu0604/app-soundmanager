@@ -19,6 +19,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -29,6 +30,8 @@ import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.utils.Util;
 
 /**
+ * Defines layout for Schedule list items
+ * 
  * @author Mike Partridge
  */
 public class ScheduleView extends LinearLayout {
@@ -166,7 +169,7 @@ public class ScheduleView extends LinearLayout {
         
         tableLayout.addView(volumeRow);
         
-        TableRow vibrateActiveRow = new TableRow(context);
+        TableRow vibrateRow = new TableRow(context);
         
         /*
          * vibrate
@@ -175,14 +178,20 @@ public class ScheduleView extends LinearLayout {
         TextView vibrateLabel = new TextView(context);
         vibrateLabel.setPadding(2, 2, 2, 2);
         vibrateLabel.setText(R.string.vibrateLabel);
-        vibrateActiveRow.addView(vibrateLabel);
+        vibrateRow.addView(vibrateLabel);
         
         mVibrate = new TextView(context);
         mVibrate.setPadding(2, 2, 2, 2);
         mVibrate.setText(schedule.isVibrate() ? "On" : "Off");
-        vibrateActiveRow.addView(mVibrate);
+        vibrateRow.addView(mVibrate);
         
-        tableLayout.addView(vibrateActiveRow, paramsFillWrap);
+        /*
+         * display the vibrate setting only for certain streams
+         */
+        if (mVolumeType == AudioManager.STREAM_RING ||
+                mVolumeType == AudioManager.STREAM_NOTIFICATION) {
+            tableLayout.addView(vibrateRow, paramsFillWrap);
+        }
         
         addView(tableLayout, paramsFillWrap);
     }
