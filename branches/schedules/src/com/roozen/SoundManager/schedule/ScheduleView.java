@@ -53,6 +53,8 @@ public class ScheduleView extends LinearLayout {
     public ScheduleView(Context context, Schedule schedule) {
         super(context);
         
+        mVolumeType = schedule.getVolumeType();
+        
         AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         
         this.setOrientation(VERTICAL);
@@ -66,9 +68,25 @@ public class ScheduleView extends LinearLayout {
          *  and keep any special field-display logic there
          */
         
+        TableLayout tableLayout = new TableLayout(context);
+        tableLayout.setColumnStretchable(1, true);
+        
+        TableRow activeDaysRow = new TableRow(context);
+        
+        /*
+         * active
+         */
+        
+        mActive = new TextView(context);
+        mActive.setPadding(2, 2, 2, 2);
+        mActive.setText(schedule.isActive() ? "ACTIVE" : "INACTIVE");
+        mActive.setTextColor(schedule.isActive() ? Color.GREEN : Color.RED);
+        activeDaysRow.addView(mActive);
+        
         /*
          * days
          */
+        
         LinearLayout daysLayout = new LinearLayout(context);
         daysLayout.setOrientation(HORIZONTAL);
         daysLayout.setGravity(Gravity.CENTER);
@@ -101,43 +119,37 @@ public class ScheduleView extends LinearLayout {
         mDay6.setPadding(5, 5, 5, 5);
         mDay6.setText(schedule.isDay6() ? getContext().getText(R.string.day6) : "   ");
         daysLayout.addView(mDay6, paramsWrapBoth);
+        activeDaysRow.addView(daysLayout);
         
-        addView(daysLayout, paramsFillWrap);
+        tableLayout.addView(activeDaysRow);
         
         /*
          * time
          */
-        TableLayout timeLayout = new TableLayout(context);
-        timeLayout.setStretchAllColumns(true);
-        TableRow tr = new TableRow(context);
+        TableRow timeRow = new TableRow(context);
         
         TextView startTimeLabel = new TextView(context);
-        startTimeLabel.setPadding(2, 2, 2, 2);
+        startTimeLabel.setPadding(2, 2, 10, 2);
         startTimeLabel.setText(R.string.startTimeLabel);
-        tr.addView(startTimeLabel);
+        timeRow.addView(startTimeLabel);
         
         mStartTime = new TextView(context);
         mStartTime.setTextSize(18);
         mStartTime.setPadding(2, 2, 2, 2);
         mStartTime.setText(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
-        tr.addView(mStartTime);
+        timeRow.addView(mStartTime);
         
-        timeLayout.addView(tr);
-        addView(timeLayout, paramsWrapBoth);
+        tableLayout.addView(timeRow);
         
         /*
          * volume
          */
-        LinearLayout volumeLayout = new LinearLayout(context);
-        volumeLayout.setOrientation(HORIZONTAL);
-        volumeLayout.setGravity(Gravity.CENTER);
+        TableRow volumeRow = new TableRow(context);
         
         TextView volumeLabel = new TextView(context);
-        volumeLabel.setPadding(2, 2, 2, 2);
+        volumeLabel.setPadding(2, 7, 2, 2);
         volumeLabel.setText(R.string.volumeLabel);
-        volumeLayout.addView(volumeLabel, paramsWrapBoth);
-        
-        mVolumeType = schedule.getVolumeType();
+        volumeRow.addView(volumeLabel);
         
         mVolume = new SeekBar(context);
         mVolume.setEnabled(false);
@@ -147,16 +159,14 @@ public class ScheduleView extends LinearLayout {
         mVolume.setPadding(2, 2, 7, 2);
         mVolume.setMax(audio.getStreamMaxVolume(mVolumeType));
         mVolume.setProgress(schedule.getVolume());
-        volumeLayout.addView(mVolume, paramsFillWrap);
-        
-        addView(volumeLayout, paramsFillWrap);
 
-        TableLayout vibrateActiveLayout = new TableLayout(context);
-        //vibrateActiveLayout.setStretchAllColumns(true);
-        vibrateActiveLayout.setColumnStretchable(1, true);
-        vibrateActiveLayout.setColumnStretchable(2, true);
+        TableRow.LayoutParams volumeLayoutParams = new TableRow.LayoutParams();
+        volumeLayoutParams.span = 2;
+        volumeRow.addView(mVolume, volumeLayoutParams);
         
-        TableRow vibrateActiveRow1 = new TableRow(context);
+        tableLayout.addView(volumeRow);
+        
+        TableRow vibrateActiveRow = new TableRow(context);
         
         /*
          * vibrate
@@ -165,25 +175,16 @@ public class ScheduleView extends LinearLayout {
         TextView vibrateLabel = new TextView(context);
         vibrateLabel.setPadding(2, 2, 2, 2);
         vibrateLabel.setText(R.string.vibrateLabel);
-        vibrateActiveRow1.addView(vibrateLabel);
+        vibrateActiveRow.addView(vibrateLabel);
         
         mVibrate = new TextView(context);
         mVibrate.setPadding(2, 2, 2, 2);
         mVibrate.setText(schedule.isVibrate() ? "On" : "Off");
-        vibrateActiveRow1.addView(mVibrate);
+        vibrateActiveRow.addView(mVibrate);
         
-        /*
-         * active
-         */
+        tableLayout.addView(vibrateActiveRow, paramsFillWrap);
         
-        mActive = new TextView(context);
-        mActive.setPadding(2, 2, 2, 2);
-        mActive.setText(schedule.isActive() ? "ACTIVE" : "INACTIVE");
-        mActive.setTextColor(schedule.isActive() ? Color.GREEN : Color.RED);
-        vibrateActiveRow1.addView(mActive);
-        
-        vibrateActiveLayout.addView(vibrateActiveRow1, paramsFillWrap);
-        addView(vibrateActiveLayout, paramsFillWrap);
+        addView(tableLayout, paramsFillWrap);
     }
  
     private String formatTime(int hour, int minute) {
