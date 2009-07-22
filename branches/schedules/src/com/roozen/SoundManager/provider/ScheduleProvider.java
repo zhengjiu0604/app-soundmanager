@@ -68,7 +68,8 @@ public class ScheduleProvider extends ContentProvider {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE, SCHEDULE);
         sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/#", SCHEDULE_BYID);
-        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/*", SCHEDULE_BYTYPE);
+        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/type/*", SCHEDULE_BYTYPE);
+        
         
         /*
          * defines the columns returned for any query

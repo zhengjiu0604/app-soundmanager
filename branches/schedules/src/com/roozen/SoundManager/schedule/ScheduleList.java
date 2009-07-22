@@ -101,7 +101,7 @@ public class ScheduleList extends ListActivity {
 	    /*
 	     * get all schedules rows for this type
 	     */
-	    Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, ScheduleProvider.getMimeType(mVolumeType));
+	    Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, "type/"+ScheduleProvider.getMimeType(mVolumeType));
 	    Cursor scheduleCursor = managedQuery(schedulesUri, null, null, null, null);
 	    
 	    ScheduleListAdapter sla = new ScheduleListAdapter(this);
