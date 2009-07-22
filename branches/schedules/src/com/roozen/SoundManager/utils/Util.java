@@ -20,10 +20,14 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
 public class Util {
+    
+    public static final String PREFS_NAME = "SoundManagerPrefs";
 
 	public static String padZero(int num){
 		String str = Integer.toString(num);
@@ -48,7 +52,6 @@ public class Util {
 		cal.set(Calendar.MILLISECOND, milli);
 		return cal;
 	}
-	
 
     /**
      * Queries system settings for the system clock format
@@ -68,4 +71,30 @@ public class Util {
         return clock24hour;
     }
     
+	/**
+	 * get a value out of SharedPreferences
+	 * 
+	 * @param context
+	 * @param name
+	 * @param def
+	 * @return
+	 */
+	public static boolean getBooleanPref(Context context, String name, boolean def) {
+	    return context.getSharedPreferences(PREFS_NAME, 
+	                                        Context.MODE_PRIVATE).getBoolean(name, def);
+	}
+	
+	/**
+	 * put a value into SharedPreferences
+	 * 
+	 * @param context
+	 * @param name
+	 * @param value
+	 */
+	public static void putBooleanPref(Context context, String name, boolean value) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(name, value);
+	}
+	
 }
