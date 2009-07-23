@@ -48,9 +48,10 @@ public class ScheduleProvider extends ContentProvider {
     
     private SQLiteDatabaseHelper mDbHelper = null;
     
-    private static final int SCHEDULE = 0;
-    private static final int SCHEDULE_BYTYPE = 1;
-    private static final int SCHEDULE_BYID = 2;
+    private static final int NOFILTER = 0;
+    private static final int SCHEDULE_ID = 1;
+    private static final int SCHEDULE_TYPE = 2;
+    private static final int ALL_ACTIVE = 3;
 
     public static final String MIME_SYSTEM = "system";
     public static final String MIME_RINGER = "ringer";
@@ -66,10 +67,10 @@ public class ScheduleProvider extends ContentProvider {
          * defines how to identify what is being requested
          */
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE, SCHEDULE);
-        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/#", SCHEDULE_BYID);
-        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/type/*", SCHEDULE_BYTYPE);
-        
+        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE, NOFILTER);
+        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/#", SCHEDULE_ID);
+        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/type/*", SCHEDULE_TYPE);
+        sUriMatcher.addURI(ScheduleProvider.AUTHORITY, SQLiteDatabaseHelper.SCHEDULE_TABLE + "/active", ALL_ACTIVE);
         
         /*
          * defines the columns returned for any query
@@ -171,11 +172,13 @@ public class ScheduleProvider extends ContentProvider {
 	 */
 	@Override
 	public String getType(Uri uri) {
-        switch (sUriMatcher.match(uri)) {            
-            case SCHEDULE_BYTYPE:
-                return "vnd.android.cursor.dir/" + AUTHORITY;
-            case SCHEDULE_BYID:
+        switch (sUriMatcher.match(uri)) {
+            case SCHEDULE_ID:
                 return "vnd.android.cursor.item/" + AUTHORITY;
+            case SCHEDULE_TYPE:
+                return "vnd.android.cursor.dir/" + AUTHORITY + ".type";
+            case ALL_ACTIVE:
+                return "vnd.android.cursor.dir/" + AUTHORITY + ".active";
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
             }
@@ -186,8 +189,8 @@ public class ScheduleProvider extends ContentProvider {
 	 */
 	@Override
 	public Uri insert(Uri uri, ContentValues initialValues) {
-        //Only the base SCHEDULE URI is allowed for inserts
-        if (sUriMatcher.match(uri) != SCHEDULE) {
+        //Only the base NOFILTER URI is allowed for inserts
+        if (sUriMatcher.match(uri) != NOFILTER) {
             throw new IllegalArgumentException("Invalid URI " + uri);
         }
 
@@ -227,41 +230,49 @@ public class ScheduleProvider extends ContentProvider {
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 	    SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        
+	    String orderBy;
+        // If no sort order is specified use the default
+        if (TextUtils.isEmpty(sortOrder)) {
+            orderBy = SQLiteDatabaseHelper.SCHEDULE_DEFAULT_ORDER;
+        } else {
+            orderBy = sortOrder;
+        }
 
 	    /*
-	     * we currently have two types of queries: by schedule type and by id 
+	     * act on supported query URIs 
 	     */
 	    switch (sUriMatcher.match(uri)) {
 
-	        case SCHEDULE_BYTYPE:
+	        case SCHEDULE_TYPE:
 	            qb.setTables(SQLiteDatabaseHelper.SCHEDULE_TABLE);
 	            qb.setProjectionMap(sGoalProjectionMap);
 	            {
-	                String mimeType = uri.getPathSegments().get(1);
+	                String mimeType = uri.getPathSegments().get(2);
 	                qb.appendWhere(SQLiteDatabaseHelper.SCHEDULE_TYPE + "=" + getVolumeType(mimeType));
 	            }
 	            break;
 
-	        case SCHEDULE_BYID:
+	        case SCHEDULE_ID:
 	            qb.setTables(SQLiteDatabaseHelper.SCHEDULE_TABLE);
 	            qb.setProjectionMap(sGoalProjectionMap);
 	            {
 	                String id = uri.getPathSegments().get(1);
 	                qb.appendWhere(SQLiteDatabaseHelper.SCHEDULE_ID + "=" + id);
-	                
 	            }
 	            break;
+	            
+	        case ALL_ACTIVE:
+                qb.setTables(SQLiteDatabaseHelper.SCHEDULE_TABLE);
+                qb.setProjectionMap(sGoalProjectionMap);
+                qb.appendWhere(SQLiteDatabaseHelper.SCHEDULE_ACTIVE + "=1");
+                if (TextUtils.isEmpty(sortOrder)) {
+                    orderBy = SQLiteDatabaseHelper.SCHEDULE_TYPE;
+                }
+                break;
 
 	        default:
 	            throw new IllegalArgumentException("Unknown URI " + uri);
-	    }
-
-	    // If no sort order is specified use the default
-	    String orderBy;
-	    if (TextUtils.isEmpty(sortOrder)) {
-	        orderBy = SQLiteDatabaseHelper.SCHEDULE_DEFAULT_ORDER;
-	    } else {
-	        orderBy = sortOrder;
 	    }
 
 	    // Get the database and run the query
@@ -286,7 +297,7 @@ public class ScheduleProvider extends ContentProvider {
          */
         switch (sUriMatcher.match(uri)) {
 
-        case SCHEDULE_BYID:
+        case SCHEDULE_ID:
             String id = uri.getPathSegments().get(1);
             String whereClause = SQLiteDatabaseHelper.SCHEDULE_ID + "=?";
             String[] whereArgs = {id};
@@ -316,7 +327,7 @@ public class ScheduleProvider extends ContentProvider {
          */
         switch (sUriMatcher.match(uri)) {
             
-        case SCHEDULE_BYID:
+        case SCHEDULE_ID:
             String id = uri.getPathSegments().get(1);
             String whereClause = SQLiteDatabaseHelper.SCHEDULE_ID + "=" + id;
             
