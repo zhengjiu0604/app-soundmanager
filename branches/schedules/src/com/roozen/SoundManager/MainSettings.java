@@ -15,6 +15,7 @@
  */
 package com.roozen.SoundManager;
 
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -25,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,9 +41,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.receivers.SoundTimer;
 import com.roozen.SoundManager.schedule.ScheduleList;
 import com.roozen.SoundManager.utils.DbUtil;
+import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 public class MainSettings extends Activity {
 	public final static String PREFS_NAME = "EZSoundManagerPrefs";
@@ -77,6 +81,10 @@ public class MainSettings extends Activity {
     public final static int VIBRATE_RINGER_END        = 13;
     public final static int RINGER_MODE_START         = 14;
     public final static int RINGER_MODE_END           = 15;
+    
+    public final static int ACTIVITY_LIST = 0;
+    
+    private HashMap<Integer,Integer> mActiveCount;
 	
     /** Called when the activity is first created. */
     @Override
@@ -89,8 +97,9 @@ public class MainSettings extends Activity {
         boolean hasShownStartup = settings.getBoolean(getString(R.string.ShownStartup), false);
         
         setupPendingIntents();        
-        setupSeekbars();        
+        setupSeekbars();    
         setupButtons();
+        setStatusText();
         
         if(!hasShownStartup){
 	        AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -252,68 +261,73 @@ public class MainSettings extends Activity {
     }
     
     private void setupButtons() {
-		final ContentResolver resolver = getContentResolver();
-		
-		TextView systemText = (TextView) findViewById(R.id.system_timer_text);
-        systemText.setText(DbUtil.queryString(resolver, getString(R.string.SystemDisplay), ""));
 	    	
         Button systemTimer = (Button) findViewById(R.id.system_timer_button);
         systemTimer.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
         		Intent i = new Intent(gui, ScheduleList.class);
         		i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_SYSTEM));
-        		startActivity(i);
+                startActivityForResult(i, ACTIVITY_LIST);
         	}
         });
-        
-        TextView ringerText = (TextView) findViewById(R.id.ringer_timer_text);
-        ringerText.setText(DbUtil.queryString(resolver, getString(R.string.RingerDisplay), ""));
             
         Button ringerTimer = (Button) findViewById(R.id.ringer_timer_button);
         ringerTimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_RING));
-                startActivity(i);
+                startActivityForResult(i, ACTIVITY_LIST);
             }
         });
-	    
-	    TextView mediaText = (TextView) findViewById(R.id.media_timer_text);
-    	mediaText.setText(DbUtil.queryString(resolver, getString(R.string.MediaDisplay), ""));
     	
         Button mediaTimer = (Button) findViewById(R.id.media_timer_button);
         mediaTimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_MUSIC));
-                startActivity(i);
+                startActivityForResult(i, ACTIVITY_LIST);
             }
         });
-        
-        TextView alarmText = (TextView) findViewById(R.id.alarm_timer_text);
-    	alarmText.setText(DbUtil.queryString(resolver, getString(R.string.AlarmDisplay), ""));
     	
         Button alarmTimer = (Button) findViewById(R.id.alarm_timer_button);
         alarmTimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_ALARM));
-                startActivity(i);
+                startActivityForResult(i, ACTIVITY_LIST);
             }
         });
-        
-    	TextView incallText = (TextView) findViewById(R.id.phonecall_timer_text);
-    	incallText.setText(DbUtil.queryString(resolver, getString(R.string.IncallDisplay), ""));
     	
     	Button incallTimer = (Button) findViewById(R.id.phonecall_timer_button);
     	incallTimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_VOICE_CALL));
-                startActivity(i);
+                startActivityForResult(i, ACTIVITY_LIST);
             }
         });
     	   
+    }
+    
+    private void setStatusText() {
+        
+        countActiveSchedules();
+        
+        TextView systemText = (TextView) findViewById(R.id.system_timer_text);
+        systemText.setText(getScheduleCountText(AudioManager.STREAM_SYSTEM));
+        
+        TextView ringerText = (TextView) findViewById(R.id.ringer_timer_text);
+        ringerText.setText(getScheduleCountText(AudioManager.STREAM_RING));
+        
+        TextView mediaText = (TextView) findViewById(R.id.media_timer_text);
+        mediaText.setText(getScheduleCountText(AudioManager.STREAM_MUSIC));
+        
+        TextView alarmText = (TextView) findViewById(R.id.alarm_timer_text);
+        alarmText.setText(getScheduleCountText(AudioManager.STREAM_ALARM));
+        
+        TextView incallText = (TextView) findViewById(R.id.phonecall_timer_text);
+        incallText.setText(getScheduleCountText(AudioManager.STREAM_VOICE_CALL));
+        
     }
     
 	@Override
@@ -453,7 +467,56 @@ public class MainSettings extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
     
-	private void popToastShort(String text){
+	private void countActiveSchedules() {
+	    
+	    mActiveCount = new HashMap<Integer,Integer>();
+	    
+        /*
+         * get all active schedules, count them by type
+         */
+        Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, "active");
+        Cursor scheduleCursor = managedQuery(schedulesUri, null, null, null, null);
+	    
+        if (scheduleCursor.moveToFirst()) {
+            
+            int typeIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_TYPE);
+            
+            do {
+                
+                if (!mActiveCount.containsKey(scheduleCursor.getInt(typeIndex))) {
+                    mActiveCount.put(scheduleCursor.getInt(typeIndex), 0);
+                }
+                
+                mActiveCount.put(scheduleCursor.getInt(typeIndex), mActiveCount.get(scheduleCursor.getInt(typeIndex)).intValue()+1);
+                
+            } while(scheduleCursor.moveToNext());
+            
+        }
+	}
+	
+	private String getScheduleCountText(int volumeType) {
+	    String result = "";
+	    
+	    if (mActiveCount.containsKey(volumeType) &&
+	            mActiveCount.get(volumeType) > 0) {
+	        result = mActiveCount.get(volumeType).toString() + " active schedule";
+	        result += mActiveCount.get(volumeType) > 1 ? "s" : "";
+	    }
+	    
+	    return result;
+	}
+	
+	/* (non-Javadoc)
+     * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        setStatusText();
+    }
+
+    private void popToastShort(String text){
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 	}
 }
