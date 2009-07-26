@@ -19,7 +19,6 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import com.roozen.SoundManager.receivers.SoundTimer;
 import com.roozen.SoundManager.utils.DbUtil;
 import com.roozen.SoundManager.utils.Util;
 
@@ -63,8 +62,6 @@ public class VibrateSettings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vibrate_settings);
         gui = this;
-        
-        setupPendingIntents();
 
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -94,23 +91,6 @@ public class VibrateSettings extends Activity {
 				pendingVibrateNotifStart, pendingVibrateNotifEnd, "Notification Vibrate Timer Set", getString(R.string.EnableVibrateNotif), notifText, 
 				getString(R.string.VibrateNotifDisplay), vibrateNotif));
 	}
-    
-    private void setupPendingIntents(){
-    	Intent soundTimer = new Intent(this, SoundTimer.class);
-
-        pendingVibrateRingerStart = PendingIntent.getBroadcast(this, R.string.VibrateRingerTimeStart, 
-        		new Intent(soundTimer).putExtra(MainSettings.EXTRA_WHICH, MainSettings.VIBRATE_RINGER_START), 0);
-
-        pendingVibrateRingerEnd = PendingIntent.getBroadcast(gui, R.string.VibrateRingerTimeEnd, 
-        		new Intent(soundTimer).putExtra(MainSettings.EXTRA_WHICH, MainSettings.VIBRATE_RINGER_END), 0);
-        
-        pendingVibrateNotifStart = PendingIntent.getBroadcast(gui, R.string.VibrateNotifTimeStart, 
-        		new Intent(soundTimer).putExtra(MainSettings.EXTRA_WHICH, MainSettings.VIBRATE_NOTIF_START), 0);
-
-        pendingVibrateNotifEnd = PendingIntent.getBroadcast(gui, R.string.VibrateNotifTimeEnd, 
-        		new Intent(soundTimer).putExtra(MainSettings.EXTRA_WHICH, MainSettings.VIBRATE_NOTIF_END), 0);
-        
-    }
     
     private void setupButtons(final AudioManager audio){
         int vibrateRinger = audio.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
