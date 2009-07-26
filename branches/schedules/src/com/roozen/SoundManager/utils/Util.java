@@ -72,7 +72,7 @@ public class Util {
     }
     
 	/**
-	 * get a value out of SharedPreferences
+	 * get a Boolean out of SharedPreferences
 	 * 
 	 * @param context
 	 * @param name
@@ -85,7 +85,7 @@ public class Util {
 	}
 	
 	/**
-	 * put a value into SharedPreferences
+	 * put a Boolean into SharedPreferences
 	 * 
 	 * @param context
 	 * @param name
@@ -96,5 +96,31 @@ public class Util {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(name, value);
 	}
+	
+	   /**
+     * get a Boolean out of SharedPreferences
+     * 
+     * @param context
+     * @param name
+     * @param def
+     * @return
+     */
+    public static int getIntPref(Context context, String name, int def) {
+        return context.getSharedPreferences(PREFS_NAME, 
+                                            Context.MODE_PRIVATE).getInt(name, def);
+    }
+    
+    /**
+     * put a Boolean into SharedPreferences
+     * 
+     * @param context
+     * @param name
+     * @param value
+     */
+    public static void putIntPref(Context context, String name, int value) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(name, value);
+    }
 	
 }
