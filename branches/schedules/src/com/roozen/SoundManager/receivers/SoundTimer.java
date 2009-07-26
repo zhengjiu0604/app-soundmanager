@@ -15,7 +15,6 @@
  */
 package com.roozen.SoundManager.receivers;
 
-import com.roozen.SoundManager.MainSettings;
 import com.roozen.SoundManager.services.ChangeVolume;
 
 import android.content.BroadcastReceiver;
@@ -27,14 +26,15 @@ public class SoundTimer extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Bundle extras = intent.getExtras();            
-		int type = extras != null ? extras.getInt(MainSettings.EXTRA_WHICH) : -1;
+		Bundle extras = intent.getExtras();
 		
-		if(type != -1){
+		//int type = extras != null ? extras.getInt(MainSettings.EXTRA_WHICH) : -1;
+
+		//if(type != -1){
 			Intent i = new Intent(context, ChangeVolume.class);
-			i.putExtra(MainSettings.EXTRA_WHICH, type);
+			//i.putExtra(MainSettings.EXTRA_WHICH, type);
 			context.startService(i);
-		}
+		//}
 	}
 
 }

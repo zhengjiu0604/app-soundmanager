@@ -15,149 +15,35 @@
  */
 package com.roozen.SoundManager.services;
 
-import com.roozen.SoundManager.MainSettings;
-import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.RingmodeToggle;
-import com.roozen.SoundManager.utils.DbUtil;
 
 import android.app.Service;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
 
+/**
+ * Service that changes volume, ringmode, and vibrate setting
+ * 
+ * @author droozen
+ */
 public class ChangeVolume extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
+		
+		//checkVolume(AudioManager.STREAM_RING, vol, AudioManager.VIBRATE_TYPE_RINGER);
+		//checkRingmode(vol);
+		//checkVibrate(AudioManager.VIBRATE_TYPE_RINGER, vol);
+		
+		//pull schedule_id from the intent, lookup settings, set them
 	
 		Bundle extras = intent.getExtras();            
-		int type = extras != null ? extras.getInt(MainSettings.EXTRA_WHICH) : -1;
-		if(type == -1){
-			return;
-		}
+		//int type = extras != null ? extras.getInt(MainSettings.EXTRA_WHICH) : -1;
 		
-        int vol;
-        boolean enabled;
-        ContentResolver resolver = getContentResolver();
-        
-		switch(type){
-		case MainSettings.RINGER_VOLUME_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableRinger), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.RingerStartVolume), -1);
-				checkVolume(AudioManager.STREAM_RING, vol, AudioManager.VIBRATE_TYPE_RINGER);
-			}
-			break;
-		case MainSettings.RINGER_VOLUME_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableRinger), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.RingerEndVolume), -1);
-			    checkVolume(AudioManager.STREAM_RING, vol, AudioManager.VIBRATE_TYPE_RINGER);
-			}
-			break;
-		case MainSettings.ALARM_VOLUME_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableAlarm), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.AlarmStartVolume), -1);
-				checkVolume(AudioManager.STREAM_ALARM, vol, -1);
-			}
-			break;
-		case MainSettings.ALARM_VOLUME_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableAlarm), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.AlarmEndVolume), -1);
-				checkVolume(AudioManager.STREAM_ALARM, vol, -1);
-			}
-			break;
-		case MainSettings.MEDIA_VOLUME_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableMedia), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.MediaStartVolume), -1);
-				checkVolume(AudioManager.STREAM_MUSIC, vol, -1);
-			}
-			break;
-		case MainSettings.MEDIA_VOLUME_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableMedia), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.MediaEndVolume), -1);
-				checkVolume(AudioManager.STREAM_MUSIC, vol, -1);
-			}
-			break;
-		case MainSettings.INCALL_VOLUME_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableIncall), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.IncallStartVolume), -1);
-				checkVolume(AudioManager.STREAM_VOICE_CALL, vol, -1);
-			}
-			break;
-		case MainSettings.INCALL_VOLUME_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableIncall), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.IncallEndVolume), -1);
-				checkVolume(AudioManager.STREAM_VOICE_CALL, vol, -1);
-			}
-			break;
-		case MainSettings.SYSTEM_VOLUME_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableSystem), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.SystemStartVolume), -1);
-				checkVolume(AudioManager.STREAM_SYSTEM, vol, -1);
-			}
-			break;
-		case MainSettings.SYSTEM_VOLUME_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableSystem), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.SystemEndVolume), -1);
-				checkVolume(AudioManager.STREAM_SYSTEM, vol, -1);
-			}
-			break;
-		case MainSettings.RINGER_MODE_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableRingmode), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.RingmodeStartVolume), -1);
-				checkRingmode(vol);
-			}
-			break;
-		case MainSettings.RINGER_MODE_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableRingmode), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.RingmodeEndVolume), -1);
-				checkRingmode(vol);
-			}
-			break;
-		case MainSettings.VIBRATE_RINGER_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableVibrateRinger), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.VibrateRingerStartVolume), -1);
-				checkVibrate(AudioManager.VIBRATE_TYPE_RINGER, vol);
-			}
-			break;
-		case MainSettings.VIBRATE_RINGER_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableVibrateRinger), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.VibrateRingerEndVolume), -1);
-				checkVibrate(AudioManager.VIBRATE_TYPE_RINGER, vol);
-			}
-			break;
-		case MainSettings.VIBRATE_NOTIF_START:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableVibrateNotif), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.VibrateNotifStartVolume), -1);
-				checkVibrate(AudioManager.VIBRATE_TYPE_NOTIFICATION, vol);
-			}
-			break;
-		case MainSettings.VIBRATE_NOTIF_END:
-			enabled = DbUtil.queryBoolean(resolver, getString(R.string.EnableVibrateNotif), false);
-			if(enabled){
-				vol = DbUtil.queryInt(resolver, getString(R.string.VibrateNotifEndVolume), -1);
-				checkVibrate(AudioManager.VIBRATE_TYPE_NOTIFICATION, vol);
-			}
-			break;
-		}
 	}
 	
 	private void checkVolume(int stream, int vol, int vibrateType){
