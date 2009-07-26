@@ -29,10 +29,10 @@
     
     <!-- Mute -->
     <string name="muted">muted</string>
-    <string name="SavedSystemVolume">SavedSystemVolume</string><!-- deprecated -->
-    <string name="SavedRingerVolume">SavedRingerVolume</string><!-- deprecated -->
-    <string name="SavedMediaVolume">SavedMediaVolume</string><!-- deprecated -->
-    <string name="SavedAlarmVolume">SavedAlarmVolume</string><!-- deprecated -->
+    <string name="SavedSystemVolume">SavedSystemVolume</string>
+    <string name="SavedRingerVolume">SavedRingerVolume</string>
+    <string name="SavedMediaVolume">SavedMediaVolume</string>
+    <string name="SavedAlarmVolume">SavedAlarmVolume</string>
     
     <!-- Shortcuts -->
     <string name="use_menu_shortcut">Use the menu to create a shortcut to this screen.</string>
