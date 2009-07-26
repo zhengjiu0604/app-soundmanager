@@ -38,10 +38,10 @@ public class MuteActivity extends Activity {
     						  AudioManager.FLAG_VIBRATE;
     	
 		if(muted){
-		    int systemVol = DbUtil.queryInt(resolver, getString(R.string.SavedSystemVolume), -1);
-		    int ringerVol = DbUtil.queryInt(resolver, getString(R.string.SavedRingerVolume), -1);
-		    int alarmVol = DbUtil.queryInt(resolver, getString(R.string.SavedAlarmVolume), -1);
-		    int mediaVol = DbUtil.queryInt(resolver, getString(R.string.SavedMediaVolume), -1);
+		    int systemVol = Util.getIntPref(this, getString(R.string.SavedSystemVolume), -1);
+		    int ringerVol = Util.getIntPref(this, getString(R.string.SavedRingerVolume), -1);
+		    int alarmVol = Util.getIntPref(this, getString(R.string.SavedAlarmVolume), -1);
+		    int mediaVol = Util.getIntPref(this, getString(R.string.SavedMediaVolume), -1);
 
 		    RingmodeToggle.fixRingMode(audio, ringerVol);
 		    if(systemVol != -1){
@@ -59,10 +59,10 @@ public class MuteActivity extends Activity {
 
 		    Util.putBooleanPref(this, getString(R.string.muted), false);
 		} else {
-		    DbUtil.update(resolver, getString(R.string.SavedSystemVolume), audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
-		    DbUtil.update(resolver, getString(R.string.SavedRingerVolume), audio.getStreamVolume(AudioManager.STREAM_RING));
-		    DbUtil.update(resolver, getString(R.string.SavedAlarmVolume), audio.getStreamVolume(AudioManager.STREAM_ALARM));
-		    DbUtil.update(resolver, getString(R.string.SavedMediaVolume), audio.getStreamVolume(AudioManager.STREAM_MUSIC));
+		    Util.putIntPref(this, getString(R.string.SavedSystemVolume), audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+		    Util.putIntPref(this, getString(R.string.SavedRingerVolume), audio.getStreamVolume(AudioManager.STREAM_RING));
+		    Util.putIntPref(this, getString(R.string.SavedAlarmVolume), audio.getStreamVolume(AudioManager.STREAM_ALARM));
+		    Util.putIntPref(this, getString(R.string.SavedMediaVolume), audio.getStreamVolume(AudioManager.STREAM_MUSIC));
 
             Util.putBooleanPref(this, getString(R.string.muted), true);
 
