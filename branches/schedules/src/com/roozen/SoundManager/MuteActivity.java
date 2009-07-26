@@ -15,7 +15,6 @@
  */
 package com.roozen.SoundManager;
 
-import com.roozen.SoundManager.utils.DbUtil;
 import com.roozen.SoundManager.utils.Util;
 
 import android.app.Activity;
@@ -30,7 +29,6 @@ public class MuteActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		ContentResolver resolver = getContentResolver();
 		AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		boolean muted = Util.getBooleanPref(this, getString(R.string.muted), false);
 		

@@ -25,13 +25,5 @@
 	</RadioGroup>
 	<TextView android:text="@string/use_menu_shortcut" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:textSize="12sp" />
-	<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_marginTop="10dip" >
-		<Button android:id="@+id/ringmode_timer_button" android:text="@string/timer_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-	<TextView android:id="@+id/ringmode_timer_text"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="13sp" />
-	</LinearLayout>
 
 </LinearLayout>
