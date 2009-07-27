@@ -95,6 +95,7 @@ public class Util {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(name, value);
+        editor.commit();
 	}
 	
 	   /**
@@ -121,6 +122,7 @@ public class Util {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(name, value);
+        editor.commit();
     }
 	
 }
