@@ -15,19 +15,7 @@
  */
 package com.roozen.SoundManager;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
-import com.roozen.SoundManager.utils.DbUtil;
-import com.roozen.SoundManager.utils.Util;
-
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.Dialog;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -36,13 +24,8 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 

@@ -18,7 +18,6 @@ package com.roozen.SoundManager;
 import com.roozen.SoundManager.utils.Util;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
