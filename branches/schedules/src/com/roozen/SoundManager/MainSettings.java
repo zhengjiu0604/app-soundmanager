@@ -46,25 +46,6 @@ public class MainSettings extends Activity {
 	public final static String PREFS_NAME = "EZSoundManagerPrefs";
 	
 	private Context gui;
-	
-	public final static String EXTRA_WHICH = "WhichVolume";
-	
-    public final static int RINGER_VOLUME_START       = 0;
-    public final static int RINGER_VOLUME_END         = 1;
-    public final static int ALARM_VOLUME_START        = 2;
-    public final static int ALARM_VOLUME_END          = 3;
-    public final static int MEDIA_VOLUME_START        = 4;
-    public final static int MEDIA_VOLUME_END          = 5;
-    public final static int SYSTEM_VOLUME_START       = 6;
-    public final static int SYSTEM_VOLUME_END         = 7;
-    public final static int INCALL_VOLUME_START       = 8;
-    public final static int INCALL_VOLUME_END         = 9;
-    public final static int VIBRATE_NOTIF_START       = 10;
-    public final static int VIBRATE_NOTIF_END         = 11;
-    public final static int VIBRATE_RINGER_START      = 12;
-    public final static int VIBRATE_RINGER_END        = 13;
-    public final static int RINGER_MODE_START         = 14;
-    public final static int RINGER_MODE_END           = 15;
     
     public final static int ACTIVITY_LIST = 0;
     
