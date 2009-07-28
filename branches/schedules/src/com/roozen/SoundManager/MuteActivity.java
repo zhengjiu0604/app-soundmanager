@@ -34,7 +34,7 @@ public class MuteActivity extends Activity {
     	final int flagsNoUI = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
     						  AudioManager.FLAG_VIBRATE;
     	
-		if(muted){
+		if (muted) {
 		    int systemVol = Util.getIntPref(this, getString(R.string.SavedSystemVolume), -1);
 		    int ringerVol = Util.getIntPref(this, getString(R.string.SavedRingerVolume), -1);
 		    int alarmVol = Util.getIntPref(this, getString(R.string.SavedAlarmVolume), -1);
@@ -55,7 +55,8 @@ public class MuteActivity extends Activity {
 		    }
 
 		    Util.putBooleanPref(this, getString(R.string.muted), false);
-		} else {
+		} 
+		else {
 		    Util.putIntPref(this, getString(R.string.SavedSystemVolume), audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
 		    Util.putIntPref(this, getString(R.string.SavedRingerVolume), audio.getStreamVolume(AudioManager.STREAM_RING));
 		    Util.putIntPref(this, getString(R.string.SavedAlarmVolume), audio.getStreamVolume(AudioManager.STREAM_ALARM));

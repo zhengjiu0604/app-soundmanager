@@ -1,7 +1,10 @@
 package com.roozen.SoundManager.utils;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +13,7 @@ import android.media.AudioManager;
 import android.util.Log;
 
 import com.roozen.SoundManager.R;
+import com.roozen.SoundManager.receivers.SoundTimer;
 
 /**
  * @author Mike Partridge
@@ -24,18 +28,24 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     /*
      * Preferences table
      */
+    @Deprecated
     public static final String PREFERENCE_TABLE = "preferences";
-
+    @Deprecated
     public static final String PREFERENCES_ID = "_id";
+    @Deprecated
     public static final String PREFERENCES_PREFERENCE = "_preference";
+    @Deprecated
     public static final String PREFERENCES_STRING_DATA = "_string_data";
+    @Deprecated
     public static final String PREFERENCES_INTEGER_DATA = "_integer_data";
-    
+
+    @Deprecated
     private static final String PREFERENCES_CREATE = 
         "create table " + PREFERENCE_TABLE + " (" + PREFERENCES_ID + " integer primary key autoincrement, " +
         PREFERENCES_PREFERENCE + " text not null, " + PREFERENCES_STRING_DATA + " text, " +
         PREFERENCES_INTEGER_DATA + " integer); ";
 
+    @Deprecated
     public static final String PREFERENCES_SORT_ORDER = PREFERENCES_PREFERENCE + ", " + PREFERENCES_ID;
     
     /*
@@ -185,11 +195,25 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             editor.putBoolean(mContext.getString(R.string.muted), muted);
         }
         
-        //TODO: cancel existing alarms
-        
         db.execSQL("drop table "+PREFERENCE_TABLE);
+        
+        /*
+         * cancel any old alarms
+         */
+        Intent soundTimer = new Intent(mContext, SoundTimer.class);
+        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(PendingIntent.getBroadcast(mContext, 0, new Intent(soundTimer), 0));
     }
     
+    /**
+     * Get a string from the old preferences table; 
+     * it's removed with db v3, so this method is deprecated
+     * 
+     * @param db
+     * @param pref
+     * @return
+     */
+    @Deprecated
     private String getStringPref(SQLiteDatabase db, String pref) {
         String value = "";
         
@@ -203,7 +227,16 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         
         return value;
     }
-    
+
+    /**
+     * Get an int from the old preferences table; 
+     * it's removed with db v3, so this method is deprecated
+     * 
+     * @param db
+     * @param pref
+     * @return
+     */
+    @Deprecated
     private int getIntPref(SQLiteDatabase db, String pref) {
         int value = 0;
         
@@ -217,7 +250,16 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         
         return value;
     }
-    
+
+    /**
+     * Get a boolean from the old preferences table; 
+     * it's removed with db v3, so this method is deprecated
+     * 
+     * @param db
+     * @param pref
+     * @return
+     */
+    @Deprecated
     private boolean getBooleanPref(SQLiteDatabase db, String pref) {
         boolean value = false;
         
