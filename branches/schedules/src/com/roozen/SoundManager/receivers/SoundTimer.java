@@ -16,6 +16,7 @@
 package com.roozen.SoundManager.receivers;
 
 import com.roozen.SoundManager.services.ChangeVolume;
+import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,13 +29,17 @@ public class SoundTimer extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Bundle extras = intent.getExtras();
 		
-		//int type = extras != null ? extras.getInt(MainSettings.EXTRA_WHICH) : -1;
-
-		//if(type != -1){
-			Intent i = new Intent(context, ChangeVolume.class);
-			//i.putExtra(MainSettings.EXTRA_WHICH, type);
-			context.startService(i);
-		//}
+		/*
+		 * pass schedule id onto the ChangeVolume service
+		 */
+		int scheduleId = extras != null ? extras.getInt(SQLiteDatabaseHelper.SCHEDULE_ID, -1) : -1;
+		
+		if (scheduleId > 0) {
+            Intent i = new Intent(context, ChangeVolume.class);
+            i.putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, scheduleId);
+            context.startService(i);
+		}
+		
 	}
 
 }
