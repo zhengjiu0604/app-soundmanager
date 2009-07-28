@@ -96,10 +96,6 @@
 
         <!-- Providers -->
         <provider
-            android:name="com.roozen.SoundManager.provider.PreferenceProvider"
-            android:authorities="com.roozen.SoundManager.provider.PreferenceProvider" />
-
-        <provider
             android:name="com.roozen.SoundManager.provider.ScheduleProvider"
             android:authorities="com.roozen.soundmanager.provider.scheduleprovider" />
 
