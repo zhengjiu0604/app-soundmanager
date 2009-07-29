@@ -15,9 +15,22 @@
  */
 package com.roozen.SoundManager.services;
 
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.IBinder;
+
+import com.roozen.SoundManager.provider.ScheduleProvider;
+import com.roozen.SoundManager.schedule.Schedule;
+import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 public class BootupService extends Service {
 	
@@ -26,42 +39,45 @@ public class BootupService extends Service {
 		super.onStart(intent, startId);
 		
 		/*
-		if(systemEnabled){
-			/*String time = DbUtil.queryString(resolver, getString(R.string.SystemTimeStart), null);
-			int vol = DbUtil.queryInt(resolver, getString(R.string.SystemStartVolume), -1);
-			if(time != null && vol >= 0 && time.contains(":")){
-				Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-				cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.substring(0, time.indexOf(":"))));
-				cal.set(Calendar.MINUTE, Integer.parseInt(time.substring(time.indexOf(":") + 1)));
-				cal.set(Calendar.SECOND, 0);
-				cal.set(Calendar.MILLISECOND, 200);
-				
-				PendingIntent pendingSystemStart = PendingIntent.getBroadcast(this, R.string.SystemTimeStart, 
-						new Intent(soundTimer).putExtra(MainSettings.EXTRA_WHICH, MainSettings.SYSTEM_VOLUME_START), 0);
-				
-				AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-		        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingSystemStart); // Repeating alarm every day
-			}
-			
-			time = DbUtil.queryString(resolver, getString(R.string.SystemTimeEnd), null);
-			vol = DbUtil.queryInt(resolver, getString(R.string.SystemEndVolume), -1);
-			
-			if(time != null && vol >= 0 && time.contains(":")){
-				Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-				cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.substring(0, time.indexOf(":"))));
-				cal.set(Calendar.MINUTE, Integer.parseInt(time.substring(time.indexOf(":") + 1)));
-				cal.set(Calendar.SECOND, 0);
-				cal.set(Calendar.MILLISECOND, 205);
-				
-				PendingIntent pendingSystemEnd = PendingIntent.getBroadcast(this, R.string.SystemTimeEnd, 
-						new Intent(soundTimer).putExtra(MainSettings.EXTRA_WHICH, MainSettings.SYSTEM_VOLUME_END), 0);
-				
-				AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-		        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingSystemEnd); // Repeating alarm every day
-			}
-		}
-	    */
+		 * get all active schedules and register them with the AlarmManager
+		 */
+		ContentResolver cr = getContentResolver();
+		Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, "active");
+		Cursor scheduleCursor = cr.query(schedulesUri, null, null, null, null);
 		
+		if (scheduleCursor.moveToFirst()) {
+		    
+		    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+		    int idIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_ID);
+            int startHourIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_HOUR);
+            int startMinuteIndex = scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_MINUTE);
+		    
+		    do {
+		        
+		        int scheduleId = scheduleCursor.getInt(idIndex);
+		        int startHour = scheduleCursor.getInt(startHourIndex);
+		        int startMinute = scheduleCursor.getInt(startMinuteIndex);
+		        
+                Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+                cal.set(Calendar.HOUR_OF_DAY, startHour);
+                cal.set(Calendar.MINUTE, startMinute);
+                cal.set(Calendar.SECOND, 0);
+                cal.set(Calendar.MILLISECOND, 200);
+		        
+		        Intent scheduleIntent = new Intent(this, Schedule.class);
+		        scheduleIntent.putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, scheduleId);
+		        PendingIntent pi = PendingIntent.getBroadcast(this, 0, scheduleIntent, 0);
+		        
+		        //repeat the alarm every day; the receiver will check day of week
+		        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
+		        
+		    } while(scheduleCursor.moveToNext());
+		    
+	    }
+		
+		scheduleCursor.close();
+		
+        stopSelf();
 	}
 	
 	@Override
