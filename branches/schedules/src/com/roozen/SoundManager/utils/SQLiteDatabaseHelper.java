@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.receivers.SoundTimer;
+import com.roozen.SoundManager.services.BootupService;
 
 /**
  * @author Mike Partridge
@@ -130,6 +131,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     private void upgradeTo3(SQLiteDatabase db) {
         
+        /*
+         * cancel any old alarms
+         */
+        Intent soundTimer = new Intent(mContext, SoundTimer.class);
+        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(PendingIntent.getBroadcast(mContext, 0, new Intent(soundTimer), 0));
+        
         db.execSQL(SCHEDULE_TABLE_CREATE);
         
         //copy the system timer
@@ -198,11 +206,10 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table "+PREFERENCE_TABLE);
         
         /*
-         * cancel any old alarms
+         * install schedule alarms
          */
-        Intent soundTimer = new Intent(mContext, SoundTimer.class);
-        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(PendingIntent.getBroadcast(mContext, 0, new Intent(soundTimer), 0));
+        Intent i = new Intent(mContext, BootupService.class);
+        mContext.startService(i);        
     }
     
     /**
