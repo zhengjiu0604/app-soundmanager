@@ -33,7 +33,7 @@ import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 /**
- * Service that changes volume, ringmode, and vibrate setting
+ * Service that changes volume, ringmode, and vibrate setting given a schedule id
  * 
  * @author droozen
  */

@@ -64,7 +64,8 @@ public class BootupService extends Service {
                 cal.set(Calendar.SECOND, 0);
                 cal.set(Calendar.MILLISECOND, 200);
 		        
-		        Intent scheduleIntent = new Intent(this, Schedule.class);
+		        Intent scheduleIntent = new Intent (this, Schedule.class);
+		        scheduleIntent.setAction(String.valueOf(scheduleId));
 		        scheduleIntent.putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, scheduleId);
 		        PendingIntent pi = PendingIntent.getBroadcast(this, 0, scheduleIntent, 0);
 		        
