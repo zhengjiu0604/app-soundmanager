@@ -60,6 +60,7 @@ public class ScheduleEdit extends Activity {
     private Schedule mSchedule; //help watch for changes
     private Integer mVolumeType;
     private boolean mClock24hour;
+    private boolean mSaved;
     
     /* (non-Javadoc)
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -127,6 +128,8 @@ public class ScheduleEdit extends Activity {
         mVolumeDsc = (TextView) findViewById(R.id.ScheduleType);
         
         populateFields();
+        
+        mSaved = false;
     }
     
     /**
@@ -259,7 +262,7 @@ public class ScheduleEdit extends Activity {
         /*
          * save only if the gui differs from the db
          */
-        if (isModified()) {
+        if (isModified() && !mSaved) {
             saveState();
         
             Toast.makeText(this, R.string.scheduleSaved, Toast.LENGTH_SHORT).show();
@@ -274,6 +277,8 @@ public class ScheduleEdit extends Activity {
         super.onResume();
         
         populateFields();
+        
+        mSaved = false;
     }
     
     /* (non-Javadoc)
@@ -321,6 +326,7 @@ public class ScheduleEdit extends Activity {
             getContentResolver().update(updateUri, values, null, null);
         }
         
+        mSaved = true;
     }
 
     /* (non-Javadoc)
@@ -329,9 +335,17 @@ public class ScheduleEdit extends Activity {
     @Override
     public void finish() {
         
-        setResult(RESULT_OK, 
-                  new Intent().putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId.intValue())
-                              .putExtra(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, mActive.isChecked()));        
+        if (isModified()) {
+            
+            if (!mSaved) {
+                saveState();
+            }
+            
+            setResult(RESULT_OK, 
+                      new Intent().putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId.intValue())
+                                  .putExtra(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, mActive.isChecked()));
+            
+        }
         
         super.finish();
     }
