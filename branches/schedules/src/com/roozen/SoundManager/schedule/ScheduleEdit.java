@@ -18,6 +18,7 @@ package com.roozen.SoundManager.schedule;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -320,6 +321,19 @@ public class ScheduleEdit extends Activity {
             getContentResolver().update(updateUri, values, null, null);
         }
         
+    }
+
+    /* (non-Javadoc)
+     * @see android.app.Activity#finish()
+     */
+    @Override
+    public void finish() {
+        
+        setResult(RESULT_OK, 
+                  new Intent().putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId.intValue())
+                              .putExtra(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, mActive.isChecked()));        
+        
+        super.finish();
     }
     
 }
