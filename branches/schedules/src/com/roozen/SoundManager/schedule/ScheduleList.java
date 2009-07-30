@@ -15,7 +15,13 @@
  */
 package com.roozen.SoundManager.schedule;
 
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import android.app.AlarmManager;
 import android.app.ListActivity;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,6 +40,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.roozen.SoundManager.R;
 import com.roozen.SoundManager.provider.ScheduleProvider;
+import com.roozen.SoundManager.receivers.SoundTimer;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 /**
@@ -269,7 +276,67 @@ public class ScheduleList extends ListActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         
+        if (resultCode == RESULT_OK &&
+                (requestCode == ACTIVITY_EDIT || requestCode == ACTIVITY_CREATE)) {
+            
+            int scheduleId = data.getIntExtra(SQLiteDatabaseHelper.SCHEDULE_ID, -1);
+            boolean active = data.getBooleanExtra(SQLiteDatabaseHelper.SCHEDULE_ACTIVE, false);
+            
+            if (scheduleId > 0) {
+                
+                if (active) {
+                    registerAlarm(scheduleId);
+                }
+                else {
+                    cancelAlarm(scheduleId);
+                }
+                
+            }
+            
+        }
+        
         fillData();
+    }
+    
+    private void registerAlarm(int scheduleId) {
+        
+        Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(scheduleId));
+        Cursor scheduleCursor = managedQuery(schedulesUri, null, null, null, null);
+        
+        if (scheduleCursor.moveToFirst()) {
+            
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);                
+            int startHour = scheduleCursor.getInt(scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_HOUR));
+            int startMinute = scheduleCursor.getInt(scheduleCursor.getColumnIndex(SQLiteDatabaseHelper.SCHEDULE_START_MINUTE));
+            
+            Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+            cal.set(Calendar.HOUR_OF_DAY, startHour);
+            cal.set(Calendar.MINUTE, startMinute);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 200);
+            
+            Intent scheduleIntent = new Intent(this, SoundTimer.class);
+            scheduleIntent.setData(schedulesUri);
+            PendingIntent pi = PendingIntent.getBroadcast(this, 0, scheduleIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+            
+            //repeat the alarm every day; the receiver will check day of week
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
+                            
+        }
+        
+    }
+    
+    private void cancelAlarm(int scheduleId) {
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);  
+        
+        Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(scheduleId));
+        Intent scheduleIntent = new Intent(this, SoundTimer.class);
+        scheduleIntent.setData(schedulesUri);
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, scheduleIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        
+        alarmManager.cancel(pi);
+        
     }
 	
     private void toggleSchedule(long scheduleId) {
