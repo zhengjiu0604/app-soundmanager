@@ -26,7 +26,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.IBinder;
 
 import com.roozen.SoundManager.provider.ScheduleProvider;
@@ -43,8 +42,7 @@ public class ChangeVolume extends Service {
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		
-		Bundle extras = intent.getExtras();
-		int scheduleId = extras != null ? extras.getInt(SQLiteDatabaseHelper.SCHEDULE_ID, -1) : -1;
+		int scheduleId = Integer.parseInt(intent.getData().getPathSegments().get(1));
 		
 		if (scheduleId > 0) {
 		    
@@ -103,7 +101,7 @@ public class ChangeVolume extends Service {
                                 break;
                             case AudioManager.STREAM_NOTIFICATION:
                                 setVolume(volumeType, volume);
-                                setVibration(AudioManager.VIBRATE_TYPE_RINGER, vibrate);
+                                setVibration(AudioManager.VIBRATE_TYPE_NOTIFICATION, vibrate);
                                 break;
                         }
                                                 

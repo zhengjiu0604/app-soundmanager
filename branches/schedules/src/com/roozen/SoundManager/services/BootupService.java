@@ -29,7 +29,7 @@ import android.net.Uri;
 import android.os.IBinder;
 
 import com.roozen.SoundManager.provider.ScheduleProvider;
-import com.roozen.SoundManager.schedule.Schedule;
+import com.roozen.SoundManager.receivers.SoundTimer;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 
 public class BootupService extends Service {
@@ -64,10 +64,9 @@ public class BootupService extends Service {
                 cal.set(Calendar.SECOND, 0);
                 cal.set(Calendar.MILLISECOND, 200);
 		        
-		        Intent scheduleIntent = new Intent (this, Schedule.class);
-		        scheduleIntent.setAction(String.valueOf(scheduleId));
-		        scheduleIntent.putExtra(SQLiteDatabaseHelper.SCHEDULE_ID, scheduleId);
-		        PendingIntent pi = PendingIntent.getBroadcast(this, 0, scheduleIntent, 0);
+		        Intent scheduleIntent = new Intent(this, SoundTimer.class);
+		        scheduleIntent.setData(Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(scheduleId)));
+		        PendingIntent pi = PendingIntent.getBroadcast(this, 0, scheduleIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 		        
 		        //repeat the alarm every day; the receiver will check day of week
 		        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
