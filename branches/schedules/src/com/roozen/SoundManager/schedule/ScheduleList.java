@@ -197,6 +197,9 @@ public class ScheduleList extends ListActivity {
         case R.id.deleteSchedule:
             Uri deleteUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(info.id));
             getContentResolver().delete(deleteUri, null, null);
+            
+            cancelAlarm((int)info.id);
+            
             fillData();
             return true;
 		
@@ -362,6 +365,14 @@ public class ScheduleList extends ListActivity {
         
         Uri updateUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, String.valueOf(scheduleId));
         getContentResolver().update(updateUri, values, null, null);
+        
+        //set/unset the alarm
+        if (active) {
+            cancelAlarm((int)scheduleId);
+        }
+        else {
+            registerAlarm((int)scheduleId);
+        }
         
     }
     
