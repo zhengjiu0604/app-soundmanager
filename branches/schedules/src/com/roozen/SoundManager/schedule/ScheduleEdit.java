@@ -80,7 +80,7 @@ public class ScheduleEdit extends Activity {
             Bundle extras = getIntent().getExtras();
             mScheduleId = extras != null ? extras.getLong(SQLiteDatabaseHelper.SCHEDULE_ID)
                                          : null;
-            if (mScheduleId == 0) mScheduleId = null;
+            if (mScheduleId < 1) mScheduleId = null;
         }
         
         /*
@@ -288,8 +288,17 @@ public class ScheduleEdit extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         
+        /*
+         * save only if the gui differs from the db
+         */
+        if (isModified() && !mSaved) {
+            saveState();
+        }
+        
         //store some things for re-display on resume
-        outState.putLong(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId);
+        if (mScheduleId != null) {
+            outState.putLong(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId);
+        }
         outState.putInt(ScheduleList.VOLUME_TYPE, mVolumeType);
     }
     
