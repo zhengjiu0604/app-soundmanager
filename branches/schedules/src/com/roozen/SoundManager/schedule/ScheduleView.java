@@ -19,7 +19,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -233,6 +232,7 @@ public class ScheduleView extends LinearLayout {
         setDay6(schedule.isDay6());
         setStartTime(formatTime(schedule.getStartHour(), schedule.getStartMinute()));
         setVolume(schedule.getVolume());
+        setVibrate(schedule.isVibrate());
         setActive(schedule.isActive());
         
     }
