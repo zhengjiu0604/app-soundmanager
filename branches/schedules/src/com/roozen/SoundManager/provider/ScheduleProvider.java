@@ -55,6 +55,7 @@ public class ScheduleProvider extends ContentProvider {
 
     public static final String MIME_SYSTEM = "system";
     public static final String MIME_RINGER = "ringer";
+    public static final String MIME_NOTIF = "notif";
     public static final String MIME_MEDIA = "media";
     public static final String MIME_ALARM = "alarm";
     public static final String MIME_INCALL = "incall";
@@ -102,19 +103,22 @@ public class ScheduleProvider extends ContentProvider {
     private static int getVolumeType(String mimeType) {
         int volumeType = AudioManager.STREAM_SYSTEM;
         
-        if (mimeType.equals("system")) {
+        if (mimeType.equals(MIME_SYSTEM)) {
             volumeType = AudioManager.STREAM_SYSTEM;
         }
-        else if (mimeType.equals("ringer")) {
+        else if (mimeType.equals(MIME_RINGER)) {
             volumeType = AudioManager.STREAM_RING;
         }
-        else if (mimeType.equals("media")) {
+        else if (mimeType.equals(MIME_NOTIF)) {
+            volumeType = AudioManager.STREAM_NOTIFICATION;
+        }
+        else if (mimeType.equals(MIME_MEDIA)) {
             volumeType = AudioManager.STREAM_MUSIC;
         }
-        else if (mimeType.equals("alarm")) {
+        else if (mimeType.equals(MIME_ALARM)) {
             volumeType = AudioManager.STREAM_ALARM;
         }
-        else if (mimeType.equals("incall")) {
+        else if (mimeType.equals(MIME_INCALL)) {
             volumeType = AudioManager.STREAM_VOICE_CALL;
         }
         
@@ -137,6 +141,10 @@ public class ScheduleProvider extends ContentProvider {
                 
             case AudioManager.STREAM_RING:
                 mimeType = MIME_RINGER;
+                break;
+                
+            case AudioManager.STREAM_NOTIFICATION:
+                mimeType = MIME_NOTIF;
                 break;
                 
             case AudioManager.STREAM_MUSIC:

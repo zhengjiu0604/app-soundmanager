@@ -8,6 +8,7 @@
     <string name="ringer_textview">Ringer Volume</string>
     <string name="phonecall_textview">In-Call Volume</string>
     <string name="alarm_textview">Alarm Volume</string>
+    <string name="notif_textview">Notification Volume</string>
     <string name="timer_button">Schedule</string>
     <string name="setVolumeChange">Set what volume will change to:</string><!-- deprecated -->
     <string name="setRingmodeChange">Set what ringmode will change to:</string><!-- deprecated -->
@@ -31,6 +32,7 @@
     <string name="muted">muted</string>
     <string name="SavedSystemVolume">SavedSystemVolume</string>
     <string name="SavedRingerVolume">SavedRingerVolume</string>
+    <string name="SavedNotifVolume">SavedNotifVolume</string>
     <string name="SavedMediaVolume">SavedMediaVolume</string>
     <string name="SavedAlarmVolume">SavedAlarmVolume</string>
     
@@ -109,6 +111,7 @@
     <!-- Schedules -->
     <string name="SystemVolumeSchedule">System Volume Schedule</string>
     <string name="RingerVolumeSchedule">Ringer Volume Schedule</string>
+    <string name="NotifVolumeSchedule">Notification Volume Schedule</string>
     <string name="MediaVolumeSchedule">Media Volume Schedule</string>
     <string name="AlarmVolumeSchedule">Alarm Volume Schedule</string>
     <string name="InCallVolumeSchedule">In-Call Volume Schedule</string>

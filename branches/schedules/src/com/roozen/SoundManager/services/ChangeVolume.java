@@ -90,6 +90,10 @@ public class ChangeVolume extends Service {
                                 setVolume(volumeType, volume);
                                 setVibration(AudioManager.VIBRATE_TYPE_RINGER, vibrate);                                
                                 break;
+                            case AudioManager.STREAM_NOTIFICATION:
+                                setVolume(volumeType, volume);
+                                setVibration(AudioManager.VIBRATE_TYPE_NOTIFICATION, vibrate);
+                                break;
                             case AudioManager.STREAM_MUSIC:
                                 setVolume(volumeType, volume);
                                 break;
@@ -98,10 +102,6 @@ public class ChangeVolume extends Service {
                                 break;
                             case AudioManager.STREAM_VOICE_CALL:
                                 setVolume(volumeType, volume);
-                                break;
-                            case AudioManager.STREAM_NOTIFICATION:
-                                setVolume(volumeType, volume);
-                                setVibration(AudioManager.VIBRATE_TYPE_NOTIFICATION, vibrate);
                                 break;
                         }
                                                 

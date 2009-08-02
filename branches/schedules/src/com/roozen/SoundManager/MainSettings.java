@@ -86,20 +86,14 @@ public class MainSettings extends Activity {
     						  AudioManager.FLAG_VIBRATE;
     	final int flagsUI = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
 							AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_VIBRATE;
-    	
-        final int systemStream = AudioManager.STREAM_SYSTEM;
-        final int ringStream = AudioManager.STREAM_RING;
-        final int mediaStream = AudioManager.STREAM_MUSIC;
-        final int alarmStream = AudioManager.STREAM_ALARM;
-        final int incallStream = AudioManager.STREAM_VOICE_CALL;
         
         SeekBar systemSeek = (SeekBar) findViewById(R.id.system_seekbar);
-        systemSeek.setMax(audio.getStreamMaxVolume(systemStream));
-        systemSeek.setProgress(audio.getStreamVolume(systemStream));
+        systemSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_SYSTEM));
+        systemSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
         systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
             
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                audio.setStreamVolume(systemStream, progress, flagsNoUI);
+                audio.setStreamVolume(AudioManager.STREAM_SYSTEM, progress, flagsNoUI);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -107,38 +101,58 @@ public class MainSettings extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                audio.setStreamVolume(systemStream, seekBar.getProgress(), flagsUI);
+                audio.setStreamVolume(AudioManager.STREAM_SYSTEM, seekBar.getProgress(), flagsUI);
             }
             
         });
         
         SeekBar ringerSeek = (SeekBar) findViewById(R.id.ringer_seekbar);
-        ringerSeek.setMax(audio.getStreamMaxVolume(ringStream));
-        ringerSeek.setProgress(audio.getStreamVolume(ringStream));
+        ringerSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_RING));
+        ringerSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_RING));
         ringerSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-				audio.setStreamVolume(ringStream, progress, flagsNoUI);
-			}
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+                audio.setStreamVolume(AudioManager.STREAM_RING, progress, flagsNoUI);
+            }
 
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				//ignore
-			}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //ignore
+            }
 
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				RingmodeToggle.fixRingMode(audio, seekBar.getProgress());
-				audio.setStreamVolume(ringStream, seekBar.getProgress(), flagsUI);
-			}
-        	
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                RingmodeToggle.fixRingMode(audio, seekBar.getProgress());
+                audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), flagsUI);
+            }
+            
+        });
+        
+        SeekBar notifSeek = (SeekBar) findViewById(R.id.notif_seekbar);
+        notifSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION));
+        notifSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+        notifSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+                audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, progress, flagsNoUI);
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //ignore
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                RingmodeToggle.fixRingMode(audio, seekBar.getProgress());
+                audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), flagsUI);
+            }
+            
         });
         
         SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
-        mediaSeek.setMax(audio.getStreamMaxVolume(mediaStream));
-        mediaSeek.setProgress(audio.getStreamVolume(mediaStream));
+        mediaSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
         mediaSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-				audio.setStreamVolume(mediaStream, progress, flagsNoUI);
+				audio.setStreamVolume(AudioManager.STREAM_MUSIC, progress, flagsNoUI);
 			}
 
 			public void onStartTrackingTouch(SeekBar seekBar) {
@@ -146,45 +160,45 @@ public class MainSettings extends Activity {
 			}
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(mediaStream, seekBar.getProgress(), flagsUI);
+				audio.setStreamVolume(AudioManager.STREAM_MUSIC, seekBar.getProgress(), flagsUI);
 			}
         	
         });
         
         SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
-        alarmSeek.setMax(audio.getStreamMaxVolume(alarmStream));
-        alarmSeek.setProgress(audio.getStreamVolume(alarmStream));
+        alarmSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_ALARM));
+        alarmSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM));
         alarmSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-				audio.setStreamVolume(alarmStream, progress, flagsNoUI);
+				audio.setStreamVolume(AudioManager.STREAM_ALARM, progress, flagsNoUI);
 			}
 
 			public void onStartTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
+				//ignore
 			}
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(alarmStream, seekBar.getProgress(), flagsUI);
+				audio.setStreamVolume(AudioManager.STREAM_ALARM, seekBar.getProgress(), flagsUI);
 			}
         	
         });
         
         SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
-        phonecallSeek.setMax(audio.getStreamMaxVolume(incallStream));
-        phonecallSeek.setProgress(audio.getStreamVolume(incallStream));
+        phonecallSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
+        phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
         phonecallSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-				audio.setStreamVolume(incallStream, progress, flagsNoUI);
+				audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, flagsNoUI);
 			}
 
 			public void onStartTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
+				//ignore
 			}
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(incallStream, seekBar.getProgress(), flagsUI);
+				audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL, seekBar.getProgress(), flagsUI);
 			}
         	
         });        
@@ -206,6 +220,15 @@ public class MainSettings extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(gui, ScheduleList.class);
                 i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_RING));
+                startActivityForResult(i, ACTIVITY_LIST);
+            }
+        });
+            
+        Button notifTimer = (Button) findViewById(R.id.notif_timer_button);
+        notifTimer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(gui, ScheduleList.class);
+                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_NOTIFICATION));
                 startActivityForResult(i, ACTIVITY_LIST);
             }
         });
@@ -248,6 +271,9 @@ public class MainSettings extends Activity {
         
         TextView ringerText = (TextView) findViewById(R.id.ringer_timer_text);
         ringerText.setText(getScheduleCountText(AudioManager.STREAM_RING));
+        
+        TextView notifText = (TextView) findViewById(R.id.notif_timer_text);
+        notifText.setText(getScheduleCountText(AudioManager.STREAM_NOTIFICATION));
         
         TextView mediaText = (TextView) findViewById(R.id.media_timer_text);
         mediaText.setText(getScheduleCountText(AudioManager.STREAM_MUSIC));

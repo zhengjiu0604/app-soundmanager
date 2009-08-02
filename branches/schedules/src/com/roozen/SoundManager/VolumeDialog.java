@@ -41,19 +41,22 @@ public class VolumeDialog extends Activity {
 		if(volumeType != -1){
 			switch(volumeType){
 			case AudioManager.STREAM_SYSTEM:
-				title = "System Volume";
+				title = getString(R.string.system_textview);
 				break;
-			case AudioManager.STREAM_RING:
-				title = "Ringer Volume";
-				break;
+            case AudioManager.STREAM_RING:
+                title = getString(R.string.ringer_textview);
+                break;
+            case AudioManager.STREAM_NOTIFICATION:
+                title = getString(R.string.notif_textview);
+                break;
 			case AudioManager.STREAM_MUSIC:
-				title = "Music/Video Volume";
+				title = getString(R.string.media_textview);
 				break;
 			case AudioManager.STREAM_VOICE_CALL:
-				title = "In-Call Volume";
+                title = getString(R.string.phonecall_textview);
 				break;
 			case AudioManager.STREAM_ALARM:
-				title = "Alarm Volume";
+                title = getString(R.string.alarm_textview);
 				break;
 			}
 
@@ -90,8 +93,8 @@ public class VolumeDialog extends Activity {
 			Button ok = (Button) findViewById(R.id.ok_button);
 				ok.setOnClickListener(new OnClickListener(){
 		
-					public void onClick(View v) {											
-						if(volumeType == AudioManager.STREAM_RING){
+					public void onClick(View v) {
+						if (volumeType == AudioManager.STREAM_RING) {
 							RingmodeToggle.fixRingMode(audio);
 						}
 						

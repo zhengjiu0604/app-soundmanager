@@ -148,6 +148,9 @@ public class ScheduleEdit extends Activity {
             case AudioManager.STREAM_RING:
                 mVolumeDsc.setText(R.string.RingerVolumeSchedule);
                 break;
+            case AudioManager.STREAM_NOTIFICATION:
+                mVolumeDsc.setText(R.string.NotifVolumeSchedule);
+                break;
             case AudioManager.STREAM_MUSIC:
                 mVolumeDsc.setText(R.string.MediaVolumeSchedule);
                 break;

@@ -84,6 +84,9 @@ public class ScheduleList extends ListActivity {
             case AudioManager.STREAM_RING:
                 mListHeader.setText(R.string.RingerVolumeSchedule);
                 break;
+            case AudioManager.STREAM_NOTIFICATION:
+                mListHeader.setText(R.string.NotifVolumeSchedule);
+                break;
             case AudioManager.STREAM_MUSIC:
                 mListHeader.setText(R.string.MediaVolumeSchedule);
                 break;
