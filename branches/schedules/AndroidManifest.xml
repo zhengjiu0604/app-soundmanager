@@ -67,15 +67,6 @@
         </activity>
 
         <activity
-            android:name="VolumeDialog"
-            android:theme="@android:style/Theme.Dialog">
-            <intent-filter>
-                <action android:name="com.roozen.intent.VOLUME_CONTROL" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name="MuteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
