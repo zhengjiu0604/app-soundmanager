@@ -383,8 +383,4 @@ public class MainSettings extends Activity {
         
         setStatusText();
     }
-
-    private void popToastShort(String text){
-		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-	}
 }
