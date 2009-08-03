@@ -1,53 +1,56 @@
 #summary Frequently Asked Questions
 #labels Featured
 
-=How to Use=
+=Sound Manager 2.0=
+
+==What's New in Sound Manager 2.0==
+
+Sound Manager version 2 incorporates some great new improvements in setting times for the volume to change. Instead of being limited to only one or two times a day, now you can set as many "schedules" as you like for each volume setting. Not only that, but you can also specify for which days of the week the schedules are active. Change volume at certain times for the work week, for example, and other times for your events on the weekend.
+
+Version 2 also makes the notification volume stream available. This wasn't open to developers on the initial Android OS version, but with Android 1.5, also known as Cupcake, Google makes this open to developers. You can have different schedules for email and IM notifications, for example, than you have for the ringer volume.
+
+(Sound Manager Version 2 should be released soon through the Android Market.)
+
+==How to Use==
 
 Slide your finger along any of the volume bars to change the volume.
 
 Use the Menu to switch screens to set vibration settings or toggle the ringmode.
 
-To set a timer:
+To treat the Notification volume as different than the Ringer volume, go to your home screen. Press Menu and choose Settings. Choose Sound & display from the menu. Then choose Ringer volume. Deselect the check box labeled "Use incoming call volume for notifications". Now the Ringer volume and Notification volume can be treated as completely separate volume settings in the Sound Manager.
 
-  # Press the Set Timer button next to any of the volume settings.
-  #  Choose the time of day you first want the volume to change.
-  # Press OK.
-  # Choose the volume level you want it to change to.
-  # Press OK.
-  # Choose the time of day you want the volume to change back (or to change to a different setting).
-  # Press OK
-  # Choose the volume you want it to change to the second time.
-  # Press OK.
-  # You will be prompted reminding you that this will control your volume settings and may change your settings immediately based in the timer you set.
-  # Press OK. The timers will be set.
+To set a schedule:
+
+  # Press the Set Schedule button next to any of the volume settings.
+  # You will be presented with a list of current schedules. Perform a long-click on any schedules to toggle them to Active or Inactive, or to delete them.
+  # Press the Menu button to add a new schedule.
+  # Choose the time of day you want the volume to change.
+  # Use the slider bar to set the volume level you want it to change to.
+  # Vibrate is now in the same schedule with the volume. If a vibrate checkbox is visible, make sure it is checked or unchecked, depending on how you want it.
+  # Choose the days of the week you want the schedule to be active.
+  # Press the Back button. The schedule will be set.
 
 =F.A.Q.=
 
-*Q.* When I set some timers for tomorrow, it changed by volume right away!
+*Q.* When I set the schedule, it changed by volume right away!
 
 *A.* Please state that in the form of a question.
 
 *Q.* Why did it change my current settings?
 
-*A.* When you set a timer for a time of day earlier than the current time (like for tomorrow morning) the timer will go off immediately and set volume settings. Don't worry, the timer will correctly change the settings tomorrow, too.
+*A.* When you set a schedule for a time of day earlier than the current time the schedule will be activated immediately and set volume settings.
 
 *Q.* What if I reboot my phone? Will the timers I set still work?
 
-*A.* They will reinstall upon startup. If you missed one of your timers, it will go off right when you startup.
+*A.* They will reinstall upon startup. If you missed one of your timers, it should go off right when you start up.
 
 *Q.* When my ringer is set to 0 volume, it also sets my system volume to 0, why is that?
 
 *A.* If you set your ringer volume to 0, Sound Manager will change modes for you, switching your phone to silent or vibrate, depending on your vibration settings.
 
-*Q.* How do I set a timer to change the volume only once in a day?
+*Q.* How come when I change my Ringer volume, then exit and reenter the app, it also had changed my Notification volume?
 
-*A.* Just set both the "start" and "end" times to the same time and set the volumes to the same setting.
-
-*Q.* How come I cannot adjust the settings for Email Notification sounds, or others?
-
-*A.* The ability to change, for example, the Email Notification sounds, or other sounds, individually is not exposed to developers. The sounds are controlled by the ringer volume. It's too bad, too, because that's exactly what made me think of creating this application to begin with.
-
-However, the email app does allow you to make notifications silent, but only have it vibrate when new emails come in. You can do this with the IM app, too. Then, set times on the vibrate settings at night to turn vibration off, essentially silencing your emails (and who needs vibrate when you're sleeping anyways?).
+*A.* By default, Android treats the Ringer and Notification sounds as one audio stream. When you change ringer, it automatically changes the notification volume. To change this, go to your home screen, press Menu and choose Settings. Choose Sound & display. Then choose Ringer volume. Deselect the check box labeled "Use incoming call volume for notifications". Now Sound Manager is able to treat the two volumes as completely separate. This can be extremely helpful if, like me, you want to turn down email and IM sounds (like at night, when you want to sleep) but want to keep the ringer volume up in case someone needs to call you.
 
 *Q.* I had the window open when the volume changed, but the volume controls in the app didn't reflect the change. Why not?
 
@@ -57,9 +60,9 @@ However, the email app does allow you to make notifications silent, but only hav
 
 *A.* The Vibrate Settings and the Ringmode Toggle can interfere with each other sometimes. If you set the ringmode to 'Vibrate Only', but then went and switched the Ringer Vibration Setting to 'Vibration Off', then the ringmode you chose is no longer valid and should actually be 'Silent'.
 
-*Q.* Why have my ringers not gone off since I updated?
+*Q.* Why have my schedules not triggered since I updated?
 
-*A.* After an update the Operating System disabled the timers that were in place. A reboot of the phone will quickly reenabled them; otherwise, reset each timer.
+*A.* After an update the Operating System disabled the timers that were in place. A reboot of the phone will quickly reenable them; otherwise, reset each timer.
 
 *Q.* I muted my phone, but later the volume raised? What's going on?
 
