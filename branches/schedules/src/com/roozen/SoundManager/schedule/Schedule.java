@@ -275,4 +275,47 @@ public class Schedule {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        boolean result = false;
+        
+        if (o instanceof Schedule) {
+            Schedule compare = (Schedule) o;
+            result = (this.id > 0 && this.id == compare.getId());
+        }
+        
+        return result;
+    }
+
+    /**
+     * Compares all fields except schedule_id
+     * 
+     * @param s
+     * @return
+     */
+    public boolean equalsSansId(Schedule s) {
+        boolean result = false;
+        
+        result = (
+                this.isActive() == s.isActive() &&
+                this.isDay0() == s.isDay0() &&
+                this.isDay1() == s.isDay1() &&
+                this.isDay2() == s.isDay2() &&
+                this.isDay3() == s.isDay3() &&
+                this.isDay4() == s.isDay4() &&
+                this.isDay5() == s.isDay5() &&
+                this.isDay6() == s.isDay6() &&
+                this.isVibrate() == s.isVibrate() &&
+                this.getStartHour() == s.getStartHour() &&
+                this.getStartMinute() == s.getStartMinute() &&
+                this.getVolume() == s.getVolume() &&
+                this.getVolumeType() == s.getVolumeType()
+                );
+    
+        return result;
+    }
+
 }
