@@ -24,6 +24,8 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -56,6 +58,7 @@ public class ScheduleEdit extends Activity {
     private CheckBox mVibrate;
     private CheckBox mActive;
     private TextView mVolumeDsc;
+    private Button mDone;
     
     private Schedule mSchedule; //help watch for changes
     private Integer mVolumeType;
@@ -126,6 +129,15 @@ public class ScheduleEdit extends Activity {
         
         mActive = (CheckBox) findViewById(R.id.activeCheckbox);
         mVolumeDsc = (TextView) findViewById(R.id.ScheduleType);
+        
+        mDone = (Button) findViewById(R.id.doneButton);
+        mDone.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         
         populateFields();
         
