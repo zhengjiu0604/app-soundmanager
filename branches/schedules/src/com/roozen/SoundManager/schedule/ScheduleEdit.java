@@ -267,8 +267,6 @@ public class ScheduleEdit extends Activity {
          */
         if (isModified() && !mSaved) {
             saveState();
-        
-            Toast.makeText(this, R.string.scheduleSaved, Toast.LENGTH_SHORT).show();
         }
     }
     
@@ -302,6 +300,7 @@ public class ScheduleEdit extends Activity {
         if (mScheduleId != null) {
             outState.putLong(SQLiteDatabaseHelper.SCHEDULE_ID, mScheduleId);
         }
+        
         outState.putInt(ScheduleList.VOLUME_TYPE, mVolumeType);
     }
     
@@ -339,6 +338,8 @@ public class ScheduleEdit extends Activity {
         }
         
         mSaved = true;
+        
+        Toast.makeText(this, R.string.scheduleSaved, Toast.LENGTH_SHORT).show();
     }
 
     /* (non-Javadoc)
