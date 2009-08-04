@@ -222,6 +222,8 @@ public class ScheduleEdit extends Activity {
          */
         else {
             
+            AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            
             mDay1.setChecked(true);
             mDay2.setChecked(true);
             mDay3.setChecked(true);
@@ -231,8 +233,8 @@ public class ScheduleEdit extends Activity {
             mStartTime.setCurrentHour(8);
             mStartTime.setCurrentMinute(0);
             
-            mVolume.setProgress((int)(mVolume.getMax() / 2));
-            mVibrate.setChecked(false);
+            mVolume.setProgress(audio.getStreamVolume(mVolumeType));
+            mVibrate.setChecked(Util.isVibrateOn(getContentResolver()));
             mActive.setChecked(true);
         }
         

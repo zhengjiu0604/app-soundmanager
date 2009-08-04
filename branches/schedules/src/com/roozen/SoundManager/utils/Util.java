@@ -70,6 +70,25 @@ public class Util {
         
         return clock24hour;
     }
+	
+	/**
+	 * Queries system settings to determine whether vibrate is on
+	 * 
+	 * @param contentResolver
+	 * @return
+	 */
+	public static boolean isVibrateOn(ContentResolver contentResolver) {
+	       boolean vibrate;
+	       
+	        try {
+	            vibrate = (Settings.System.getInt(contentResolver, Settings.System.VIBRATE_ON) > 0);
+	        } catch (SettingNotFoundException e) {
+	            e.printStackTrace();
+	            vibrate = false;
+	        }
+	        
+	        return vibrate;
+	}
     
 	/**
 	 * get a Boolean out of SharedPreferences
