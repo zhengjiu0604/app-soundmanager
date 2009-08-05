@@ -48,6 +48,8 @@ public class MainSettings extends Activity {
 	private Context gui;
     
     public final static int ACTIVITY_LIST = 0;
+    public final static int ACTIVITY_MUTE = 1;
+    public final static int ACTIVITY_RINGMODE = 2;
     
     private HashMap<Integer,Integer> mActiveCount;
 	
@@ -299,7 +301,7 @@ public class MainSettings extends Activity {
 		switch(item.getItemId()){
 		case R.id.just_mute:
 			Intent mute = new Intent(this, MuteActivity.class);
-			startActivity(mute);
+			startActivityForResult(mute, ACTIVITY_MUTE);
 			return true;
 		case R.id.create_mute_shortcut:
 			Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
@@ -323,7 +325,7 @@ public class MainSettings extends Activity {
 			return true;
 		case R.id.toggle_ringmode:
 			Intent toggle = new Intent(this, RingmodeToggle.class);
-			startActivity(toggle);
+			startActivityForResult(toggle, ACTIVITY_RINGMODE);
 			return true;
 		case R.id.faq:
 			Uri uri = Uri.parse("http://code.google.com/p/app-soundmanager/wiki/FAQ");
@@ -380,6 +382,34 @@ public class MainSettings extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         
-        setStatusText();
+        if (requestCode == ACTIVITY_LIST) {
+            setStatusText();
+        }
+        
+        updateSeekBars();        
     }
+    
+    private void updateSeekBars() {
+        final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        
+        SeekBar systemSeek = (SeekBar) findViewById(R.id.system_seekbar);
+        systemSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+
+        SeekBar ringerSeek = (SeekBar) findViewById(R.id.ringer_seekbar);
+        ringerSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_RING));
+        
+        SeekBar notifSeek = (SeekBar) findViewById(R.id.notif_seekbar);
+        notifSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+        
+        SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
+        mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
+        
+        SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
+        alarmSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM));
+        
+        SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
+        phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
+        
+    }
+    
 }
