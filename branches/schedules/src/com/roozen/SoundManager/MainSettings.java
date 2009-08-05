@@ -103,6 +103,7 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_SYSTEM, seekBar.getProgress(), setVolFlags);
+                updateSeekBars();
             }
             
         });
@@ -124,13 +125,11 @@ public class MainSettings extends Activity {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
                 
-                if (isRingerNotifVolumeCoupled()) {
-                    if (!hasShownVolumeCouplingWarning) {
-                        showVolumeCouplingWarning();
-                    }
-                    
-                    updateSeekBars();
+                if (isRingerNotifVolumeCoupled() && !hasShownVolumeCouplingWarning) {
+                    showVolumeCouplingWarning();
                 }
+                
+                updateSeekBars();
             }
             
         });
@@ -152,9 +151,11 @@ public class MainSettings extends Activity {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
 
-                if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
+                if (isRingerNotifVolumeCoupled() && !hasShownVolumeCouplingWarning) {
                     showVolumeCouplingWarning();
                 }
+                
+                updateSeekBars();
             }
             
         });
@@ -454,12 +455,6 @@ public class MainSettings extends Activity {
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         int ringMax = audio.getStreamMaxVolume(AudioManager.STREAM_RING);
         
-        //change the ringmode so volume changes take effect
-        int ringmode = audio.getRingerMode();
-        if (ringmode != AudioManager.RINGER_MODE_NORMAL) {
-            audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);    
-        }
-        
         //get current volumes
         int ringVol = audio.getStreamVolume(AudioManager.STREAM_RING);
         int notifVol = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
@@ -499,10 +494,6 @@ public class MainSettings extends Activity {
         //put everything back to their previous values
         audio.setStreamVolume(AudioManager.STREAM_RING, ringVol, 0);
         audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifVol, 0);
-        
-        if (ringmode != AudioManager.RINGER_MODE_NORMAL) {
-            audio.setRingerMode(ringmode);
-        }
         
         return isVolumeCoupled;
     }
