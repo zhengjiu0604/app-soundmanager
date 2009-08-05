@@ -133,7 +133,6 @@ public class ScheduleEdit extends Activity {
         mDone = (Button) findViewById(R.id.doneButton);
         mDone.setOnClickListener(new OnClickListener() {
             
-            @Override
             public void onClick(View v) {
                 finish();
             }
