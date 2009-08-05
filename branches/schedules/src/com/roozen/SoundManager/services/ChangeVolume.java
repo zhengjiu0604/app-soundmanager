@@ -80,17 +80,21 @@ public class ChangeVolume extends Service {
                             dayOfWeek == Calendar.FRIDAY && day5 ||
                             dayOfWeek == Calendar.SATURDAY && day6                            
                     ) {
+
+                        final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                         
                         switch (volumeType) {
                             case AudioManager.STREAM_SYSTEM:
+                                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                                 setVolume(volumeType, volume);
                                 break;
                             case AudioManager.STREAM_RING:
-                                setRingmode(volume, vibrate);
+                                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                                 setVolume(volumeType, volume);
                                 setVibration(AudioManager.VIBRATE_TYPE_RINGER, vibrate);                                
                                 break;
                             case AudioManager.STREAM_NOTIFICATION:
+                                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                                 setVolume(volumeType, volume);
                                 setVibration(AudioManager.VIBRATE_TYPE_NOTIFICATION, vibrate);
                                 break;
@@ -136,24 +140,6 @@ public class ChangeVolume extends Service {
          * apply volume to the system
          */
         audio.setStreamVolume(stream, volume, flags);
-    }
-
-    private void setRingmode(int volume, boolean vibrate) {
-        final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        /*
-         * apply ringmode to the system
-         */
-        if (volume < 1 && !vibrate) {
-            audio.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        }
-        else if (volume < 1 && vibrate) {
-            audio.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        }
-        else if (volume > 0) {
-            audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-        }
-
     }
 
     private void setVibration(int type, boolean vibrate) {

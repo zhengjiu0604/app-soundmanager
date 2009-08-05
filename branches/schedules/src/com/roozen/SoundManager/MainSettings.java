@@ -80,7 +80,7 @@ public class MainSettings extends Activity {
         }
     }
         
-    private void setupSeekbars(){
+    private void setupSeekbars() {
     	final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     	final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
 							AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_VIBRATE;
@@ -88,7 +88,7 @@ public class MainSettings extends Activity {
         SeekBar systemSeek = (SeekBar) findViewById(R.id.system_seekbar);
         systemSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_SYSTEM));
         systemSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
-        systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+        systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
               //ignore
@@ -99,6 +99,7 @@ public class MainSettings extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
+                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_SYSTEM, seekBar.getProgress(), setVolFlags);
             }
             
@@ -107,7 +108,7 @@ public class MainSettings extends Activity {
         SeekBar ringerSeek = (SeekBar) findViewById(R.id.ringer_seekbar);
         ringerSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_RING));
         ringerSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_RING));
-        ringerSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+        ringerSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
               //ignore
@@ -118,6 +119,7 @@ public class MainSettings extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
+                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
             }
             
@@ -126,7 +128,7 @@ public class MainSettings extends Activity {
         SeekBar notifSeek = (SeekBar) findViewById(R.id.notif_seekbar);
         notifSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION));
         notifSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
-        notifSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+        notifSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
               //ignore
@@ -137,6 +139,7 @@ public class MainSettings extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
+                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
             }
             
@@ -145,7 +148,7 @@ public class MainSettings extends Activity {
         SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
         mediaSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
-        mediaSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+        mediaSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 			  //ignore
@@ -164,7 +167,7 @@ public class MainSettings extends Activity {
         SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
         alarmSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_ALARM));
         alarmSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM));
-        alarmSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+        alarmSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 			  //ignore
@@ -183,7 +186,7 @@ public class MainSettings extends Activity {
         SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
         phonecallSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
         phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
-        phonecallSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+        phonecallSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 			  //ignore
