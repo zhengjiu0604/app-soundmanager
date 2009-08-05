@@ -44,17 +44,13 @@ To set a schedule:
 
 *A.* They will reinstall upon startup. If you missed one of your timers, it should go off right when you start up.
 
-*Q.* When my ringer is set to 0 volume, it also sets my system volume to 0, why is that?
-
-*A.* If you set your ringer volume to 0, Sound Manager will change modes for you, switching your phone to silent or vibrate, depending on your vibration settings.
-
-*Q.* How come when I change my Ringer volume, then exit and reenter the app, it also had changed my Notification volume?
+*Q.* How come when I change my Ringer volume it also had changes my Notification volume?
 
 *A.* By default, Android treats the Ringer and Notification sounds as one audio stream. When you change ringer, it automatically changes the notification volume. To change this, go to your home screen, press Menu and choose Settings. Choose Sound & display. Then choose Ringer volume. Deselect the check box labeled "Use incoming call volume for notifications". Now Sound Manager is able to treat the two volumes as completely separate. This can be extremely helpful if, like me, you want to turn down email and IM sounds (like at night, when you want to sleep) but want to keep the ringer volume up in case someone needs to call you.
 
 *Q.* I changed the ringer volume and then the notification and system volume also changed. What happened?
 
-*A.* This will only happen if you had the Ringmode set. For example, if the Ringmode is set to Silent all the volumes will be at 0. If you raise the ringer volume we know that you actually want to hear the phone ring, which won't happen if the Ringmode is still set at Silent. So we change the Ringmode to Normal, which means depending on your settings that it may ring and/or it may vibrate. Doing this returns your System Volume and Notification Volume to their previous values.
+*A.* This will only happen if you had the Ringmode set. For example, if the Ringmode is set to Silent the ringer, system, and notification volumes will be at 0. If you raise the ringer volume we know that you actually want to hear the phone ring, which won't happen if the Ringmode is still set at Silent. So we change the Ringmode to Normal, which means depending on your settings that it may ring and/or it may vibrate. Doing this returns your System Volume and Notification Volume to their previous values.
 
 *Q.* I had the window open when the volume changed, but the volume controls in the app didn't reflect the change. Why not?
 
