@@ -83,6 +83,40 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip">
             <Button
+                android:id="@+id/notif_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/notif_textview"
+                    android:text="@string/notif_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+
+                <SeekBar
+                    android:id="@+id/notif_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/notif_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip">
+            <Button
                 android:id="@+id/media_timer_button"
                 android:text="@string/timer_button"
                 android:layout_width="wrap_content"
