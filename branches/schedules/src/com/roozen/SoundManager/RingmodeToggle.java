@@ -30,11 +30,6 @@ import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class RingmodeToggle extends Activity {
-	
-	public static final int RINGER_VIBRATE = 0;
-	public static final int RINGER_ONLY = 1;
-	public static final int VIBRATE_ONLY = 2;
-	public static final int SILENT = 3;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -51,7 +46,6 @@ public class RingmodeToggle extends Activity {
 		int ringmode = audio.getRingerMode();
 
 		final RadioButton ringVibrate = (RadioButton) findViewById(R.id.ring_vibrate);
-		final RadioButton ringOnly = (RadioButton) findViewById(R.id.ring_only);
 		final RadioButton vibrateOnly = (RadioButton) findViewById(R.id.vibrate_only);
 		final RadioButton silent = (RadioButton) findViewById(R.id.silent);
 
@@ -63,12 +57,7 @@ public class RingmodeToggle extends Activity {
 			vibrateOnly.setChecked(true);
 			break;
 		case AudioManager.RINGER_MODE_NORMAL:
-			int vibrateSetting = audio.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
-			if (vibrateSetting == AudioManager.VIBRATE_SETTING_ON) {
-				ringVibrate.setChecked(true);
-			} else {
-				ringOnly.setChecked(true);
-			}
+			ringVibrate.setChecked(true);
 			break;
 		}
 
@@ -80,19 +69,6 @@ public class RingmodeToggle extends Activity {
 					audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
 							AudioManager.VIBRATE_SETTING_ON);
-				}
-			}
-
-		});
-
-		ringOnly.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
-					audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-					audio.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
-							AudioManager.VIBRATE_SETTING_ONLY_SILENT);
 				}
 			}
 

@@ -103,8 +103,7 @@
     
     <!-- Ringmode Toggle -->
     <string name="toggle_text">Set Ring Mode</string>
-    <string name="ring_vibrate">Ring And Vibrate</string>
-    <string name="ring_only">Ring Only</string>
+    <string name="ring_vibrate">May Ring, May Vibrate</string>
     <string name="vibrate_only">Vibrate Only</string>
     <string name="silent">Silent</string>
     
