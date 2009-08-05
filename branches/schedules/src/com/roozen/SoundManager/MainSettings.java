@@ -21,8 +21,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -41,6 +39,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.schedule.ScheduleList;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManager.utils.Util;
 
 public class MainSettings extends Activity {
 	public final static String PREFS_NAME = "EZSoundManagerPrefs";
@@ -52,6 +51,8 @@ public class MainSettings extends Activity {
     public final static int ACTIVITY_RINGMODE = 2;
     
     private HashMap<Integer,Integer> mActiveCount;
+    private boolean hasShownVolumeCouplingWarning;
+    private Boolean isVolumeCoupled = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -60,14 +61,15 @@ public class MainSettings extends Activity {
         setContentView(R.layout.main);
         gui = this;
 
-    	final SharedPreferences settings = getSharedPreferences(MainSettings.PREFS_NAME, 0);
-        boolean hasShownStartup = settings.getBoolean(getString(R.string.ShownStartup), false);
-          
-        setupSeekbars();    
+        boolean hasShownStartup = Util.getBooleanPref(this, getString(R.string.ShownStartup), false);
+        hasShownVolumeCouplingWarning = Util.getBooleanPref(this, getString(R.string.ShownVolumeCouplingWarning), 
+                                                            false);
+        
+        setupSeekbars();
         setupButtons();
         setStatusText();
         
-        if(!hasShownStartup){
+        if(!hasShownStartup) {
 	        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	        builder.setMessage("Please see my F.A.Q. page (Menu > F.A.Q.) for a full " +
 	        		           "explanation of how Sound Manager works if you need help or " +
@@ -76,9 +78,7 @@ public class MainSettings extends Activity {
 	        		           "Thanks for downloading!");
 	        builder.show();
 	        
-	        Editor edit = settings.edit();
-	        edit.putBoolean(getString(R.string.ShownStartup), true);
-	        edit.commit();
+	        Util.putBooleanPref(this, getString(R.string.ShownStartup), true);
         }
     }
         
@@ -86,7 +86,7 @@ public class MainSettings extends Activity {
     	final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     	final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
 							AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_VIBRATE;
-        
+    	
         SeekBar systemSeek = (SeekBar) findViewById(R.id.system_seekbar);
         systemSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_SYSTEM));
         systemSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
@@ -123,6 +123,14 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
+                
+                if (isRingerNotifVolumeCoupled()) {
+                    if (!hasShownVolumeCouplingWarning) {
+                        showVolumeCouplingWarning();
+                    }
+                    
+                    updateSeekBars();
+                }
             }
             
         });
@@ -143,6 +151,10 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
+
+                if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
+                    showVolumeCouplingWarning();
+                }
             }
             
         });
@@ -410,6 +422,89 @@ public class MainSettings extends Activity {
         SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
         phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
         
+    }
+    
+    private void showVolumeCouplingWarning() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("By default, ringer and notification volume are linked such that any changes to " +
+                           "ringer volume affects notification volume, although not the other way around. " +
+                           "To unlink them, go to Menu > Settings > Sound & Display > Ringer volume, " +
+                           "and uncheck \"Use incoming call volume for notifications\".");
+        builder.show();
+        
+        Util.putBooleanPref(this, getString(R.string.ShownVolumeCouplingWarning), true);
+        hasShownVolumeCouplingWarning = true;
+        
+    }
+    
+    /**
+     * temporarily change the ringer volume and check if the notif volume changed with it
+     * 
+     * @return result
+     */
+    private boolean isRingerNotifVolumeCoupled() {
+        
+        if (isVolumeCoupled != null) {
+            return isVolumeCoupled;
+        }
+        
+        isVolumeCoupled = true;
+        
+        final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int ringMax = audio.getStreamMaxVolume(AudioManager.STREAM_RING);
+        
+        //change the ringmode so volume changes take effect
+        int ringmode = audio.getRingerMode();
+        if (ringmode != AudioManager.RINGER_MODE_NORMAL) {
+            audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);    
+        }
+        
+        //get current volumes
+        int ringVol = audio.getStreamVolume(AudioManager.STREAM_RING);
+        int notifVol = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+        
+        int tmpRingVol = (ringVol == ringMax) ? ringVol - 1 : ringVol + 1;
+
+        //check if they're the same now
+        boolean wereSame = false;
+        if (notifVol == ringVol) {
+            wereSame = true;
+        }
+        
+        audio.setStreamVolume(AudioManager.STREAM_RING, tmpRingVol, 0);
+        
+        /*
+         * expanded logic:
+         * 1. were same, still same        => coupled
+         * 2. were same, not same          => not coupled
+         * 3. weren't same, still not same => not coupled 
+         * 4. weren't same, now same       => need to change again and recheck
+         * 4a. same again                  => coupled
+         * 4b. no longer same              => not coupled
+         */
+        if (!wereSame && notifVol == ringVol) {
+            
+            audio.setStreamVolume(AudioManager.STREAM_RING, ringVol, 0);
+        
+            if (notifVol != ringVol) {
+                isVolumeCoupled = false;
+            }
+            
+        }
+        else if (notifVol != ringVol) {
+            isVolumeCoupled = false;
+        }
+        
+        //put everything back to their previous values
+        audio.setStreamVolume(AudioManager.STREAM_RING, ringVol, 0);
+        audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifVol, 0);
+        
+        if (ringmode != AudioManager.RINGER_MODE_NORMAL) {
+            audio.setRingerMode(ringmode);
+        }
+        
+        return isVolumeCoupled;
     }
     
 }

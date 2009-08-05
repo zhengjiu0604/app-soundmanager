@@ -42,7 +42,8 @@
     <!-- Preferences -->
     <string name="RingerVibrate">RingerVibrate</string><!-- deprecated --><!-- unused -->
     <string name="NotificationVibrate">NotificationVibrate</string><!-- deprecated --><!-- unused -->
-    <string name="ShownStartup">ShownStartup</string><!-- unused -->
+    <string name="ShownStartup">ShownStartup</string>
+    <string name="ShownVolumeCouplingWarning">ShownVolumeCouplingWarning</string>
     <string name="SystemDisplay">SystemDisplay</string><!-- deprecated -->
     <string name="RingerDisplay">RingerDisplay</string><!-- deprecated -->
     <string name="AlarmDisplay">AlarmDisplay</string><!-- deprecated -->
