@@ -458,8 +458,6 @@ public class MainSettings extends Activity {
         //get current volumes
         int ringVol = audio.getStreamVolume(AudioManager.STREAM_RING);
         int notifVol = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-        
-        int tmpRingVol = (ringVol == ringMax) ? ringVol - 1 : ringVol + 1;
 
         //check if they're the same now
         boolean wereSame = false;
@@ -467,27 +465,33 @@ public class MainSettings extends Activity {
             wereSame = true;
         }
         
+        int tmpRingVol = (ringVol == ringMax) ? ringVol - 1 : ringVol + 1;
         audio.setStreamVolume(AudioManager.STREAM_RING, tmpRingVol, 0);
         
+        int ringCheck = audio.getStreamVolume(AudioManager.STREAM_RING);
+        int notifCheck = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+           
         /*
          * expanded logic:
          * 1. were same, still same        => coupled
          * 2. were same, not same          => not coupled
-         * 3. weren't same, still not same => not coupled 
+         * 3. weren't same, still not same => not coupled
          * 4. weren't same, now same       => need to change again and recheck
          * 4a. same again                  => coupled
          * 4b. no longer same              => not coupled
          */
-        if (!wereSame && notifVol == ringVol) {
-            
+        if (!wereSame && notifCheck == ringCheck) {
+
             audio.setStreamVolume(AudioManager.STREAM_RING, ringVol, 0);
-        
-            if (notifVol != ringVol) {
+            ringCheck = audio.getStreamVolume(AudioManager.STREAM_RING);
+            notifCheck = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+
+            if (notifCheck != ringCheck) {
                 isVolumeCoupled = false;
             }
-            
+
         }
-        else if (notifVol != ringVol) {
+        else if (notifCheck != ringCheck) {
             isVolumeCoupled = false;
         }
         
