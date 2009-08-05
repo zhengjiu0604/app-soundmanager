@@ -118,7 +118,6 @@ public class MainSettings extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                RingmodeToggle.fixRingMode(audio, seekBar.getProgress());
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
             }
             
