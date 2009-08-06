@@ -42,7 +42,6 @@ import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 import com.roozen.SoundManager.utils.Util;
 
 public class MainSettings extends Activity {
-	public final static String PREFS_NAME = "EZSoundManagerPrefs";
 	
 	private Context gui;
     
