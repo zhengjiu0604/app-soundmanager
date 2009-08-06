@@ -211,6 +211,10 @@ public class ScheduleList extends ListActivity {
 		    fillData();
 		    return true;
 		    
+		case R.id.applySettings:
+		    registerAlarm((int)info.id);
+		    return true;
+		    
         }
 		
 		return super.onContextItemSelected(item);

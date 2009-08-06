@@ -120,6 +120,7 @@
     <string name="deleteSchedule">Delete</string>
     <string name="editSchedule">Edit</string>
     <string name="toggleSchedule">Toggle Active/Inactive</string>
+    <string name="applySettings">Apply Settings</string>
     
     <string name="day0">Sun</string>
     <string name="day1">Mon</string>
