@@ -23,6 +23,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
+ * Based on the tutorial from anddev.org at
+ * http://www.anddev.org/iconified_textlist_-_the_making_of-t97.html
+ * 
  * @author Mike Partridge
  */
 public class ScheduleListAdapter extends BaseAdapter {
