@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/create_shortcut" android:title="Create Shortcut" />
-	<item android:id="@+id/disable_ringer_timer" android:title="Disable Ringer Timer" />
-	<item android:id="@+id/disable_notification_timer" android:title="Disable Notification Timer" />
+	
+	
 </menu>

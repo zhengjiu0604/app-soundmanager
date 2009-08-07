@@ -21,23 +21,11 @@
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:text="@string/vibrate_when_silent" />
 
-
 			<RadioButton android:id="@+id/ringer_vibrate_never"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:text="@string/vibrate_off" />
 
 		</RadioGroup>
-		<LinearLayout android:orientation="horizontal"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="5dip">
-			<Button android:id="@+id/vibrateringer_timer_button"
-				android:text="@string/timer_button" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
-			<TextView android:id="@+id/vibrateringer_timer_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="13sp" />
-		</LinearLayout>
-
 
 		<TextView android:id="@+id/notification_vibrate_text"
 			android:text="@string/notification_vibrate" android:textSize="20dip"
@@ -61,16 +49,6 @@
 				android:text="@string/vibrate_off" />
 
 		</RadioGroup>
-		<LinearLayout android:orientation="horizontal"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="5dip" android:layout_marginBottom="20dip">
-			<Button android:id="@+id/vibratenotif_timer_button"
-				android:text="@string/timer_button" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
-			<TextView android:id="@+id/vibratenotif_timer_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="13sp" />
-		</LinearLayout>
 
 	</LinearLayout>
 </ScrollView>

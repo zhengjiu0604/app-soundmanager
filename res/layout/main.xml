@@ -1,105 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:padding="10dip">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content">
-		<Button android:id="@+id/system_timer_button" android:text="@string/timer_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginLeft="10dip">
-			<TextView android:id="@+id/system_textview" android:text="@string/system_textview"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:textSize="18dip" />
-
-			<SeekBar android:id="@+id/system_seekbar"
-				android:layout_width="fill_parent" android:layout_height="wrap_content" />
-		</LinearLayout>
-	</LinearLayout>
-	<TextView android:id="@+id/system_timer_text"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="15sp" />
-
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_marginTop="10dip">
-		<Button android:id="@+id/ringer_timer_button" android:text="@string/timer_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginLeft="10dip">
-			<TextView android:id="@+id/ringer_textview" android:text="@string/ringer_textview"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:textSize="18dip" />
-
-			<SeekBar android:id="@+id/ringer_seekbar"
-				android:layout_width="fill_parent" android:layout_height="wrap_content" />
-		</LinearLayout>
-	</LinearLayout>
-	<TextView android:id="@+id/ringer_timer_text"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="15sp" />
-
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_marginTop="10dip">
-		<Button android:id="@+id/media_timer_button" android:text="@string/timer_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginLeft="10dip">
-			<TextView android:id="@+id/media_textview" android:text="@string/media_textview"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:textSize="18dip" />
-
-			<SeekBar android:id="@+id/media_seekbar"
-				android:layout_width="fill_parent" android:layout_height="wrap_content" />
-		</LinearLayout>
-	</LinearLayout>
-	<TextView android:id="@+id/media_timer_text"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="15sp" />
-
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_marginTop="10dip">
-		<Button android:id="@+id/alarm_timer_button" android:text="@string/timer_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginLeft="10dip">
-			<TextView android:id="@+id/alarm_textview" android:text="@string/alarm_textview"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:textSize="20dip" />
-
-			<SeekBar android:id="@+id/alarm_seekbar"
-				android:layout_width="fill_parent" android:layout_height="wrap_content" />
-		</LinearLayout>
-	</LinearLayout>
-	<TextView android:id="@+id/alarm_timer_text"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="15sp" />
-
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_marginTop="10dip">
-		<Button android:id="@+id/phonecall_timer_button" android:text="@string/timer_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginLeft="10dip">
-			<TextView android:id="@+id/phonecall_textview" android:text="@string/phonecall_textview"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:textSize="18dip" />
-
-			<SeekBar android:id="@+id/phonecall_seekbar"
-				android:layout_width="fill_parent" android:layout_height="wrap_content" />
-		</LinearLayout>
-	</LinearLayout>
-	<TextView android:id="@+id/phonecall_timer_text"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="15sp" />
-
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dip">
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/system_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/system_textview"
+                    android:text="@string/system_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+                <SeekBar
+                    android:id="@+id/system_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/system_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip">
+            <Button
+                android:id="@+id/ringer_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/ringer_textview"
+                    android:text="@string/ringer_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+                <SeekBar
+                    android:id="@+id/ringer_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/ringer_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip">
+            <Button
+                android:id="@+id/notif_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/notif_textview"
+                    android:text="@string/notif_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+                <SeekBar
+                    android:id="@+id/notif_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/notif_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip">
+            <Button
+                android:id="@+id/media_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/media_textview"
+                    android:text="@string/media_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+                <SeekBar
+                    android:id="@+id/media_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/media_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip">
+            <Button
+                android:id="@+id/alarm_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/alarm_textview"
+                    android:text="@string/alarm_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+                <SeekBar
+                    android:id="@+id/alarm_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/alarm_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip">
+            <Button
+                android:id="@+id/phonecall_timer_button"
+                android:text="@string/timer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip">
+                <TextView
+                    android:id="@+id/phonecall_textview"
+                    android:text="@string/phonecall_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip" />
+                <SeekBar
+                    android:id="@+id/phonecall_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/phonecall_timer_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+    
+    </LinearLayout>
+</ScrollView>
