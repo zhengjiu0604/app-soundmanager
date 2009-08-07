@@ -8,21 +8,22 @@
     <string name="ringer_textview">Ringer Volume</string>
     <string name="phonecall_textview">In-Call Volume</string>
     <string name="alarm_textview">Alarm Volume</string>
-    <string name="timer_button">SET TIMER</string>
-    <string name="setVolumeChange">Set what volume will change to:</string>
-    <string name="setRingmodeChange">Set what ringmode will change to:</string>
-    <string name="setVibrateChange">Set what vibrate will change to:</string>
-    <string name="timerNotSet">Timer Not Set</string>
+    <string name="notif_textview">Notification Volume</string>
+    <string name="timer_button">Schedule</string>
+    <string name="setVolumeChange">Set what volume will change to:</string><!-- deprecated -->
+    <string name="setRingmodeChange">Set what ringmode will change to:</string><!-- deprecated -->
+    <string name="setVibrateChange">Set what vibrate will change to:</string><!-- deprecated -->
+    <string name="timerNotSet">Timer Not Set</string><!-- deprecated -->
     
-    <string name="SystemDisabled">System Timer Disabled</string>
-    <string name="RingerDisabled">Ringer Timer Disabled</string>
-    <string name="MediaDisabled">Media Timer Disabled</string>
-    <string name="AlarmDisabled">Alarm Timer Disabled</string>
-    <string name="IncallDisabled">In-Call Timer Disabled</string>
-    <string name="RingmodeDisabled">Ringmode Timer Disabled</string>
-    <string name="VibrateRingerDisabled">Ringer Vibrate Timer Disabled</string>
-    <string name="VibrateNotifDisabled">Notification Vibrate Timer Disabled</string>
-    <string name="TimersDisabled">Timers Disabled</string>
+    <string name="SystemDisabled">System Timer Disabled</string><!-- deprecated -->
+    <string name="RingerDisabled">Ringer Timer Disabled</string><!-- deprecated -->
+    <string name="MediaDisabled">Media Timer Disabled</string><!-- deprecated -->
+    <string name="AlarmDisabled">Alarm Timer Disabled</string><!-- deprecated -->
+    <string name="IncallDisabled">In-Call Timer Disabled</string><!-- deprecated -->
+    <string name="RingmodeDisabled">Ringmode Timer Disabled</string><!-- deprecated -->
+    <string name="VibrateRingerDisabled">Ringer Vibrate Timer Disabled</string><!-- deprecated -->
+    <string name="VibrateNotifDisabled">Notification Vibrate Timer Disabled</string><!-- deprecated -->
+    <string name="TimersDisabled">Timers Disabled</string><!-- deprecated -->
     
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -31,6 +32,7 @@
     <string name="muted">muted</string>
     <string name="SavedSystemVolume">SavedSystemVolume</string>
     <string name="SavedRingerVolume">SavedRingerVolume</string>
+    <string name="SavedNotifVolume">SavedNotifVolume</string>
     <string name="SavedMediaVolume">SavedMediaVolume</string>
     <string name="SavedAlarmVolume">SavedAlarmVolume</string>
     
@@ -38,59 +40,60 @@
     <string name="use_menu_shortcut">Use the menu to create a shortcut to this screen.</string>
     
     <!-- Preferences -->
-    <string name="RingerVibrate">RingerVibrate</string>
-    <string name="NotificationVibrate">NotificationVibrate</string>
+    <string name="RingerVibrate">RingerVibrate</string><!-- deprecated --><!-- unused -->
+    <string name="NotificationVibrate">NotificationVibrate</string><!-- deprecated --><!-- unused -->
     <string name="ShownStartup">ShownStartup</string>
-    <string name="SystemDisplay">SystemDisplay</string>
-    <string name="RingerDisplay">RingerDisplay</string>
-    <string name="AlarmDisplay">AlarmDisplay</string>
-    <string name="MediaDisplay">MediaDisplay</string>
-    <string name="IncallDisplay">IncallDisplay</string>
-    <string name="RingmodeDisplay">RingmodeDisplay</string>
-    <string name="VibrateNotifDisplay">VibrateNotifDisplay</string>
-    <string name="VibrateRingerDisplay">VibrateRingerDisplay</string>
+    <string name="ShownVolumeCouplingWarning">ShownVolumeCouplingWarning</string>
+    <string name="SystemDisplay">SystemDisplay</string><!-- deprecated -->
+    <string name="RingerDisplay">RingerDisplay</string><!-- deprecated -->
+    <string name="AlarmDisplay">AlarmDisplay</string><!-- deprecated -->
+    <string name="MediaDisplay">MediaDisplay</string><!-- deprecated -->
+    <string name="IncallDisplay">IncallDisplay</string><!-- deprecated -->
+    <string name="RingmodeDisplay">RingmodeDisplay</string><!-- deprecated -->
+    <string name="VibrateNotifDisplay">VibrateNotifDisplay</string><!-- deprecated -->
+    <string name="VibrateRingerDisplay">VibrateRingerDisplay</string><!-- deprecated -->
     
     <!-- Timers -->
-    <string name="RingerTimeStart">RingerTimeStart</string>
-    <string name="RingerTimeEnd">RingerTimeEnd</string>
-    <string name="RingerStartVolume">RingerStartVolume</string>
-    <string name="RingerEndVolume">RingerEndVolume</string>
-    <string name="AlarmTimeStart">AlarmTimeStart</string>
-    <string name="AlarmTimeEnd">AlarmTimeEnd</string>
-    <string name="AlarmStartVolume">AlarmStartVolume</string>
-    <string name="AlarmEndVolume">AlarmEndVolume</string>
-    <string name="MediaTimeStart">MediaTimeStart</string>
-    <string name="MediaTimeEnd">MediaTimeEnd</string>
-    <string name="MediaStartVolume">MediaStartVolume</string>
-    <string name="MediaEndVolume">MediaEndVolume</string>
-    <string name="SystemTimeStart">SystemTimeStart</string>
-    <string name="SystemTimeEnd">SystemTimeEnd</string>
-    <string name="SystemStartVolume">SystemStartVolume</string>
-    <string name="SystemEndVolume">SystemEndVolume</string>
-    <string name="IncallTimeStart">IncallTimeStart</string>
-    <string name="IncallTimeEnd">IncallTimeEnd</string>
-    <string name="IncallStartVolume">IncallStartVolume</string>
-    <string name="IncallEndVolume">IncallEndVolume</string>
-    <string name="RingmodeTimeStart">RingmodeTimeStart</string>
-    <string name="RingmodeTimeEnd">RingmodeTimeEnd</string>
-    <string name="RingmodeStartVolume">RingmodeStartVolume</string>
-    <string name="RingmodeEndVolume">RingmodeEndVolume</string>
-    <string name="VibrateNotifTimeStart">VibrateNotifTimeStart</string>
-    <string name="VibrateNotifTimeEnd">VibrateNotifTimeEnd</string>
-    <string name="VibrateNotifStartVolume">VibrateNotifStartVolume</string>
-    <string name="VibrateNotifEndVolume">VibrateNotifEndVolume</string>
-    <string name="VibrateRingerTimeStart">VibrateRingerTimeStart</string>
-    <string name="VibrateRingerTimeEnd">VibrateRingerTimeEnd</string>
-    <string name="VibrateRingerStartVolume">VibrateRingerStartVolume</string>
-    <string name="VibrateRingerEndVolume">VibrateRingerEndVolume</string>
-    <string name="EnableAlarm">EnableAlarm</string>
-    <string name="EnableRinger">EnableRinger</string>
-    <string name="EnableMedia">EnableMedia</string>
-    <string name="EnableIncall">EnableIncall</string>
-    <string name="EnableSystem">EnableSystem</string>
-    <string name="EnableRingmode">EnableRingmode</string>
-    <string name="EnableVibrateNotif">EnableVibrateNotif</string>
-    <string name="EnableVibrateRinger">EnableVibrateRinger</string>
+    <string name="RingerTimeStart">RingerTimeStart</string><!-- deprecated -->
+    <string name="RingerTimeEnd">RingerTimeEnd</string><!-- deprecated -->
+    <string name="RingerStartVolume">RingerStartVolume</string><!-- deprecated -->
+    <string name="RingerEndVolume">RingerEndVolume</string><!-- deprecated -->
+    <string name="AlarmTimeStart">AlarmTimeStart</string><!-- deprecated -->
+    <string name="AlarmTimeEnd">AlarmTimeEnd</string><!-- deprecated -->
+    <string name="AlarmStartVolume">AlarmStartVolume</string><!-- deprecated -->
+    <string name="AlarmEndVolume">AlarmEndVolume</string><!-- deprecated -->
+    <string name="MediaTimeStart">MediaTimeStart</string><!-- deprecated -->
+    <string name="MediaTimeEnd">MediaTimeEnd</string><!-- deprecated -->
+    <string name="MediaStartVolume">MediaStartVolume</string><!-- deprecated -->
+    <string name="MediaEndVolume">MediaEndVolume</string><!-- deprecated -->
+    <string name="SystemTimeStart">SystemTimeStart</string><!-- deprecated -->
+    <string name="SystemTimeEnd">SystemTimeEnd</string><!-- deprecated -->
+    <string name="SystemStartVolume">SystemStartVolume</string><!-- deprecated -->
+    <string name="SystemEndVolume">SystemEndVolume</string><!-- deprecated -->
+    <string name="IncallTimeStart">IncallTimeStart</string><!-- deprecated -->
+    <string name="IncallTimeEnd">IncallTimeEnd</string><!-- deprecated -->
+    <string name="IncallStartVolume">IncallStartVolume</string><!-- deprecated -->
+    <string name="IncallEndVolume">IncallEndVolume</string><!-- deprecated -->
+    <string name="RingmodeTimeStart">RingmodeTimeStart</string><!-- deprecated -->
+    <string name="RingmodeTimeEnd">RingmodeTimeEnd</string><!-- deprecated -->
+    <string name="RingmodeStartVolume">RingmodeStartVolume</string><!-- deprecated -->
+    <string name="RingmodeEndVolume">RingmodeEndVolume</string><!-- deprecated -->
+    <string name="VibrateNotifTimeStart">VibrateNotifTimeStart</string><!-- deprecated -->
+    <string name="VibrateNotifTimeEnd">VibrateNotifTimeEnd</string><!-- deprecated -->
+    <string name="VibrateNotifStartVolume">VibrateNotifStartVolume</string><!-- deprecated -->
+    <string name="VibrateNotifEndVolume">VibrateNotifEndVolume</string><!-- deprecated -->
+    <string name="VibrateRingerTimeStart">VibrateRingerTimeStart</string><!-- deprecated -->
+    <string name="VibrateRingerTimeEnd">VibrateRingerTimeEnd</string><!-- deprecated -->
+    <string name="VibrateRingerStartVolume">VibrateRingerStartVolume</string><!-- deprecated -->
+    <string name="VibrateRingerEndVolume">VibrateRingerEndVolume</string><!-- deprecated -->
+    <string name="EnableAlarm">EnableAlarm</string><!-- deprecated -->
+    <string name="EnableRinger">EnableRinger</string><!-- deprecated -->
+    <string name="EnableMedia">EnableMedia</string><!-- deprecated -->
+    <string name="EnableIncall">EnableIncall</string><!-- deprecated -->
+    <string name="EnableSystem">EnableSystem</string><!-- deprecated -->
+    <string name="EnableRingmode">EnableRingmode</string><!-- deprecated -->
+    <string name="EnableVibrateNotif">EnableVibrateNotif</string><!-- deprecated -->
+    <string name="EnableVibrateRinger">EnableVibrateRinger</string><!-- deprecated -->
     
     <!-- Vibrate Settings -->
     <string name="notification_vibrate">Notification Settings</string>
@@ -101,9 +104,39 @@
     
     <!-- Ringmode Toggle -->
     <string name="toggle_text">Set Ring Mode</string>
-    <string name="ring_vibrate">Ring And Vibrate</string>
-    <string name="ring_only">Ring Only</string>
+    <string name="ring_vibrate">May Ring, May Vibrate</string>
     <string name="vibrate_only">Vibrate Only</string>
     <string name="silent">Silent</string>
+    
+    <!-- Schedules -->
+    <string name="SystemVolumeSchedule">System Volume Schedule</string>
+    <string name="RingerVolumeSchedule">Ringer Volume Schedule</string>
+    <string name="NotifVolumeSchedule">Notification Volume Schedule</string>
+    <string name="MediaVolumeSchedule">Media Volume Schedule</string>
+    <string name="AlarmVolumeSchedule">Alarm Volume Schedule</string>
+    <string name="InCallVolumeSchedule">In-Call Volume Schedule</string>
+    
+    <string name="newSchedule">New Schedule</string>
+    <string name="deleteSchedule">Delete</string>
+    <string name="editSchedule">Edit</string>
+    <string name="toggleSchedule">Toggle Active/Inactive</string>
+    <string name="applySettings">Apply Settings</string>
+    
+    <string name="day0">Sun</string>
+    <string name="day1">Mon</string>
+    <string name="day2">Tue</string>
+    <string name="day3">Wed</string>
+    <string name="day4">Thu</string>
+    <string name="day5">Fri</string>
+    <string name="day6">Sat</string>
+    
+    <string name="startTimeLabel">Start Time:</string>
+    <string name="volumeLabel">Volume:</string>
+    <string name="vibrateLabel">Vibrate:</string>
+    <string name="activeLabel">Active:</string>
+    
+    <string name="scheduleSaved">Schedule saved</string>
+    
+    <string name="done">Done</string>
     
 </resources>

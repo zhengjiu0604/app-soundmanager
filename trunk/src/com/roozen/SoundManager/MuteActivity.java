@@ -15,10 +15,9 @@
  */
 package com.roozen.SoundManager;
 
-import com.roozen.SoundManager.utils.DbUtil;
+import com.roozen.SoundManager.utils.Util;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -29,26 +28,29 @@ public class MuteActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		ContentResolver resolver = getContentResolver();
 		AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-		boolean muted = DbUtil.queryBoolean(resolver, getString(R.string.muted), false);
-
+		boolean muted = Util.getBooleanPref(this, getString(R.string.muted), false);
+		
     	final int flagsNoUI = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
     						  AudioManager.FLAG_VIBRATE;
     	
-		if(muted){
-		    int systemVol = DbUtil.queryInt(resolver, getString(R.string.SavedSystemVolume), -1);
-		    int ringerVol = DbUtil.queryInt(resolver, getString(R.string.SavedRingerVolume), -1);
-		    int alarmVol = DbUtil.queryInt(resolver, getString(R.string.SavedAlarmVolume), -1);
-		    int mediaVol = DbUtil.queryInt(resolver, getString(R.string.SavedMediaVolume), -1);
+		if (muted) {
+		    int systemVol = Util.getIntPref(this, getString(R.string.SavedSystemVolume), -1);
+		    int ringerVol = Util.getIntPref(this, getString(R.string.SavedRingerVolume), -1);
+		    int notifVol = Util.getIntPref(this, getString(R.string.SavedNotifVolume), -1);
+		    int alarmVol = Util.getIntPref(this, getString(R.string.SavedAlarmVolume), -1);
+		    int mediaVol = Util.getIntPref(this, getString(R.string.SavedMediaVolume), -1);
 
 		    RingmodeToggle.fixRingMode(audio, ringerVol);
 		    if(systemVol != -1){
 		        audio.setStreamVolume(AudioManager.STREAM_SYSTEM, systemVol, flagsNoUI);
 		    }
-		    if(ringerVol != -1){
-		        audio.setStreamVolume(AudioManager.STREAM_RING, ringerVol, flagsNoUI);
-		    }
+            if(ringerVol != -1){
+                audio.setStreamVolume(AudioManager.STREAM_RING, ringerVol, flagsNoUI);
+            }
+            if(notifVol != -1){
+                audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifVol, flagsNoUI);
+            }
 		    if(alarmVol != -1){
 		        audio.setStreamVolume(AudioManager.STREAM_ALARM, alarmVol, flagsNoUI);
 		    }
@@ -56,18 +58,21 @@ public class MuteActivity extends Activity {
 		        audio.setStreamVolume(AudioManager.STREAM_MUSIC, mediaVol, flagsNoUI);
 		    }
 
-		    DbUtil.update(resolver, getString(R.string.muted), 0);
-		} else {
-		    DbUtil.update(resolver, getString(R.string.SavedSystemVolume), audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
-		    DbUtil.update(resolver, getString(R.string.SavedRingerVolume), audio.getStreamVolume(AudioManager.STREAM_RING));
-		    DbUtil.update(resolver, getString(R.string.SavedAlarmVolume), audio.getStreamVolume(AudioManager.STREAM_ALARM));
-		    DbUtil.update(resolver, getString(R.string.SavedMediaVolume), audio.getStreamVolume(AudioManager.STREAM_MUSIC));
+		    Util.putBooleanPref(this, getString(R.string.muted), false);
+		} 
+		else {
+		    Util.putIntPref(this, getString(R.string.SavedSystemVolume), audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+		    Util.putIntPref(this, getString(R.string.SavedRingerVolume), audio.getStreamVolume(AudioManager.STREAM_RING));
+		    Util.putIntPref(this, getString(R.string.SavedNotifVolume), audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+		    Util.putIntPref(this, getString(R.string.SavedAlarmVolume), audio.getStreamVolume(AudioManager.STREAM_ALARM));
+		    Util.putIntPref(this, getString(R.string.SavedMediaVolume), audio.getStreamVolume(AudioManager.STREAM_MUSIC));
 
-		    DbUtil.update(resolver, getString(R.string.muted), 1);
+            Util.putBooleanPref(this, getString(R.string.muted), true);
 
 		    RingmodeToggle.fixRingMode(audio, 0);
 		    audio.setStreamVolume(AudioManager.STREAM_SYSTEM, 0, flagsNoUI);
-		    audio.setStreamVolume(AudioManager.STREAM_RING, 0, flagsNoUI);
+            audio.setStreamVolume(AudioManager.STREAM_RING, 0, flagsNoUI);
+            audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, flagsNoUI);
 		    audio.setStreamVolume(AudioManager.STREAM_ALARM, 0, flagsNoUI);
 		    audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, flagsNoUI);
 		}
