@@ -118,6 +118,7 @@ public class ChangeVolume extends Service {
             scheduleCursor.close();		    
 		} //schedule id was found
 		
+		stopSelf();
 	}
 	
     private void setVolume(int stream, int volume) {
