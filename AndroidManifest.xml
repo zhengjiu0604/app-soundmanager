@@ -77,6 +77,13 @@
             android:name="com.roozen.SoundManager.schedule.ScheduleList" />
         <activity
             android:name="com.roozen.SoundManager.schedule.ScheduleEdit" />
+            
+        <activity android:name="VolumeDialog" android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="com.roozen.intent.VOLUME_CONTROL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <!-- Services -->
         <service android:name="com.roozen.SoundManager.services.ChangeVolume" />
