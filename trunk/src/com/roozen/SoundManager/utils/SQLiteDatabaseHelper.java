@@ -23,7 +23,7 @@ import com.roozen.SoundManager.services.BootupService;
 public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "data";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private Context mContext;
 
     /*
@@ -125,6 +125,14 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion < 3) {
             upgradeTo3(db);
         }
+        
+        if (newVersion > 2) {
+            /*
+             * install schedule alarms
+             */
+            Intent i = new Intent(mContext, BootupService.class);
+            mContext.startService(i);
+        }
 
         Log.w(SQLiteDatabaseHelper.class.toString(), "Upgrade completed.");
     }
@@ -204,12 +212,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         }
         
         db.execSQL("drop table "+PREFERENCE_TABLE);
-        
-        /*
-         * install schedule alarms
-         */
-        Intent i = new Intent(mContext, BootupService.class);
-        mContext.startService(i);        
     }
     
     /**
