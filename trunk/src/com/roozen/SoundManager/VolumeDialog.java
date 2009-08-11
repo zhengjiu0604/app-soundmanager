@@ -38,7 +38,7 @@ public class VolumeDialog extends Activity {
 		
 		final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		String title = "Unknown Volume";
-		if (volumeType > 0) {
+		if (volumeType != -1) {
 			switch(volumeType) {
 			case AudioManager.STREAM_SYSTEM:
 				title = getString(R.string.system_textview);
