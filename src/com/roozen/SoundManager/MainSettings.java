@@ -49,7 +49,7 @@ public class MainSettings extends Activity {
     public final static int ACTIVITY_MUTE = 1;
     public final static int ACTIVITY_RINGMODE = 2;
     
-    private HashMap<Integer,Integer> mActiveCount;
+    public static HashMap<Integer,Integer> mActiveCount;
     private boolean hasShownVolumeCouplingWarning;
     private Boolean isVolumeCoupled = null;
 	
@@ -178,43 +178,7 @@ public class MainSettings extends Activity {
         	
         });
         
-        SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
-        alarmSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_ALARM));
-        alarmSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM));
-        alarmSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-			  //ignore
-			}
-
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				//ignore
-			}
-
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(AudioManager.STREAM_ALARM, seekBar.getProgress(), setVolFlags);
-			}
-        	
-        });
-        
-        SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
-        phonecallSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
-        phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
-        phonecallSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-			  //ignore
-			}
-
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				//ignore
-			}
-
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL, seekBar.getProgress(), setVolFlags);
-			}
-        	
-        });        
     }
     
     private void setupButtons() {
@@ -254,25 +218,21 @@ public class MainSettings extends Activity {
                 startActivityForResult(i, ACTIVITY_LIST);
             }
         });
-    	
-        Button alarmTimer = (Button) findViewById(R.id.alarm_timer_button);
-        alarmTimer.setOnClickListener(new View.OnClickListener() {
+
+        Button moreSettings = (Button) findViewById(R.id.more_settings_button);
+        moreSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(gui, ScheduleList.class);
-                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_ALARM));
+                Intent i = new Intent(gui, MoreSettings.class);
                 startActivityForResult(i, ACTIVITY_LIST);
             }
         });
-    	
-    	Button incallTimer = (Button) findViewById(R.id.phonecall_timer_button);
-    	incallTimer.setOnClickListener(new View.OnClickListener() {
+
+        Button refresh = (Button) findViewById(R.id.refresh_button);
+        refresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(gui, ScheduleList.class);
-                i.putExtra(ScheduleList.VOLUME_TYPE, String.valueOf(AudioManager.STREAM_VOICE_CALL));
-                startActivityForResult(i, ACTIVITY_LIST);
+                updateSeekBars();
             }
         });
-    	   
     }
     
     private void setStatusText() {
@@ -290,13 +250,6 @@ public class MainSettings extends Activity {
         
         TextView mediaText = (TextView) findViewById(R.id.media_timer_text);
         mediaText.setText(getScheduleCountText(AudioManager.STREAM_MUSIC));
-        
-        TextView alarmText = (TextView) findViewById(R.id.alarm_timer_text);
-        alarmText.setText(getScheduleCountText(AudioManager.STREAM_ALARM));
-        
-        TextView incallText = (TextView) findViewById(R.id.phonecall_timer_text);
-        incallText.setText(getScheduleCountText(AudioManager.STREAM_VOICE_CALL));
-        
     }
     
 	@Override
@@ -375,7 +328,7 @@ public class MainSettings extends Activity {
         }
 	}
 	
-	private String getScheduleCountText(int volumeType) {
+	public static String getScheduleCountText(int volumeType) {
 	    String result = "";
 	    
 	    if (mActiveCount.containsKey(volumeType) &&
@@ -415,13 +368,8 @@ public class MainSettings extends Activity {
         
         SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
         mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
-        
-        SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
-        alarmSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM));
-        
-        SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
-        phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
-        
+
+        Toast.makeText(this, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
     }
     
     private void showVolumeCouplingWarning() {
