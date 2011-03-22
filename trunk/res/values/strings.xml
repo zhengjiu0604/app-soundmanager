@@ -28,6 +28,7 @@
     
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="use_menu_button">Use the menu button for more options.</string>
     
     <!-- Mute -->
     <string name="muted">muted</string>
@@ -139,7 +140,7 @@
     <string name="scheduleSaved">Schedule saved</string>
     
     <string name="done">Done</string>
-    <string name="more_settings_button">More Settings</string>
+    <string name="more_settings_button">More Volumes</string>
     <string name="refresh">Refresh</string>
     <string name="VolumeRefreshed">Volume Bars Updated</string>
 
