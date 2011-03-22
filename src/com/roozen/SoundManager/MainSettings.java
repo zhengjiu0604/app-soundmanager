@@ -38,6 +38,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.roozen.SoundManager.provider.ScheduleProvider;
 import com.roozen.SoundManager.schedule.ScheduleList;
+import com.roozen.SoundManager.services.BootupService;
 import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
 import com.roozen.SoundManager.utils.Util;
 
@@ -288,6 +289,10 @@ public class MainSettings extends Activity {
 			Intent vibrate = new Intent(this, VibrateSettings.class);
 			startActivity(vibrate);
 			return true;
+        case R.id.apply_all_settings:
+            Intent bootupService = new Intent(this, BootupService.class);
+		    startService(bootupService);
+            return true;
 		case R.id.toggle_ringmode:
 			Intent toggle = new Intent(this, RingmodeToggle.class);
 			startActivityForResult(toggle, ACTIVITY_RINGMODE);
