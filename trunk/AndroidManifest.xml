@@ -39,6 +39,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MoreSettings"></activity>
+
         <receiver android:name="com.roozen.SoundManager.receivers.Bootup">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

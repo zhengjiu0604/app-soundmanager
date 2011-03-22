@@ -101,7 +101,7 @@
     <string name="ringer_vibrate">Ringer Settings</string>
     <string name="vibrate_when_possible">Vibrate Whenever Possible</string>
     <string name="vibrate_when_silent">Vibrate Only When Silent</string>
-    <string name="vibrate_off">Don't Vibrate</string>
+    <string name="vibrate_off">Don\'t Vibrate</string>
     
     <!-- Ringmode Toggle -->
     <string name="toggle_text">Set Ring Mode</string>
@@ -139,5 +139,8 @@
     <string name="scheduleSaved">Schedule saved</string>
     
     <string name="done">Done</string>
-    
+    <string name="more_settings_button">More Settings</string>
+    <string name="refresh">Refresh</string>
+    <string name="VolumeRefreshed">Volume Bars Updated</string>
+
 </resources>
