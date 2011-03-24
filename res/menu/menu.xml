@@ -7,9 +7,9 @@
 		</menu>
 	</item>
 	
-	<item android:id="@+id/faq" android:title="F.A.Q." />
+	<item android:id="@+id/tutorial" android:title="Tutorial" />
 	<item android:id="@+id/toggle_ringmode" android:title="Toggle Ringmode" />
 	<item android:id="@+id/vibrate_settings" android:title="Vibrate Settings" />
-    <item android:id="@+id/apply_all_settings" android:title="Apply All Settings" />
+    <item android:id="@+id/apply_all_settings" android:title="Apply All Schedules" />
 
 </menu>
