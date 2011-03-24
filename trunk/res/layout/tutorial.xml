@@ -5,7 +5,8 @@
               android:layout_height="420dip"
               android:orientation="vertical">
 
-    <ScrollView android:layout_width="290dip"
+    <ScrollView android:id="@+id/tutorial_scroll"
+                android:layout_width="290dip"
                 android:layout_height="330dip"
                 android:gravity="center">
         <TextView android:id="@+id/tutorial_text"
@@ -16,7 +17,7 @@
     </ScrollView>
 
     <CheckBox android:id="@+id/doNotShowAgainCheck"
-            android:layout_width="match_parent"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="@string/DoNotShowAgain"/>
 

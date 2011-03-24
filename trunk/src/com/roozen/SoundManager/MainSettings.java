@@ -18,7 +18,6 @@ package com.roozen.SoundManager;
 import java.util.HashMap;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -284,9 +283,9 @@ public class MainSettings extends Activity {
                 Intent toggle = new Intent(this, RingmodeToggle.class);
                 startActivityForResult(toggle, ACTIVITY_RINGMODE);
                 return true;
-            case R.id.faq:
-                Uri uri = Uri.parse("http://code.google.com/p/app-soundmanager/wiki/FAQ");
-                Intent i = new Intent(Intent.ACTION_VIEW, uri);
+            case R.id.tutorial:
+                Intent i = new Intent(this, TutorialActivity.class);
+                i.putExtra("fromMenu", true);
                 startActivity(i);
                 return true;
         }

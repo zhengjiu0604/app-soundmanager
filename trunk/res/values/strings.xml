@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sound Manager</string>
-    
+
     <!-- MainSettings strings -->
     <string name="system_textview">System Volume</string>
     <string name="media_textview">Media Volume</string>
@@ -9,27 +9,40 @@
     <string name="phonecall_textview">In-Call Volume</string>
     <string name="alarm_textview">Alarm Volume</string>
     <string name="notif_textview">Notification Volume</string>
-    
+
     <string name="timer_button">Schedule</string>
-    <string name="setVolumeChange">Set what volume will change to:</string><!-- deprecated -->
-    <string name="setRingmodeChange">Set what ringmode will change to:</string><!-- deprecated -->
-    <string name="setVibrateChange">Set what vibrate will change to:</string><!-- deprecated -->
-    <string name="timerNotSet">Timer Not Set</string><!-- deprecated -->
-    
-    <string name="SystemDisabled">System Timer Disabled</string><!-- deprecated -->
-    <string name="RingerDisabled">Ringer Timer Disabled</string><!-- deprecated -->
-    <string name="MediaDisabled">Media Timer Disabled</string><!-- deprecated -->
-    <string name="AlarmDisabled">Alarm Timer Disabled</string><!-- deprecated -->
-    <string name="IncallDisabled">In-Call Timer Disabled</string><!-- deprecated -->
-    <string name="RingmodeDisabled">Ringmode Timer Disabled</string><!-- deprecated -->
-    <string name="VibrateRingerDisabled">Ringer Vibrate Timer Disabled</string><!-- deprecated -->
-    <string name="VibrateNotifDisabled">Notification Vibrate Timer Disabled</string><!-- deprecated -->
-    <string name="TimersDisabled">Timers Disabled</string><!-- deprecated -->
-    
+    <string name="setVolumeChange">Set what volume will change to:</string>
+    <!-- deprecated -->
+    <string name="setRingmodeChange">Set what ringmode will change to:</string>
+    <!-- deprecated -->
+    <string name="setVibrateChange">Set what vibrate will change to:</string>
+    <!-- deprecated -->
+    <string name="timerNotSet">Timer Not Set</string>
+    <!-- deprecated -->
+
+    <string name="SystemDisabled">System Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="RingerDisabled">Ringer Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="MediaDisabled">Media Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="AlarmDisabled">Alarm Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="IncallDisabled">In-Call Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="RingmodeDisabled">Ringmode Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="VibrateRingerDisabled">Ringer Vibrate Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="VibrateNotifDisabled">Notification Vibrate Timer Disabled</string>
+    <!-- deprecated -->
+    <string name="TimersDisabled">Timers Disabled</string>
+    <!-- deprecated -->
+
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="use_menu_button">Use the menu button for more options.</string>
-    
+
     <!-- Mute -->
     <string name="muted">muted</string>
     <string name="SavedSystemVolume">SavedSystemVolume</string>
@@ -37,79 +50,129 @@
     <string name="SavedNotifVolume">SavedNotifVolume</string>
     <string name="SavedMediaVolume">SavedMediaVolume</string>
     <string name="SavedAlarmVolume">SavedAlarmVolume</string>
-    
+
     <!-- Shortcuts -->
     <string name="use_menu_shortcut">Use the menu to create a shortcut to this screen.</string>
-    
+
     <!-- Preferences -->
-    <string name="RingerVibrate">RingerVibrate</string><!-- deprecated --><!-- unused -->
-    <string name="NotificationVibrate">NotificationVibrate</string><!-- deprecated --><!-- unused -->
+    <string name="RingerVibrate">RingerVibrate</string>
+    <!-- deprecated --><!-- unused -->
+    <string name="NotificationVibrate">NotificationVibrate</string>
+    <!-- deprecated --><!-- unused -->
     <string name="ShownStartup">ShownStartup</string>
     <string name="ShownVolumeCouplingWarning">ShownVolumeCouplingWarning</string>
-    <string name="SystemDisplay">SystemDisplay</string><!-- deprecated -->
-    <string name="RingerDisplay">RingerDisplay</string><!-- deprecated -->
-    <string name="AlarmDisplay">AlarmDisplay</string><!-- deprecated -->
-    <string name="MediaDisplay">MediaDisplay</string><!-- deprecated -->
-    <string name="IncallDisplay">IncallDisplay</string><!-- deprecated -->
-    <string name="RingmodeDisplay">RingmodeDisplay</string><!-- deprecated -->
-    <string name="VibrateNotifDisplay">VibrateNotifDisplay</string><!-- deprecated -->
-    <string name="VibrateRingerDisplay">VibrateRingerDisplay</string><!-- deprecated -->
-    
+    <string name="SystemDisplay">SystemDisplay</string>
+    <!-- deprecated -->
+    <string name="RingerDisplay">RingerDisplay</string>
+    <!-- deprecated -->
+    <string name="AlarmDisplay">AlarmDisplay</string>
+    <!-- deprecated -->
+    <string name="MediaDisplay">MediaDisplay</string>
+    <!-- deprecated -->
+    <string name="IncallDisplay">IncallDisplay</string>
+    <!-- deprecated -->
+    <string name="RingmodeDisplay">RingmodeDisplay</string>
+    <!-- deprecated -->
+    <string name="VibrateNotifDisplay">VibrateNotifDisplay</string>
+    <!-- deprecated -->
+    <string name="VibrateRingerDisplay">VibrateRingerDisplay</string>
+    <!-- deprecated -->
+
     <!-- Timers -->
-    <string name="RingerTimeStart">RingerTimeStart</string><!-- deprecated -->
-    <string name="RingerTimeEnd">RingerTimeEnd</string><!-- deprecated -->
-    <string name="RingerStartVolume">RingerStartVolume</string><!-- deprecated -->
-    <string name="RingerEndVolume">RingerEndVolume</string><!-- deprecated -->
-    <string name="AlarmTimeStart">AlarmTimeStart</string><!-- deprecated -->
-    <string name="AlarmTimeEnd">AlarmTimeEnd</string><!-- deprecated -->
-    <string name="AlarmStartVolume">AlarmStartVolume</string><!-- deprecated -->
-    <string name="AlarmEndVolume">AlarmEndVolume</string><!-- deprecated -->
-    <string name="MediaTimeStart">MediaTimeStart</string><!-- deprecated -->
-    <string name="MediaTimeEnd">MediaTimeEnd</string><!-- deprecated -->
-    <string name="MediaStartVolume">MediaStartVolume</string><!-- deprecated -->
-    <string name="MediaEndVolume">MediaEndVolume</string><!-- deprecated -->
-    <string name="SystemTimeStart">SystemTimeStart</string><!-- deprecated -->
-    <string name="SystemTimeEnd">SystemTimeEnd</string><!-- deprecated -->
-    <string name="SystemStartVolume">SystemStartVolume</string><!-- deprecated -->
-    <string name="SystemEndVolume">SystemEndVolume</string><!-- deprecated -->
-    <string name="IncallTimeStart">IncallTimeStart</string><!-- deprecated -->
-    <string name="IncallTimeEnd">IncallTimeEnd</string><!-- deprecated -->
-    <string name="IncallStartVolume">IncallStartVolume</string><!-- deprecated -->
-    <string name="IncallEndVolume">IncallEndVolume</string><!-- deprecated -->
-    <string name="RingmodeTimeStart">RingmodeTimeStart</string><!-- deprecated -->
-    <string name="RingmodeTimeEnd">RingmodeTimeEnd</string><!-- deprecated -->
-    <string name="RingmodeStartVolume">RingmodeStartVolume</string><!-- deprecated -->
-    <string name="RingmodeEndVolume">RingmodeEndVolume</string><!-- deprecated -->
-    <string name="VibrateNotifTimeStart">VibrateNotifTimeStart</string><!-- deprecated -->
-    <string name="VibrateNotifTimeEnd">VibrateNotifTimeEnd</string><!-- deprecated -->
-    <string name="VibrateNotifStartVolume">VibrateNotifStartVolume</string><!-- deprecated -->
-    <string name="VibrateNotifEndVolume">VibrateNotifEndVolume</string><!-- deprecated -->
-    <string name="VibrateRingerTimeStart">VibrateRingerTimeStart</string><!-- deprecated -->
-    <string name="VibrateRingerTimeEnd">VibrateRingerTimeEnd</string><!-- deprecated -->
-    <string name="VibrateRingerStartVolume">VibrateRingerStartVolume</string><!-- deprecated -->
-    <string name="VibrateRingerEndVolume">VibrateRingerEndVolume</string><!-- deprecated -->
-    <string name="EnableAlarm">EnableAlarm</string><!-- deprecated -->
-    <string name="EnableRinger">EnableRinger</string><!-- deprecated -->
-    <string name="EnableMedia">EnableMedia</string><!-- deprecated -->
-    <string name="EnableIncall">EnableIncall</string><!-- deprecated -->
-    <string name="EnableSystem">EnableSystem</string><!-- deprecated -->
-    <string name="EnableRingmode">EnableRingmode</string><!-- deprecated -->
-    <string name="EnableVibrateNotif">EnableVibrateNotif</string><!-- deprecated -->
-    <string name="EnableVibrateRinger">EnableVibrateRinger</string><!-- deprecated -->
-    
+    <string name="RingerTimeStart">RingerTimeStart</string>
+    <!-- deprecated -->
+    <string name="RingerTimeEnd">RingerTimeEnd</string>
+    <!-- deprecated -->
+    <string name="RingerStartVolume">RingerStartVolume</string>
+    <!-- deprecated -->
+    <string name="RingerEndVolume">RingerEndVolume</string>
+    <!-- deprecated -->
+    <string name="AlarmTimeStart">AlarmTimeStart</string>
+    <!-- deprecated -->
+    <string name="AlarmTimeEnd">AlarmTimeEnd</string>
+    <!-- deprecated -->
+    <string name="AlarmStartVolume">AlarmStartVolume</string>
+    <!-- deprecated -->
+    <string name="AlarmEndVolume">AlarmEndVolume</string>
+    <!-- deprecated -->
+    <string name="MediaTimeStart">MediaTimeStart</string>
+    <!-- deprecated -->
+    <string name="MediaTimeEnd">MediaTimeEnd</string>
+    <!-- deprecated -->
+    <string name="MediaStartVolume">MediaStartVolume</string>
+    <!-- deprecated -->
+    <string name="MediaEndVolume">MediaEndVolume</string>
+    <!-- deprecated -->
+    <string name="SystemTimeStart">SystemTimeStart</string>
+    <!-- deprecated -->
+    <string name="SystemTimeEnd">SystemTimeEnd</string>
+    <!-- deprecated -->
+    <string name="SystemStartVolume">SystemStartVolume</string>
+    <!-- deprecated -->
+    <string name="SystemEndVolume">SystemEndVolume</string>
+    <!-- deprecated -->
+    <string name="IncallTimeStart">IncallTimeStart</string>
+    <!-- deprecated -->
+    <string name="IncallTimeEnd">IncallTimeEnd</string>
+    <!-- deprecated -->
+    <string name="IncallStartVolume">IncallStartVolume</string>
+    <!-- deprecated -->
+    <string name="IncallEndVolume">IncallEndVolume</string>
+    <!-- deprecated -->
+    <string name="RingmodeTimeStart">RingmodeTimeStart</string>
+    <!-- deprecated -->
+    <string name="RingmodeTimeEnd">RingmodeTimeEnd</string>
+    <!-- deprecated -->
+    <string name="RingmodeStartVolume">RingmodeStartVolume</string>
+    <!-- deprecated -->
+    <string name="RingmodeEndVolume">RingmodeEndVolume</string>
+    <!-- deprecated -->
+    <string name="VibrateNotifTimeStart">VibrateNotifTimeStart</string>
+    <!-- deprecated -->
+    <string name="VibrateNotifTimeEnd">VibrateNotifTimeEnd</string>
+    <!-- deprecated -->
+    <string name="VibrateNotifStartVolume">VibrateNotifStartVolume</string>
+    <!-- deprecated -->
+    <string name="VibrateNotifEndVolume">VibrateNotifEndVolume</string>
+    <!-- deprecated -->
+    <string name="VibrateRingerTimeStart">VibrateRingerTimeStart</string>
+    <!-- deprecated -->
+    <string name="VibrateRingerTimeEnd">VibrateRingerTimeEnd</string>
+    <!-- deprecated -->
+    <string name="VibrateRingerStartVolume">VibrateRingerStartVolume</string>
+    <!-- deprecated -->
+    <string name="VibrateRingerEndVolume">VibrateRingerEndVolume</string>
+    <!-- deprecated -->
+    <string name="EnableAlarm">EnableAlarm</string>
+    <!-- deprecated -->
+    <string name="EnableRinger">EnableRinger</string>
+    <!-- deprecated -->
+    <string name="EnableMedia">EnableMedia</string>
+    <!-- deprecated -->
+    <string name="EnableIncall">EnableIncall</string>
+    <!-- deprecated -->
+    <string name="EnableSystem">EnableSystem</string>
+    <!-- deprecated -->
+    <string name="EnableRingmode">EnableRingmode</string>
+    <!-- deprecated -->
+    <string name="EnableVibrateNotif">EnableVibrateNotif</string>
+    <!-- deprecated -->
+    <string name="EnableVibrateRinger">EnableVibrateRinger</string>
+    <!-- deprecated -->
+
     <!-- Vibrate Settings -->
     <string name="notification_vibrate">Notification Settings</string>
     <string name="ringer_vibrate">Ringer Settings</string>
     <string name="vibrate_when_possible">Vibrate Whenever Possible</string>
     <string name="vibrate_when_silent">Vibrate Only When Silent</string>
     <string name="vibrate_off">Don\'t Vibrate</string>
-    
+
     <!-- Ringmode Toggle -->
     <string name="toggle_text">Set Ring Mode</string>
     <string name="ring_vibrate">May Ring, May Vibrate</string>
     <string name="vibrate_only">Vibrate Only</string>
     <string name="silent">Silent</string>
-    
+
     <!-- Schedules -->
     <string name="SystemVolumeSchedule">System Volume Schedule</string>
     <string name="RingerVolumeSchedule">Ringer Volume Schedule</string>
@@ -117,13 +180,13 @@
     <string name="MediaVolumeSchedule">Media Volume Schedule</string>
     <string name="AlarmVolumeSchedule">Alarm Volume Schedule</string>
     <string name="InCallVolumeSchedule">In-Call Volume Schedule</string>
-    
+
     <string name="newSchedule">New Schedule</string>
     <string name="deleteSchedule">Delete</string>
     <string name="editSchedule">Edit</string>
     <string name="toggleSchedule">Toggle Active/Inactive</string>
     <string name="applySettings">Apply Settings</string>
-    
+
     <string name="day0">Sun</string>
     <string name="day1">Mon</string>
     <string name="day2">Tue</string>
@@ -131,14 +194,14 @@
     <string name="day4">Thu</string>
     <string name="day5">Fri</string>
     <string name="day6">Sat</string>
-    
+
     <string name="startTimeLabel">Time:</string>
     <string name="volumeLabel">Volume:</string>
     <string name="vibrateLabel">Vibrate:</string>
     <string name="activeLabel">Active:</string>
-    
+
     <string name="scheduleSaved">Schedule saved</string>
-    
+
     <string name="done">Done</string>
     <string name="more_settings_button">More Volumes</string>
     <string name="refresh">Refresh</string>
@@ -151,7 +214,126 @@
     <string name="DoNotShowAgain">Do Not Show Again</string>
 
     <string name="tutorial_firstpage">Next: Introduction\n
-\n
-        Thanks for downloading Sound Manager. If you\'d like to learn more about how to use Sound Manager, continue with this brief tutorial by using the Next button below. You can access the tutorial again at any time using the Menu key.</string>
+        \n
+        Thanks for downloading Sound Manager. If you\'d like to learn more about how to use Sound Manager,
+        continue with this brief tutorial by using the Next button below. You can access the tutorial again at any time
+        using the Menu key.\n
+        \n
+        View the end of the tutorial for F.A.Q. and Troubleshooting Tips.
+    </string>
+    <string name="tutorial_secondpage">Next: How to Set a Schedule\n
+        \n
+        Sound Manager exposes all the volume settings available on your Android phone. But it does more than just
+        allow you to change the volume. You can schedule a volume change to occur at any time of day and
+        on any day of the week, even when you\'re asleep!\n
+        \n
+        For example, if you want to be able to catch a call in the middle of the night but
+        don\'t want to be disturbed for emails, you can schedule your Notification volume
+        to be silent at 10 PM and set another schedule to turn it back up at 6 AM.
+        Or set the Ringer and Notification volumes to a lower level at 8 AM on a weekday and back up at 5 PM.
+    </string>
+    <string name="tutorial_thirdpage">Next: Other Features\n
+        \n
+        To set a schedule:\n
+        \n
+        1. Press the Set Schedule button next to any of the volume settings.\n
+        2. You will be presented with a list of current schedules.
+        Perform a long-click on any schedule to toggle it to Active or Inactive, to delete it, or to reapply it.\n
+        3. Press the Menu button to add a new schedule.\n
+        4. Choose the time of day you want the volume to change.\n
+        5. Use slider bar to set the volume level you want it to change to.\n
+        6. Vibrate is in the same schedule with volume. If a vibrate checkbox is visible,
+        make sure it is checked or unchecked how you want it.\n
+        7. Choose the days of the week you want the schedule to be active.\n
+        8. Then press the Back button and the schedule will be set.\n
+    </string>
+    <string name="tutorial_fourthpage">Next: F.A.Q.\n
+        \n
+        On the main volume screens, slide your finger along any of the volume bars to change the volume.\n
+        \n
+        Use the Menu to go to mute, toggle ring mode, or change vibrate settings.
+        Use the "Mute" menu item if you\'d like to create a Mute/Unmute icon on the Home screen.\n
+        \n
+        Use "Apply All Schedules" from the menu to set all the volumes according to your schedules.
+        This is especially useful if you\'ve changed volumes and just want a quick reset.
+        Use this feature if the schedules ever get out of sync,
+        such as over a Daylight Savings Time or Time Zone change.\n
+        \n
+        If you turn off your phone, don\'t worry that you\'ll miss any schedules.
+        They will reapply automatically on reboot.\n
+        \n
+        The app can\'t detect if you change the volume elsewhere. As an Android app,
+        it\'s state is kept in memory unless you use the Back button to back out of the app.
+        To make sure your Volume sliders are accurate, just use the Refresh button on the main screen.\n
+    </string>
+    <string name="tutorial_fifthpage">Next: Troubleshooting Tips\n
+        \n
+        Q. When I set the schedule, why did it change my volume right away?\n
+        \n
+        A. When you set a schedule for a time of day ealier than the current time the schedule will be
+        activated immediate and set the volume.\n
+        \n
+        Q. I changed the ringer volume and the notification and system volume also changed. What happened?\n
+        \n
+        A. The Ring Mode controls this behavior. When you turn the Ringer volume to 0, the Ring Mode changes
+        from May Ring, May Vibrate to either Vibrate Only or Silent, depending on what your Vibrate setting is.
+        This is normal Android behavior. This changes your System and Notification volume to 0, as well.\n
+        \n
+        If you raise the Ringer volume, you actually want to hear the phone ring,
+        which won\'t happen if the Ring Mode is Silent. So Sound Manager changes the Ring Mode to Normal,
+        which means (depending on your settings) that is may ring and/or it may vibrate.
+        This also returns your System and Notificaiton volume to their previous values.\n
+        \n
+        Q. Why have my schedules not triggered since I updated?\n
+        \n
+        A. An Operating System update may disable the schedules that were in place.
+        Use the "Apply All Schedules" menu item to reapply them.\n
+        \n
+        Q. I used my Mute shortcut, but it doesn\'t do anything.\n
+        \n
+        A. The shortcut doesn\'t display anything, but it does toggle your mute status.
+        If you press it once, it mutes your phone. If you press it a second time,
+        the volume levels are returned to what they were when you muted the phone
+        (even if you\'ve changed the volume in the mean time).\n
+        \n
+        Q. How can I turn off the camera shutter sound?\n
+        \n
+        A. The camera shutter sound should be controlled by the System volume.
+        Turn down System volume to turn down the camera shutter sound.
+    </string>
+    <string name="tutorial_sixthpage">
+        Sound Manager doesn’t do anything fancy with the volume settings besides exposing them to the user
+        and scheduling them to change at certain times that you, the user, specifies. If you notice some quirkiness,
+        it may be something Android is doing that you didn\'t expect, or verify you have no other apps that are also
+        trying to change settings and check out a few of the tips below.\n
+        \n
+        Tip #1: Different settings can affect others. If you phone is in Vibrate Only Ring Mode,
+        and you change the Vibrate setting to Don\'t Vibrate, the Ring Mode will automatically change to Silent.
+        Changing the Ring Mode back to May Ring, May Vibrate won\'t turn the Vibrate back on, however.\n
+        \n
+        Also, if you turn the Ringer Volume all the way down in the app, only the Ringer Volume will be silent.
+        However, if you use the volume key on your phone to turn the volume down, the phone will go into Vibrate
+        Only or Silent Ring Mode, depending on your Vibrate setting, and your System Volume and Notification Volume
+        will also go to silent. Turning your Ringer Volume back up will change the Ring Mode back to May Ring, May
+        Vibrate,
+        and your System and Notification Volume will return to their previous state.\n
+        \n
+        Tip #2: Sound Manager can\'t control individual apps. Sound Manager only exposes the Android OS
+        system volume settings. It can\'t turn off vibrate for one application\'s notifications and not another\'s,
+        for example. It can’t make an app\'s notifications vibrate or make sound if the app isn\'t already set up
+        to do that itself. So unfortunately, Sound Manager cannot turn off sounds from your email app
+        but keep your test message sounds on.\n
+        \n
+        Tip #3: Sound Manager doesn\'t currently have the ability to detect Daylight Savings Time or a Time Zone change.
+        If your schedules seem to be out of sync, use the Apply All Schedules menu item or
+        reboot your phone to reinstall them.\n
+        \n
+        Tip #4: When you boot your phone, all the schedules for the day will reactivate so that your phone
+        should have the correct volume settings. This is a nice feature, but is really just a quirk of how
+        Android allows the app to schedule an event to change the volume. When an event is scheduled earlier in the day,
+        Android automatically triggers the event. Unfortunately, this means that if you have a schedule set for 11PM
+        but your phone was off between 10PM and 2AM when you boot your phone the 11PM schedule won’t activate.
+        One way around this is to also set a schedule at 12AM.
+    </string>
 
 </resources>
