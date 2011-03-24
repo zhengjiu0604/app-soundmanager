@@ -132,7 +132,7 @@
     <string name="day5">Fri</string>
     <string name="day6">Sat</string>
     
-    <string name="startTimeLabel">Start Time:</string>
+    <string name="startTimeLabel">Time:</string>
     <string name="volumeLabel">Volume:</string>
     <string name="vibrateLabel">Vibrate:</string>
     <string name="activeLabel">Active:</string>
@@ -143,5 +143,15 @@
     <string name="more_settings_button">More Volumes</string>
     <string name="refresh">Refresh</string>
     <string name="VolumeRefreshed">Volume Bars Updated</string>
+
+    <!-- Tutorial -->
+    <string name="Close">Close</string>
+    <string name="Next">Next</string>
+    <string name="Back">Back</string>
+    <string name="DoNotShowAgain">Do Not Show Again</string>
+
+    <string name="tutorial_firstpage">Next: Introduction\n
+\n
+        Thanks for downloading Sound Manager. If you\'d like to learn more about how to use Sound Manager, continue with this brief tutorial by using the Next button below. You can access the tutorial again at any time using the Menu key.</string>
 
 </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="300dip"
+              android:layout_height="420dip"
+              android:orientation="vertical">
+
+    <ScrollView android:layout_width="290dip"
+                android:layout_height="330dip"
+                android:gravity="center">
+        <TextView android:id="@+id/tutorial_text"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/tutorial_firstpage"
+                />
+    </ScrollView>
+
+    <CheckBox android:id="@+id/doNotShowAgainCheck"
+            android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/DoNotShowAgain"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center">
+        <Button android:id="@+id/tutorial_back"
+                android:layout_width="95dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dip"
+                android:text="@string/Back"/>
+        <Button android:id="@+id/tutorial_close"
+                android:layout_width="95dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dip"
+                android:text="@string/Close"/>
+        <Button android:id="@+id/tutorial_next"
+                android:layout_width="95dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dip"
+                android:text="@string/Next"/>
+    </LinearLayout>
+
+</LinearLayout>

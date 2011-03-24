@@ -28,7 +28,8 @@
         android:label="@string/app_name">
 
         <!-- Activities -->
-        <activity android:name=".MainSettings">
+        <activity android:name=".MainSettings"
+        android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,7 +40,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MoreSettings"></activity>
+        <activity android:name=".MoreSettings"
+        android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".TutorialActivity"
+              android:theme="@android:style/Theme.Dialog"
+        android:screenOrientation="portrait"></activity>
 
         <receiver android:name="com.roozen.SoundManager.receivers.Bootup">
             <intent-filter>
@@ -48,7 +54,8 @@
         </receiver>
 
         <activity
-            android:name="RingmodeToggle">
+            android:name="RingmodeToggle"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -58,7 +65,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="VibrateSettings">
+        <activity android:name="VibrateSettings"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -69,18 +77,22 @@
         </activity>
 
         <activity
-            android:name="MuteActivity">
+            android:name="MuteActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name="com.roozen.SoundManager.schedule.ScheduleList" />
+            android:name="com.roozen.SoundManager.schedule.ScheduleList"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name="com.roozen.SoundManager.schedule.ScheduleEdit" />
+            android:name="com.roozen.SoundManager.schedule.ScheduleEdit"
+                android:screenOrientation="portrait"/>
             
-        <activity android:name="VolumeDialog" android:theme="@android:style/Theme.Dialog">
+        <activity android:name="VolumeDialog" android:theme="@android:style/Theme.Dialog"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.roozen.intent.VOLUME_CONTROL" />
                 <category android:name="android.intent.category.DEFAULT" />
