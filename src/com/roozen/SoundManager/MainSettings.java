@@ -76,6 +76,12 @@ public class MainSettings extends Activity {
         startActivityForResult(i, ACTIVITY_LIST);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSeekBars();
+    }
+
     private void setupSeekbars() {
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
