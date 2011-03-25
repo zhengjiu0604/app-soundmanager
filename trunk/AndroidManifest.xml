@@ -50,6 +50,8 @@
         <receiver android:name="com.roozen.SoundManager.receivers.Bootup">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIME_ZONE_CHANGED"/>
             </intent-filter>
         </receiver>
 
@@ -96,6 +98,13 @@
             <intent-filter>
                 <action android:name="com.roozen.intent.VOLUME_CONTROL" />
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.roozen.SoundManager.receivers.TimeChangeReceiver">
+            <intent-filter>
+            </intent-filter>
+            <intent-filter>
             </intent-filter>
         </activity>
 
