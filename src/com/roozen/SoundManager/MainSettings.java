@@ -99,6 +99,7 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_SYSTEM, seekBar.getProgress(), setVolFlags);
+                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
                 updateSeekBars();
             }
 
@@ -120,6 +121,7 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
+                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 
                 if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
                     showVolumeCouplingWarning();
@@ -146,6 +148,7 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
+                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 
                 if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
                     showVolumeCouplingWarning();
@@ -171,6 +174,7 @@ public class MainSettings extends Activity {
 
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setStreamVolume(AudioManager.STREAM_MUSIC, seekBar.getProgress(), setVolFlags);
+                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
             }
 
         });
