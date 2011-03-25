@@ -204,8 +204,6 @@
 
     <string name="done">Done</string>
     <string name="more_settings_button">More Volumes</string>
-    <string name="refresh">Refresh</string>
-    <string name="VolumeRefreshed">Volume Bars Updated</string>
 
     <!-- Tutorial -->
     <string name="Close">Close</string>
@@ -255,16 +253,11 @@
         Use the "Mute" menu item if you\'d like to create a Mute/Unmute icon on the Home screen.\n
         \n
         Use "Apply All Schedules" from the menu to set all the volumes according to your schedules.
-        This is especially useful if you\'ve changed volumes and just want a quick reset.
-        Use this feature if the schedules ever get out of sync,
-        such as over a Daylight Savings Time or Time Zone change.\n
+        Use this feature to update your volume settings based on your schedules if they changed elsewhere
+        or if you have any reason to suspect that they got out of sync somehow.\n
         \n
         If you turn off your phone, don\'t worry that you\'ll miss any schedules.
-        They will reapply automatically on reboot.\n
-        \n
-        The app can\'t detect if you change the volume elsewhere. As an Android app,
-        it\'s state is kept in memory unless you use the Back button to back out of the app.
-        To make sure your Volume sliders are accurate, just use the Refresh button on the main screen.\n
+        They will reapply automatically on reboot.
     </string>
     <string name="tutorial_fifthpage">Next: Troubleshooting Tips\n
         \n
