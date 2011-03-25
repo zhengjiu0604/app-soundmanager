@@ -26,10 +26,7 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -234,6 +231,22 @@ public class MainSettings extends Activity {
                 Toast.makeText(gui, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+            updateSeekBars();
+        }
+        return super.onKeyLongPress(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+            updateSeekBars();
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
     private void setStatusText() {
