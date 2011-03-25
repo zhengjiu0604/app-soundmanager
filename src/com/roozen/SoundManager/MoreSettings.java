@@ -105,9 +105,7 @@ public class MoreSettings extends Activity {
     }
 
     private void setupSeekbars() {
-
-    	final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
-							AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_VIBRATE;
+    	final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_VIBRATE | AudioManager.FLAG_SHOW_UI;
 
         SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
         alarmSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_ALARM));
@@ -124,7 +122,6 @@ public class MoreSettings extends Activity {
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(AudioManager.STREAM_ALARM, seekBar.getProgress(), setVolFlags);
-                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 			}
 
         });
@@ -144,7 +141,6 @@ public class MoreSettings extends Activity {
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL, seekBar.getProgress(), setVolFlags);
-                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 			}
 
         });

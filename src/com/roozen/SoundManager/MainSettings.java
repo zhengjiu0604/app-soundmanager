@@ -80,8 +80,7 @@ public class MainSettings extends Activity {
 
     private void setupSeekbars() {
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE |
-                AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_VIBRATE;
+        final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_VIBRATE | AudioManager.FLAG_SHOW_UI;
 
         SeekBar systemSeek = (SeekBar) findViewById(R.id.system_seekbar);
         systemSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_SYSTEM));
@@ -99,7 +98,6 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_SYSTEM, seekBar.getProgress(), setVolFlags);
-                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
                 updateSeekBars();
             }
 
@@ -121,7 +119,6 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
-                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 
                 if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
                     showVolumeCouplingWarning();
@@ -148,7 +145,6 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
-                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 
                 if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
                     showVolumeCouplingWarning();
@@ -174,7 +170,6 @@ public class MainSettings extends Activity {
 
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setStreamVolume(AudioManager.STREAM_MUSIC, seekBar.getProgress(), setVolFlags);
-                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
             }
 
         });
