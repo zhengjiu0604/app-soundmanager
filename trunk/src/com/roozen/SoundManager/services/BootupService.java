@@ -43,7 +43,7 @@ public class BootupService extends Service {
 		 */
 		ContentResolver cr = getContentResolver();
 		Uri schedulesUri = Uri.withAppendedPath(ScheduleProvider.CONTENT_URI, "active");
-		Cursor scheduleCursor = cr.query(schedulesUri, null, null, null, null);
+		Cursor scheduleCursor = cr.query(schedulesUri, null, null, null, SQLiteDatabaseHelper.SCHEDULE_START_HOUR + ", " + SQLiteDatabaseHelper.SCHEDULE_START_MINUTE);
 		
 		if (scheduleCursor.moveToFirst()) {
 		    
