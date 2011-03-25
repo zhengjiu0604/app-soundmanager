@@ -71,7 +71,6 @@ public class MainSettings extends Activity {
         setupButtons();
         setStatusText();
 
-
         Intent i = new Intent(gui, TutorialActivity.class);
         startActivityForResult(i, ACTIVITY_LIST);
     }
@@ -232,6 +231,7 @@ public class MainSettings extends Activity {
         refresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 updateSeekBars();
+                Toast.makeText(gui, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -373,8 +373,6 @@ public class MainSettings extends Activity {
 
         SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
         mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
-
-        Toast.makeText(this, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
     }
 
     private void showVolumeCouplingWarning() {
