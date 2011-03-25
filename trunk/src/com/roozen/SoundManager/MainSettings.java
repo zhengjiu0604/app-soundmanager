@@ -223,14 +223,6 @@ public class MainSettings extends Activity {
                 startActivityForResult(i, ACTIVITY_LIST);
             }
         });
-
-        Button refresh = (Button) findViewById(R.id.refresh_button);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                updateSeekBars();
-                Toast.makeText(gui, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
     
     @Override
