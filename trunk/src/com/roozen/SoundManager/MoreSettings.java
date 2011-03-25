@@ -124,6 +124,7 @@ public class MoreSettings extends Activity {
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(AudioManager.STREAM_ALARM, seekBar.getProgress(), setVolFlags);
+                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 			}
 
         });
@@ -143,6 +144,7 @@ public class MoreSettings extends Activity {
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL, seekBar.getProgress(), setVolFlags);
+                audio.playSoundEffect(AudioManager.FX_KEY_CLICK, seekBar.getProgress());
 			}
 
         });
