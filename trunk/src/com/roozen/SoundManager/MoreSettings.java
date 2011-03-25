@@ -41,6 +41,13 @@ public class MoreSettings extends Activity {
         setStatusText();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSeekBars();
+    }
+
     public void countActiveSchedules() {
 	    MainSettings.mActiveCount = new HashMap<Integer,Integer>();
 
