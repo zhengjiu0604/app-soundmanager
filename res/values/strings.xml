@@ -234,16 +234,16 @@
         \n
         To set a schedule:\n
         \n
-        1. Press the Set Schedule button next to any of the volume settings.\n
+        1. Press the Set Schedule button next to any of the volume settings.\n\n
         2. You will be presented with a list of current schedules.
-        Perform a long-click on any schedule to toggle it to Active or Inactive, to delete it, or to reapply it.\n
-        3. Press the Menu button to add a new schedule.\n
-        4. Choose the time of day you want the volume to change.\n
-        5. Use slider bar to set the volume level you want it to change to.\n
+        Perform a long-click on any schedule to toggle it to Active or Inactive, to delete it, or to reapply it.\n\n
+        3. Press the Menu button to add a new schedule.\n\n
+        4. Choose the time of day you want the volume to change.\n\n
+        5. Use slider bar to set the volume level you want it to change to.\n\n
         6. Vibrate is in the same schedule with volume. If a vibrate checkbox is visible,
-        make sure it is checked or unchecked how you want it.\n
-        7. Choose the days of the week you want the schedule to be active.\n
-        8. Then press the Back button and the schedule will be set.\n
+        make sure it is checked or unchecked how you want it.\n\n
+        7. Choose the days of the week you want the schedule to be active.\n\n
+        8. Then press the Back button and the schedule will be set.
     </string>
     <string name="tutorial_fourthpage">Next: F.A.Q.\n
         \n
@@ -295,12 +295,19 @@
         Turn down System volume to turn down the camera shutter sound.
     </string>
     <string name="tutorial_sixthpage">
-        Sound Manager doesn’t do anything fancy with the volume settings besides exposing them to the user
+        Sound Manager doesn\'t do anything fancy with the volume settings besides exposing them to the user
         and scheduling them to change at certain times that you, the user, specifies. If you notice some quirkiness,
         it may be something Android is doing that you didn\'t expect, or verify you have no other apps that are also
         trying to change settings and check out a few of the tips below.\n
         \n
-        Tip #1: Different settings can affect others. If you phone is in Vibrate Only Ring Mode,
+        Tip #1: By default, on some Android phones ringer and notification volume are
+        linked such that any changes to ringer volume affects notification volume,
+        although not the other way around.\n
+        \n
+        To unlink them, go to Menu > Settings > Sound and Display > Ringer Volume,
+        and uncheck "Use incoming call volume for notifications".\n
+        \n
+        Tip #2: Different settings can affect others. If you phone is in Vibrate Only Ring Mode,
         and you change the Vibrate setting to Don\'t Vibrate, the Ring Mode will automatically change to Silent.
         Changing the Ring Mode back to May Ring, May Vibrate won\'t turn the Vibrate back on, however.\n
         \n
@@ -311,17 +318,17 @@
         Vibrate,
         and your System and Notification Volume will return to their previous state.\n
         \n
-        Tip #2: Sound Manager can\'t control individual apps. Sound Manager only exposes the Android OS
+        Tip #3: Sound Manager can\'t control individual apps. Sound Manager only exposes the Android OS
         system volume settings. It can\'t turn off vibrate for one application\'s notifications and not another\'s,
         for example. It can’t make an app\'s notifications vibrate or make sound if the app isn\'t already set up
         to do that itself. So unfortunately, Sound Manager cannot turn off sounds from your email app
         but keep your test message sounds on.\n
         \n
-        Tip #3: Sound Manager doesn\'t currently have the ability to detect Daylight Savings Time or a Time Zone change.
+        Tip #4: Sound Manager doesn\'t currently have the ability to detect Daylight Savings Time or a Time Zone change.
         If your schedules seem to be out of sync, use the Apply All Schedules menu item or
         reboot your phone to reinstall them.\n
         \n
-        Tip #4: When you boot your phone, all the schedules for the day will reactivate so that your phone
+        Tip #5: When you boot your phone, all the schedules for the day will reactivate so that your phone
         should have the correct volume settings. This is a nice feature, but is really just a quirk of how
         Android allows the app to schedule an event to change the volume. When an event is scheduled earlier in the day,
         Android automatically triggers the event. Unfortunately, this means that if you have a schedule set for 11PM
