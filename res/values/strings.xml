@@ -324,9 +324,7 @@
         to do that itself. So unfortunately, Sound Manager cannot turn off sounds from your email app
         but keep your test message sounds on.\n
         \n
-        Tip #4: Sound Manager doesn\'t currently have the ability to detect Daylight Savings Time or a Time Zone change.
-        If your schedules seem to be out of sync, use the Apply All Schedules menu item or
-        reboot your phone to reinstall them.\n
+        Tip #4: If your schedules seem to be out of sync, use the Apply All Schedules menu item to reinstall them.\n
         \n
         Tip #5: When you boot your phone, all the schedules for the day will reactivate so that your phone
         should have the correct volume settings. This is a nice feature, but is really just a quirk of how
