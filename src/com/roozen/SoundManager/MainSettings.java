@@ -18,6 +18,7 @@ package com.roozen.SoundManager;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -118,6 +119,10 @@ public class MainSettings extends Activity {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
 
+                if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
+                    showVolumeCouplingWarning();
+                }
+
                 updateSeekBars();
             }
 
@@ -139,6 +144,10 @@ public class MainSettings extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
+
+                if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
+                    showVolumeCouplingWarning();
+                }
 
                 updateSeekBars();
             }
@@ -217,7 +226,6 @@ public class MainSettings extends Activity {
         refresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 updateSeekBars();
-                Toast.makeText(gui, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -359,6 +367,85 @@ public class MainSettings extends Activity {
 
         SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
         mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
+
+        Toast.makeText(this, getString(R.string.VolumeRefreshed), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showVolumeCouplingWarning() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("By default, on some Android phones ringer and notification volume are " +
+                "linked such that any changes to ringer volume affects notification volume, " +
+                "although not the other way around. \n\n" +
+                "To unlink them, go to Menu > Settings > Sound & Display > Ringer volume, " +
+                "and uncheck \"Use incoming call volume for notifications\".");
+        builder.show();
+
+        Util.putBooleanPref(this, getString(R.string.ShownVolumeCouplingWarning), true);
+        hasShownVolumeCouplingWarning = true;
+
+    }
+
+    /**
+     * temporarily change the ringer volume and check if the notif volume changed with it
+     *
+     * @return result
+     */
+    private boolean isRingerNotifVolumeCoupled() {
+
+        if (isVolumeCoupled != null) {
+            return isVolumeCoupled;
+        }
+
+        isVolumeCoupled = true;
+
+        final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int ringMax = audio.getStreamMaxVolume(AudioManager.STREAM_RING);
+
+        //get current volumes
+        int ringVol = audio.getStreamVolume(AudioManager.STREAM_RING);
+        int notifVol = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+
+        //check if they're the same now
+        boolean wereSame = false;
+        if (notifVol == ringVol) {
+            wereSame = true;
+        }
+
+        int tmpRingVol = (ringVol == ringMax) ? ringVol - 1 : ringVol + 1;
+        audio.setStreamVolume(AudioManager.STREAM_RING, tmpRingVol, 0);
+
+        int ringCheck = audio.getStreamVolume(AudioManager.STREAM_RING);
+        int notifCheck = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+
+        /*
+        * expanded logic:
+        * 1. were same, still same        => coupled
+        * 2. were same, not same          => not coupled
+        * 3. weren't same, still not same => not coupled
+        * 4. weren't same, now same       => need to change again and recheck
+        * 4a. same again                  => coupled
+        * 4b. no longer same              => not coupled
+        */
+        if (!wereSame && notifCheck == ringCheck) {
+
+            audio.setStreamVolume(AudioManager.STREAM_RING, ringVol, 0);
+            ringCheck = audio.getStreamVolume(AudioManager.STREAM_RING);
+            notifCheck = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+
+            if (notifCheck != ringCheck) {
+                isVolumeCoupled = false;
+            }
+
+        } else if (notifCheck != ringCheck) {
+            isVolumeCoupled = false;
+        }
+
+        //put everything back to their previous values
+        audio.setStreamVolume(AudioManager.STREAM_RING, ringVol, 0);
+        audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifVol, 0);
+
+        return isVolumeCoupled;
     }
 
 }
