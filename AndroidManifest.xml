@@ -55,6 +55,13 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name="com.roozen.SoundManager.receivers.Reinstall">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="RingmodeToggle"
                 android:screenOrientation="portrait">
