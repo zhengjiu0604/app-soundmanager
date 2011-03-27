@@ -16,6 +16,10 @@
 package com.roozen.SoundManager;
 
 import java.util.HashMap;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -296,6 +300,16 @@ public class MainSettings extends Activity {
             case R.id.apply_all_settings:
                 Intent bootupService = new Intent(this, BootupService.class);
                 startService(bootupService);
+                // Need to update seekbars, but need to do it after the bootup service.
+                final ExecutorService executorService = Executors.newFixedThreadPool(1);
+                executorService.submit(new Callable<Boolean>(){
+                    public Boolean call() throws Exception {
+                        Thread.sleep(1000); // Wait long enough for the bootup service to run.
+                        updateSeekBars();
+                        executorService.shutdownNow();
+                        return true;
+                    }
+                });
                 return true;
             case R.id.toggle_ringmode:
                 Intent toggle = new Intent(this, RingmodeToggle.class);
