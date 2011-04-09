@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.schedule;
+package com.roozen.SoundManagerv2.schedule;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -38,10 +38,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
-import com.roozen.SoundManager.R;
-import com.roozen.SoundManager.provider.ScheduleProvider;
-import com.roozen.SoundManager.receivers.SoundTimer;
-import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManagerv2.R;
+import com.roozen.SoundManagerv2.provider.ScheduleProvider;
+import com.roozen.SoundManagerv2.receivers.SoundTimer;
+import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
 
 /**
  * Schedule List

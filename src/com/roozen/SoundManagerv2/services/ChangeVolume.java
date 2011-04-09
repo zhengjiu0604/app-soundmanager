@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.services;
+package com.roozen.SoundManagerv2.services;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -28,8 +28,8 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.IBinder;
 
-import com.roozen.SoundManager.provider.ScheduleProvider;
-import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManagerv2.provider.ScheduleProvider;
+import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
 
 /**
  * Service that changes volume, ringmode, and vibrate setting given a schedule id

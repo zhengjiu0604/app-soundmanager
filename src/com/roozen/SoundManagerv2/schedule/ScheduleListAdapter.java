@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.schedule;
+package com.roozen.SoundManagerv2.schedule;
 
 import java.util.ArrayList;
 
