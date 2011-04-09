@@ -55,6 +55,8 @@ public class MainSettings extends Activity {
     private boolean hasShownVolumeCouplingWarning;
     private Boolean isVolumeCoupled = null;
 
+    public static long time = 0;
+
     /**
      * Called when the activity is first created.
      */
