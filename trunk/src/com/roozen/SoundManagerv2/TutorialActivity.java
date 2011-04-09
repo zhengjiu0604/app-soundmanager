@@ -1,14 +1,13 @@
-package com.roozen.SoundManager;
+package com.roozen.SoundManagerv2;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.roozen.SoundManager.utils.Util;
+import com.roozen.SoundManagerv2.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;

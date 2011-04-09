@@ -13,20 +13,30 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.receivers;
+package com.roozen.SoundManagerv2.receivers;
 
-import com.roozen.SoundManager.services.BootupService;
+import com.roozen.SoundManagerv2.services.ChangeVolume;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-public class Bootup extends BroadcastReceiver {
+public class SoundTimer extends BroadcastReceiver {
 
 	@Override
-	public void onReceive(Context context, Intent arg1) {
-		Intent i = new Intent(context, BootupService.class);
-		context.startService(i);
+	public void onReceive(Context context, Intent intent) {
+		
+		/*
+		 * pass schedule id onto the ChangeVolume service
+		 */
+		int scheduleId = Integer.parseInt(intent.getData().getPathSegments().get(1));
+		
+		if (scheduleId > 0) {
+            Intent i = new Intent(context, ChangeVolume.class);
+            i.setData(intent.getData());
+            context.startService(i);
+		}
+		
 	}
 
 }

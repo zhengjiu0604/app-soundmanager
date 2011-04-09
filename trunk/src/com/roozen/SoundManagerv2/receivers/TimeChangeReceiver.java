@@ -1,12 +1,9 @@
-package com.roozen.SoundManager.receivers;
+package com.roozen.SoundManagerv2.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import com.roozen.SoundManager.MainSettings;
-import com.roozen.SoundManager.services.BootupService;
-
-import java.util.Date;
+import com.roozen.SoundManagerv2.services.BootupService;
 
 public class TimeChangeReceiver extends BroadcastReceiver {
 

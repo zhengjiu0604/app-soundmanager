@@ -13,11 +13,10 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager;
+package com.roozen.SoundManagerv2;
 
 import java.util.HashMap;
 import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,11 +36,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-import com.roozen.SoundManager.provider.ScheduleProvider;
-import com.roozen.SoundManager.schedule.ScheduleList;
-import com.roozen.SoundManager.services.BootupService;
-import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
-import com.roozen.SoundManager.utils.Util;
+import com.roozen.SoundManagerv2.provider.ScheduleProvider;
+import com.roozen.SoundManagerv2.schedule.ScheduleList;
+import com.roozen.SoundManagerv2.services.BootupService;
+import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManagerv2.utils.Util;
 
 public class MainSettings extends Activity {
 

@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.schedule;
+package com.roozen.SoundManagerv2.schedule;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -25,8 +25,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.roozen.SoundManager.R;
-import com.roozen.SoundManager.utils.Util;
+import com.roozen.SoundManagerv2.R;
+import com.roozen.SoundManagerv2.utils.Util;
 
 /**
  * Defines layout for Schedule list items

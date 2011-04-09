@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.schedule;
+package com.roozen.SoundManagerv2.schedule;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -33,10 +33,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.roozen.SoundManager.R;
-import com.roozen.SoundManager.provider.ScheduleProvider;
-import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
-import com.roozen.SoundManager.utils.Util;
+import com.roozen.SoundManagerv2.R;
+import com.roozen.SoundManagerv2.provider.ScheduleProvider;
+import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManagerv2.utils.Util;
 
 /**
  * Schedule Edit screen

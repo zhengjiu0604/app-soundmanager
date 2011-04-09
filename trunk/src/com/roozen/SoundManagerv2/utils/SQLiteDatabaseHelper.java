@@ -1,4 +1,4 @@
-package com.roozen.SoundManager.utils;
+package com.roozen.SoundManagerv2.utils;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,9 +12,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.media.AudioManager;
 import android.util.Log;
 
-import com.roozen.SoundManager.R;
-import com.roozen.SoundManager.receivers.SoundTimer;
-import com.roozen.SoundManager.services.BootupService;
+import com.roozen.SoundManagerv2.R;
+import com.roozen.SoundManagerv2.receivers.SoundTimer;
+import com.roozen.SoundManagerv2.services.BootupService;
 
 /**
  * @author Mike Partridge

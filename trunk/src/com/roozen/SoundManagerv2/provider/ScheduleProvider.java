@@ -13,11 +13,11 @@
  * either express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package com.roozen.SoundManager.provider;
+package com.roozen.SoundManagerv2.provider;
 
 import java.util.HashMap;
 
-import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;

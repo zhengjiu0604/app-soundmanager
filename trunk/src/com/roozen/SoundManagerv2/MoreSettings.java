@@ -1,4 +1,4 @@
-package com.roozen.SoundManager;
+package com.roozen.SoundManagerv2;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,12 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import com.roozen.SoundManager.provider.ScheduleProvider;
-import com.roozen.SoundManager.schedule.ScheduleList;
-import com.roozen.SoundManager.utils.SQLiteDatabaseHelper;
+import com.roozen.SoundManagerv2.provider.ScheduleProvider;
+import com.roozen.SoundManagerv2.schedule.ScheduleList;
+import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
 
 import java.util.HashMap;
 
