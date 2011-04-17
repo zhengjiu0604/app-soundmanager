@@ -24,7 +24,7 @@
 
     <application
         android:icon="@drawable/main_icon"
-        android:debuggable="true"
+        android:debuggable="false"
         android:label="@string/app_name">
 
         <!-- Activities -->
@@ -47,20 +47,20 @@
               android:theme="@android:style/Theme.Dialog"
         android:screenOrientation="portrait"></activity>
 
-        <receiver android:name="com.roozen.SoundManager.receivers.Bootup">
+        <receiver android:name="com.roozen.SoundManagerv2.receivers.Bootup">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="com.roozen.SoundManager.receivers.Reinstall">
+        <receiver android:name="com.roozen.SoundManagerv2.receivers.Reinstall">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_CHANGED" />
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="com.roozen.SoundManager.receivers.TimeChangeReceiver">
+        <receiver android:name="com.roozen.SoundManagerv2.receivers.TimeChangeReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.TIME_ZONE_CHANGED"/>
             </intent-filter>
@@ -98,10 +98,10 @@
         </activity>
 
         <activity
-            android:name="com.roozen.SoundManager.schedule.ScheduleList"
+            android:name="com.roozen.SoundManagerv2.schedule.ScheduleList"
                 android:screenOrientation="portrait"/>
         <activity
-            android:name="com.roozen.SoundManager.schedule.ScheduleEdit"
+            android:name="com.roozen.SoundManagerv2.schedule.ScheduleEdit"
                 android:screenOrientation="portrait"/>
             
         <activity android:name="VolumeDialog" android:theme="@android:style/Theme.Dialog"
@@ -113,15 +113,15 @@
         </activity>
 
         <!-- Services -->
-        <service android:name="com.roozen.SoundManager.services.ChangeVolume" />
-        <service android:name="com.roozen.SoundManager.services.BootupService" />
+        <service android:name="com.roozen.SoundManagerv2.services.ChangeVolume" />
+        <service android:name="com.roozen.SoundManagerv2.services.BootupService" />
 
         <!-- Receivers -->
-        <receiver android:name="com.roozen.SoundManager.receivers.SoundTimer" />
+        <receiver android:name="com.roozen.SoundManagerv2.receivers.SoundTimer" />
 
         <!-- Providers -->
         <provider
-            android:name="com.roozen.SoundManager.provider.ScheduleProvider"
+            android:name="com.roozen.SoundManagerv2.provider.ScheduleProvider"
             android:authorities="com.roozen.soundmanager.provider.scheduleprovider" />
 
     </application>
