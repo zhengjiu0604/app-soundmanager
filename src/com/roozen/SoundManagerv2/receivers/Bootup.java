@@ -15,11 +15,13 @@
  */
 package com.roozen.SoundManagerv2.receivers;
 
+import com.roozen.SoundManagerv2.R;
 import com.roozen.SoundManagerv2.services.BootupService;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import com.roozen.SoundManagerv2.utils.Util;
 
 public class Bootup extends BroadcastReceiver {
 
@@ -27,6 +29,7 @@ public class Bootup extends BroadcastReceiver {
 	public void onReceive(Context context, Intent arg1) {
 		Intent i = new Intent(context, BootupService.class);
 		context.startService(i);
+        Util.putBooleanPref(context, context.getString(R.string.muted), false);
 	}
 
 }
