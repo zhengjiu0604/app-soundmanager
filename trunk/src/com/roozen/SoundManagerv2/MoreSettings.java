@@ -106,43 +106,15 @@ public class MoreSettings extends Activity {
     private void setupSeekbars() {
     	final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_VIBRATE | AudioManager.FLAG_SHOW_UI;
 
-        SeekBar alarmSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
-        alarmSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_ALARM));
-        alarmSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM));
-        alarmSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-			  //ignore
-			}
-
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				//ignore
-			}
-
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(AudioManager.STREAM_ALARM, seekBar.getProgress(), setVolFlags);
-			}
-
-        });
-
-        SeekBar phonecallSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
-        phonecallSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
-        phonecallSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
-        phonecallSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-			  //ignore
-			}
-
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				//ignore
-			}
-
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL, seekBar.getProgress(), setVolFlags);
-			}
-
-        });
+        SeekBar volumeSeek = (SeekBar) findViewById(R.id.alarm_seekbar);
+        volumeSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_ALARM));
+        volumeSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_ALARM)); 
+        volumeSeek.setOnSeekBarChangeListener(
+        		new CustomSeekBarChangeListener(AudioManager.STREAM_ALARM, this, volumeSeek));
+        
+        volumeSeek = (SeekBar) findViewById(R.id.phonecall_seekbar);
+        
+        volumeSeek.setOnSeekBarChangeListener(new CustomSeekBarChangeListener(AudioManager.STREAM_VOICE_CALL, this, volumeSeek));
     }
 
     /* (non-Javadoc)

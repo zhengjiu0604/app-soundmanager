@@ -16,6 +16,8 @@
 package com.roozen.SoundManagerv2;
 
 import java.util.HashMap;
+
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -41,6 +43,32 @@ import com.roozen.SoundManagerv2.schedule.ScheduleList;
 import com.roozen.SoundManagerv2.services.BootupService;
 import com.roozen.SoundManagerv2.utils.SQLiteDatabaseHelper;
 import com.roozen.SoundManagerv2.utils.Util;
+
+class CustomSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+	
+	int type = 0;
+	static AudioManager audio;
+	static final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_VIBRATE | AudioManager.FLAG_SHOW_UI;
+	public CustomSeekBarChangeListener(int type, Activity act, SeekBar seek) {
+		this.type = type;
+		audio = (AudioManager) act.getSystemService(Context.AUDIO_SERVICE);
+        seek.setMax(audio.getStreamMaxVolume(type));
+        seek.setProgress(audio.getStreamVolume(type));
+	}
+
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+		audio.setStreamVolume(type, seekBar.getProgress(), setVolFlags);
+    }
+	
+	public void onStartTrackingTouch(SeekBar seekBar) {
+         //ignore
+    }
+    
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+		audio.setStreamVolume(type, seekBar.getProgress(), setVolFlags);
+    }
+}
 
 public class MainSettings extends Activity {
 
@@ -84,102 +112,17 @@ public class MainSettings extends Activity {
     }
 
     private void setupSeekbars() {
-        final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        final int setVolFlags = AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_VIBRATE | AudioManager.FLAG_SHOW_UI;
+        SeekBar volumeSeek = (SeekBar) findViewById(R.id.system_seekbar);
+        volumeSeek.setOnSeekBarChangeListener(new CustomSeekBarChangeListener(AudioManager.STREAM_SYSTEM, this, volumeSeek));
+        
+        volumeSeek = (SeekBar) findViewById(R.id.ringer_seekbar);
+        volumeSeek.setOnSeekBarChangeListener(new CustomSeekBarChangeListener(AudioManager.STREAM_RING, this, volumeSeek));
 
-        SeekBar systemSeek = (SeekBar) findViewById(R.id.system_seekbar);
-        systemSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_SYSTEM));
-        systemSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
-        systemSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+        volumeSeek = (SeekBar) findViewById(R.id.notif_seekbar);
+        volumeSeek.setOnSeekBarChangeListener(new CustomSeekBarChangeListener(AudioManager.STREAM_NOTIFICATION, this, volumeSeek));
 
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                //ignore
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //ignore
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                audio.setStreamVolume(AudioManager.STREAM_SYSTEM, seekBar.getProgress(), setVolFlags);
-                updateSeekBars();
-            }
-
-        });
-
-        SeekBar ringerSeek = (SeekBar) findViewById(R.id.ringer_seekbar);
-        ringerSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_RING));
-        ringerSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_RING));
-        ringerSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                //ignore
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //ignore
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                audio.setStreamVolume(AudioManager.STREAM_RING, seekBar.getProgress(), setVolFlags);
-
-                if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
-                    showVolumeCouplingWarning();
-                }
-
-                updateSeekBars();
-            }
-
-        });
-
-        SeekBar notifSeek = (SeekBar) findViewById(R.id.notif_seekbar);
-        notifSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION));
-        notifSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
-        notifSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                //ignore
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //ignore
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                audio.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, seekBar.getProgress(), setVolFlags);
-
-                if (!hasShownVolumeCouplingWarning && isRingerNotifVolumeCoupled()) {
-                    showVolumeCouplingWarning();
-                }
-
-                updateSeekBars();
-            }
-
-        });
-
-        SeekBar mediaSeek = (SeekBar) findViewById(R.id.media_seekbar);
-        mediaSeek.setMax(audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
-        mediaSeek.setProgress(audio.getStreamVolume(AudioManager.STREAM_MUSIC));
-        mediaSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                //ignore
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //ignore
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                audio.setStreamVolume(AudioManager.STREAM_MUSIC, seekBar.getProgress(), setVolFlags);
-            }
-
-        });
-
-
+        volumeSeek = (SeekBar) findViewById(R.id.media_seekbar);
+        volumeSeek.setOnSeekBarChangeListener(new CustomSeekBarChangeListener(AudioManager.STREAM_MUSIC, this, volumeSeek));
     }
 
     private void setupButtons() {
